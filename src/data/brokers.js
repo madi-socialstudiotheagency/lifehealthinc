@@ -1,0 +1,20 @@
+export const BROKERS = [
+  {
+    slug: 'matthew-anderson',
+    name: 'Matthew Anderson',
+    title: 'Founder & Licensed Broker',
+    npn: '20770864',
+    phone: '(954) 543-0853',
+    phoneHref: 'tel:9545430853',
+    email: 'matthew@lifehealthinc.org',
+    image: 'https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/68c1ca7c80a1472f1eb4424c/98348aea7_D2X_8468.jpg',
+    objectPosition: 'object-top',
+    bg: '#e8edf5',
+    bio: "Matthew founded LifeHealthInc with one mission: make life and health insurance simple, honest, and accessible for every American family. With years of experience in the field, he's helped hundreds of clients find the right coverage at the right price — without the runaround.",
+    bioExtended: "As an independent broker licensed in all 50 states, Matthew shops 20+ top-rated carriers to find you the best plan at the best price. He specializes in life insurance strategies — from straightforward term coverage to complex IUL structures designed to build tax-free retirement income. When you work with Matthew, you work with someone whose only goal is getting you protected.",
+    specialties: ['Life Insurance', 'Mortgage Protection', 'Annuities', 'IUL Structuring'],
+    quote: '"My job isn\'t to sell you a policy. It\'s to make sure your family is protected no matter what happens."',
+    calendlyUrl: 'https://calendly.com/lifehealthinc/meeting-with-matthew-anderson',
+    linkedin: 'https://www.linkedin.com/in/matthew-anderson-797939296/',
+  },
+];
