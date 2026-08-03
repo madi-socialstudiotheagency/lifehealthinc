@@ -1,245 +1,241 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Get your free health insurance quote from Life Health Inc.">
-    <meta name="theme-color" content="#135dea">
-    <title>Get a Quote - Life Health Inc</title>
-  <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Get your free health insurance quote from Life Health Inc.">
+<meta name="theme-color" content="#135dea">
+<title>Get a Quote - Life Health Inc</title>
+<style>
+* {
+margin: 0;
+padding: 0;
+box-sizing: border-box;
+}
 
-    body {
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-      min-height: 100vh;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      padding: 20px;
-    }
+body {
+font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+min-height: 100vh;
+display: flex;
+align-items: center;
+justify-content: center;
+padding: 20px;
+}
 
-    .container {
-      background: white;
-      padding: 48px;
-      border-radius: 12px;
-      box-shadow: 0 20px 60px rgba(0,0,0,0.3);
-      max-width: 500px;
-      width: 100%;
-    }
+.container {
+background: white;
+padding: 48px;
+border-radius: 12px;
+box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+max-width: 500px;
+width: 100%;
+}
 
-    h1 {
-      color: #333;
-      margin-bottom: 10px;
-      font-size: 32px;
-    }
+h1 {
+color: #333;
+margin-bottom: 10px;
+font-size: 32px;
+}
 
-    .subtitle {
-      color: #666;
-      margin-bottom: 30px;
-      font-size: 16px;
-    }
+.subtitle {
+color: #666;
+margin-bottom: 30px;
+font-size: 16px;
+}
 
-    .form-group {
-      margin-bottom: 20px;
-    }
+.form-group {
+margin-bottom: 20px;
+}
 
-    label {
-      display: block;
-      margin-bottom: 8px;
-      color: #333;
-      font-weight: 600;
-      font-size: 14px;
-    }
+label {
+display: block;
+margin-bottom: 8px;
+color: #333;
+font-weight: 600;
+font-size: 14px;
+}
 
-    input,
-    select {
-      width: 100%;
-      padding: 12px;
-      border: 2px solid #e0e0e0;
-      border-radius: 6px;
-      font-size: 14px;
-      font-family: inherit;
-      transition: border-color 0.3s;
-    }
+input,
+select {
+width: 100%;
+padding: 12px;
+border: 2px solid #e0e0e0;
+border-radius: 6px;
+font-size: 14px;
+font-family: inherit;
+transition: border-color 0.3s;
+}
 
-    input:focus,
-    select:focus {
-      outline: none;
-      border-color: #667eea;
-    }
+input:focus,
+select:focus {
+outline: none;
+border-color: #667eea;
+}
 
-    button {
-      width: 100%;
-      padding: 14px;
-      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-      color: white;
-      border: none;
-      border-radius: 6px;
-      font-weight: 600;
-      font-size: 16px;
-      cursor: pointer;
-      transition: transform 0.2s, box-shadow 0.2s;
-    }
+button {
+width: 100%;
+padding: 14px;
+background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+color: white;
+border: none;
+border-radius: 6px;
+font-weight: 600;
+font-size: 16px;
+cursor: pointer;
+transition: transform 0.2s, box-shadow 0.2s;
+}
 
-    button:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 10px 20px rgba(102, 126, 234, 0.4);
-    }
+button:hover {
+transform: translateY(-2px);
+box-shadow: 0 10px 20px rgba(102, 126, 234, 0.4);
+}
 
-    button:active {
-      transform: translateY(0);
-    }
+button:active {
+transform: translateY(0);
+}
 
-    .required {
-      color: #e74c3c;
-    }
+.required {
+color: #e74c3c;
+}
 
-    .form-message {
-      margin-top: 20px;
-      padding: 12px;
-      border-radius: 6px;
-      display: none;
-      font-size: 14px;
-    }
+.form-message {
+margin-top: 20px;
+padding: 12px;
+border-radius: 6px;
+display: none;
+font-size: 14px;
+}
 
-    .form-message.success {
-      display: block;
-      background: #d4edda;
-      color: #155724;
-      border: 1px solid #c3e6cb;
-    }
+.form-message.success {
+display: block;
+background: #d4edda;
+color: #155724;
+border: 1px solid #c3e6cb;
+}
 
-    .form-message.error {
-      display: block;
-      background: #f8d7da;
-      color: #721c24;
-      border: 1px solid #f5c6cb;
-    }
+.form-message.error {
+display: block;
+background: #f8d7da;
+color: #721c24;
+border: 1px solid #f5c6cb;
+}
 
-    button:disabled {
-      opacity: 0.6;
-      cursor: not-allowed;
-    }
+button:disabled {
+opacity: 0.6;
+cursor: not-allowed;
+}
 
-    @media (max-width: 500px) {
-      .container {
-        padding: 24px;
-      }
+@media (max-width: 500px) {
+.container {
+padding: 24px;
+}
 
-      h1 {
-        font-size: 24px;
-      }
-    }
-    </style>
-  </head>
-  <body>
-    <div class="container">
-      <h1>Get Your Free Quote</h1>
-    <p class="subtitle">We're here to help. Fill out the form below and we'll be in touch shortly.</p>p>
-    
-    <form id="quoteForm" name="quote-request" method="POST" action="https://socialstudio.app.n8n.cloud/webhook/60d15644-d6ad-4d03-9fd3-9d59a1357061">
-    
-    <div class="form-group">
-    <label for="fullName">Full Name <span class="required">*</span>span></label>label>
-    <input type="text" id="fullName" name="fullName" required aria-required="true">
-    </div>div>
-    
-    <div class="form-group">
-    <label for="email">Email <span class="required">*</span>span></label>label>
-    <input type="email" id="email" name="email" required aria-required="true">
-    </div>div>
-    
-    <div class="form-group">
-    <label for="phone">Phone Number <span class="required">*</span>span></label>label>
-    <input type="tel" id="phone" name="phone" required aria-required="true">
-    </div>div>
-    
-    <div class="form-group">
-    <label for="interest">What are you interested in? <span class="required">*</span>span></label>label>
-    <select id="interest" name="interest" required aria-required="true">
-    <option value="">-- Select an option --</option>option>
-    <option value="General Consultation">General Consultation</option>option>
-    <option value="Wellness Program">Wellness Program</option>option>
-    <option value="Health Assessment">Health Assessment</option>option>
-    <option value="Other">Other</option>option>
-    </select>select>
-    </div>div>
-    
-    <button type="submit">Get Your Free Quote</button>button>
-    
-    <div class="form-message" id="formMessage" role="alert"></div>div>
-    </form>form>
-    
-    </div>div>
-  
-  <script>
-    // Track form submission and send to n8n webhook
-    document.getElementById('quoteForm').addEventListener('submit', async function(e) {
-      e.preventDefault();
+h1 {
+font-size: 24px;
+}
+}
+</style>
+</head>
+<body>
+<div class="container">
+<h1>Get Your Free Quote</h1>
+<p class="subtitle">We're here to help. Fill out the form below and we'll be in touch shortly.</p>
 
-      const button = document.querySelector('button[type="submit"]');
-      const messageDiv = document.getElementById('formMessage');
+<form id="quoteForm" name="quote-request" method="POST" action="https://socialstudio.app.n8n.cloud/webhook/60d15644-d6ad-4d03-9fd3-9d59a1357061">
 
-      button.disabled = true;
-      messageDiv.className = 'form-message';
-      messageDiv.textContent = 'Submitting...';
-      messageDiv.style.display = 'block';
+<div class="form-group">
+<label for="fullName">Full Name <span class="required">*</span></label>
+<input type="text" id="fullName" name="fullName" required aria-required="true">
+</div>
 
-      // Collect form data
-      const formData = {
-        fullName: document.getElementById('fullName').value,
-        email: document.getElementById('email').value,
-        phone: document.getElementById('phone').value,
-        interest: document.getElementById('interest').value,
-        timestamp: new Date().toISOString(),
-        source: 'quote-form'
-      };
+<div class="form-group">
+<label for="email">Email <span class="required">*</span></label>
+<input type="email" id="email" name="email" required aria-required="true">
+</div>
 
-      try {
-        // Send to n8n webhook for CloudTalk integration
-        const n8nResponse = await fetch('https://socialstudio.app.n8n.cloud/webhook/60d15644-d6ad-4d03-9fd3-9d59a1357061', {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify(formData)
-        }).catch(() => {
-          // Fallback if webhook request fails
-          return { ok: true };
-        });
+<div class="form-group">
+<label for="phone">Phone Number <span class="required">*</span></label>
+<input type="tel" id="phone" name="phone" required aria-required="true">
+</div>
 
-        // Show success message
-        messageDiv.className = 'form-message success';
-        messageDiv.textContent = 'Thank you! We will contact you soon.';
-        messageDiv.style.display = 'block';
+<div class="form-group">
+<label for="interest">What are you interested in? <span class="required">*</span></label>
+<select id="interest" name="interest" required aria-required="true">
+<option value="">-- Select an option --</option>
+<option value="General Consultation">General Consultation</option>
+<option value="Wellness Program">Wellness Program</option>
+<option value="Health Assessment">Health Assessment</option>
+<option value="Other">Other</option>
+</select>
+</div>
 
-        // Reset form
-        document.getElementById('quoteForm').reset();
+<button type="submit">Get Your Free Quote</button>
 
-        // Reset button after 2 seconds
-        setTimeout(() => {
-          button.disabled = false;
-          messageDiv.style.display = 'none';
-        }, 2000);
+<div class="form-message" id="formMessage" role="alert"></div>
+</form>
 
-      } catch (error) {
-        console.error('Error submitting form:', error);
-        messageDiv.className = 'form-message error';
-        messageDiv.textContent = 'There was an error. Please try again.';
-        messageDiv.style.display = 'block';
-        button.disabled = false;
-      }
-    });
-  </script>
+</div>
 
-  </body>
-</html>html>
-  </script></h1>
-  </body>
-  </style></title>
-  </head>
+<script>
+// Track form submission and send to n8n webhook
+document.getElementById('quoteForm').addEventListener('submit', async function(e) {
+e.preventDefault();
+
+const button = document.querySelector('button[type="submit"]');
+const messageDiv = document.getElementById('formMessage');
+
+button.disabled = true;
+messageDiv.className = 'form-message';
+messageDiv.textContent = 'Submitting...';
+messageDiv.style.display = 'block';
+
+// Collect form data
+const formData = {
+fullName: document.getElementById('fullName').value,
+email: document.getElementById('email').value,
+phone: document.getElementById('phone').value,
+interest: document.getElementById('interest').value,
+timestamp: new Date().toISOString(),
+source: 'quote-form'
+};
+
+try {
+// Send to n8n webhook for CloudTalk integration
+const n8nResponse = await fetch('https://socialstudio.app.n8n.cloud/webhook/60d15644-d6ad-4d03-9fd3-9d59a1357061', {
+method: 'POST',
+headers: {
+'Content-Type': 'application/json',
+},
+body: JSON.stringify(formData)
+}).catch(() => {
+// Fallback if webhook request fails
+return { ok: true };
+});
+
+// Show success message
+messageDiv.className = 'form-message success';
+messageDiv.textContent = 'Thank you! We will contact you soon.';
+messageDiv.style.display = 'block';
+
+// Reset form
+document.getElementById('quoteForm').reset();
+
+// Reset button after 2 seconds
+setTimeout(() => {
+button.disabled = false;
+messageDiv.style.display = 'none';
+}, 2000);
+
+} catch (error) {
+console.error('Error submitting form:', error);
+messageDiv.className = 'form-message error';
+messageDiv.textContent = 'There was an error. Please try again.';
+messageDiv.style.display = 'block';
+button.disabled = false;
+}
+});
+</script>
+
+</body>
+</html>>
