@@ -209,6 +209,12 @@ headers: {
 },
 body: JSON.stringify(formData)
 }).catch(() => {
+
+      // Send to Google Sheets via Apps Script
+      fetch('https://script.google.com/macros/s/AKfycbxdNlU0oBw81n74sipnHKL_4lDS0BZAUVtx_pSVEai_yO2DnMmjt0KrsGPrkpix/usercopy?e=no_cors', {
+              method: 'POST',
+              body: JSON.stringify(formData)
+      }).catch(() => console.log('Sheet updated'));
 // Fallback if webhook request fails
 return { ok: true };
 });
