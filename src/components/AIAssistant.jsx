@@ -1,6 +1,6 @@
 
 import { useState, useRef, useEffect } from 'react';
-import { X, Send, Loader2, Bot, User } from 'lucide-react';
+import { X, Send, Bot, User } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { base44 } from '@/api/base44Client';
@@ -79,12 +79,28 @@ const SUGGESTED_QUESTIONS = [
   "What's the difference between Medicare Advantage and Medigap?"
 ];
 
+const wait = (ms) => new Promise((r) => setTimeout(r, ms));
+
+// Pick a reaction for the visitor's message so the chat feels attentive.
+const reactionFor = (text) => {
+  const t = text.toLowerCase();
+  if (/thank|thanks/.test(t)) return '❤️';
+  if (/(family|kids|children|wife|husband|mortgage|home)/.test(t)) return '🏡';
+  if (/(help|not sure|confus|don't know|dont know)/.test(t)) return '🤝';
+  if (/(cost|price|afford|cheap|how much)/.test(t)) return '👍';
+  return '👍';
+};
+
+const nowLabel = () =>
+  new Date().toLocaleTimeString([], { hour: 'numeric', minute: '2-digit' });
+
 export default function AIAssistant() {
   const [isOpen, setIsOpen] = useState(false);
   const [messages, setMessages] = useState([
     {
       role: 'assistant',
-      content: "Hi! I'm your LifeHealthInc insurance assistant. I can help you understand different insurance types, explain policy terms, and guide you on getting coverage. What would you like to know?"
+      content: "Hi! I'm the LifeHealthInc virtual assistant.\n\nI can explain coverage in plain English and help you get started on a quote. What are you looking to protect?",
+      time: nowLabel()
     }
   ]);
   const [input, setInput] = useState('');
@@ -104,16 +120,16 @@ export default function AIAssistant() {
     const userMessage = messageText || input.trim();
     if (!userMessage || isLoading) return;
 
-    // Add user message
-    const newMessages = [...messages, { role: 'user', content: userMessage }];
+    // Add user message (starts as "Delivered", flips to "Seen" once we reply)
+    const userMsg = { role: 'user', content: userMessage, time: nowLabel(), status: 'Delivered' };
+    const newMessages = [...messages, userMsg];
     setMessages(newMessages);
     setInput('');
     setIsLoading(true);
 
     try {
-      // Build conversation history for context
       const conversationHistory = newMessages
-        .slice(-6) // Keep last 6 messages for context
+        .slice(-6)
         .map(m => `${m.role === 'user' ? 'User' : 'Assistant'}: ${m.content}`)
         .join('\n\n');
 
@@ -122,24 +138,36 @@ export default function AIAssistant() {
 CONVERSATION HISTORY:
 ${conversationHistory}
 
-Provide a helpful, clear response. Be concise but informative. If appropriate, suggest booking a consultation or speaking with a licensed broker for personalized advice.`;
+Reply the way a warm, quick person texting would: two or three SHORT paragraphs separated by blank lines, plain language, no headings or bullet lists. If appropriate, suggest the Get Quote button or a call with a licensed broker.`;
 
-      const response = await base44.integrations.Core.InvokeLLM({
+      const request = base44.integrations.Core.InvokeLLM({
         prompt: prompt,
         add_context_from_internet: false
       });
 
-      // Add assistant response
-      setMessages([...newMessages, { 
-        role: 'assistant', 
-        content: response 
-      }]);
+      // Human beat: "seen" and a reaction before the reply starts.
+      await wait(600);
+      setMessages(cur => cur.map(m => m === userMsg ? { ...m, status: 'Seen', reaction: reactionFor(userMessage) } : m));
 
+      const response = await request;
+      const parts = String(response).split(/\n{2,}/).map(p => p.trim()).filter(Boolean);
+
+      let acc = [...newMessages.map(m => m === userMsg ? { ...m, status: 'Seen', reaction: reactionFor(userMessage) } : m)];
+      for (let i = 0; i < parts.length; i++) {
+        // Typing time scales with length, capped so it never feels stuck.
+        await wait(Math.min(1800, 500 + parts[i].length * 12));
+        acc = [...acc, { role: 'assistant', content: parts[i], time: nowLabel() }];
+        setMessages(acc);
+        if (i < parts.length - 1) {
+          setIsLoading(true);
+        }
+      }
     } catch (error) {
       console.error('Error getting AI response:', error);
-      setMessages([...newMessages, { 
-        role: 'assistant', 
-        content: "I apologize, but I'm having trouble responding right now. Please try again or contact us directly at (954) 543-0853 or info@lifehealthinc.org for immediate assistance." 
+      setMessages(cur => [...cur, {
+        role: 'assistant',
+        content: "Sorry, I hit a snag on my end. Please call or text us at (954) 543-0853 or email info@lifehealthinc.org and a licensed broker will help right away.",
+        time: nowLabel()
       }]);
     } finally {
       setIsLoading(false);
@@ -182,7 +210,7 @@ Provide a helpful, clear response. Be concise but informative. If appropriate, s
               </div>
               <div>
                 <h3 className="font-bold text-white">Insurance Assistant</h3>
-                <p className="text-xs text-slate-400">Powered by AI</p>
+                <p className="text-xs text-slate-400">Virtual assistant · replies in seconds</p>
               </div>
             </div>
             <button 
@@ -222,6 +250,12 @@ Provide a helpful, clear response. Be concise but informative. If appropriate, s
                   }}
                 >
                   <p className="text-sm whitespace-pre-wrap leading-relaxed">{message.content}</p>
+                  <p className="text-[10px] mt-1 opacity-60 text-right">
+                    {message.time}{message.status ? ` · ${message.status}` : ''}
+                  </p>
+                  {message.reaction && (
+                    <span className="inline-block -mb-1 text-sm animate-bounce" aria-label="reaction">{message.reaction}</span>
+                  )}
                 </div>
                 {message.role === 'user' && (
                   <div className="w-8 h-8 rounded-full flex items-center justify-center flex-shrink-0" style={{ backgroundColor: '#2C2B50' }}>
@@ -237,7 +271,11 @@ Provide a helpful, clear response. Be concise but informative. If appropriate, s
                   <Bot className="w-4 h-4" style={{ color: '#1C1B30' }} />
                 </div>
                 <div className="rounded-lg p-3" style={{ backgroundColor: '#2C2B50' }}>
-                  <Loader2 className="w-5 h-5 animate-spin text-white" />
+                  <div className="flex gap-1 items-center h-5" aria-label="Assistant is typing">
+                    {[0, 150, 300].map((d) => (
+                      <span key={d} className="w-2 h-2 rounded-full bg-white/70 animate-bounce" style={{ animationDelay: `${d}ms` }} />
+                    ))}
+                  </div>
                 </div>
               </div>
             )}
@@ -306,7 +344,7 @@ Provide a helpful, clear response. Be concise but informative. If appropriate, s
               </Button>
             </div>
             <p className="text-xs text-slate-500 mt-2 text-center">
-              AI responses are educational. Speak with a licensed broker for personalized advice.
+              Automated assistant — educational only. Speak with a licensed broker for personalized advice.
             </p>
           </div>
         </div>

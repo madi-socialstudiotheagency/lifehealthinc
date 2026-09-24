@@ -8,6 +8,7 @@ import {
   Stethoscope, DollarSign, FileText, HelpCircle
 } from 'lucide-react';
 import NewsletterSignup from "./components/NewsletterSignup";
+import AIAssistant from "./components/AIAssistant";
 import { Button } from "@/components/ui/button";
 
 import HealthQuoteWidget from "./components/HealthQuoteWidget";
@@ -348,6 +349,7 @@ export default function Layout({ children, currentPageName }) {
 
 
       <main className="flex-grow">{children}</main>
+      <AIAssistant />
 
       {/* ─── Client Portal Banner ─────────────────────────────────────────── */}
       {currentPageName !== 'Clients' && (
