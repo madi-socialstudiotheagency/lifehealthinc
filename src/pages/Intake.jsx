@@ -2,7 +2,7 @@ import { useMemo, useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import { CheckCircle2, ChevronLeft, ChevronRight, Lock, Phone } from 'lucide-react';
 import { AUDIENCES, CONSENT_TEXT, INTAKE_FORMS, getForm } from '@/data/intakeForms';
-import { submitIntake } from '@/api/intakeClient';
+import { makeReference, submitIntake } from '@/api/intakeClient';
 
 const NAVY = '#081730';
 const BLUE = '#1A3586';
@@ -159,16 +159,30 @@ function IntakeForm({ form }) {
     if (!validate()) return;
     if (honeypot) { setStatus({ state: 'done' }); return; } // bots get a silent success
     setStatus({ state: 'sending' });
-    const clean = {};
-    form.sections.forEach((s) => s.fields.forEach((f) => { if (visible(f, answers) && answers[f.name] !== undefined) clean[f.name] = answers[f.name]; }));
+    const reference = makeReference();
+    const lines = [];
+    form.sections.forEach((s) => {
+      const part = s.fields
+        .filter((f) => visible(f, answers) && answers[f.name] !== undefined && answers[f.name] !== '' && !(Array.isArray(answers[f.name]) && answers[f.name].length === 0))
+        .map((f) => f.label + ': ' + (Array.isArray(answers[f.name]) ? answers[f.name].join(', ') : answers[f.name]));
+      if (part.length) lines.push('== ' + s.title + ' ==', ...part, '');
+    });
+    const name = ((answers.firstName || '') + ' ' + (answers.lastName || '')).trim() || answers.companyName || '';
     const res = await submitIntake({
+      reference,
       formId: form.id,
       formTitle: form.title,
       audience: form.audience,
+      name: (name + (answers.companyName && name !== answers.companyName ? ' (' + answers.companyName + ')' : '')).trim(),
+      email: answers.email || '',
+      phone: answers.phone || '',
+      state: answers.state || answers.hqState || '',
+      contactPref: answers.contactPref || '',
       submittedAt: new Date().toISOString(),
       sourceUrl: window.location.href,
-      answers: clean,
-      consent: { agreed: true, text: CONSENT_TEXT, at: new Date().toISOString() },
+      consent: 'Agreed: ' + CONSENT_TEXT,
+      'bot-field': honeypot,
+      details: lines.join('\n'),
     });
     setStatus(res.ok ? { state: 'done', reference: res.reference } : { state: 'error', message: res.message });
   };

@@ -1,30 +1,27 @@
-// Posts an intake submission to the LifeHealthInc n8n webhook.
+// Delivers an intake submission through Netlify Forms. Netlify emails each
+// submission to the notification address set on the form ("lhi-intake") in the
+// Netlify dashboard, keeps a searchable copy, and filters spam.
 //
-// Unlike the old Google Apps Script client (mode: 'no-cors', opaque response),
-// this reads the real HTTP status, so a failure is shown to the visitor instead
-// of being reported as "success". The webhook must allow this site's origin.
+// The matching static form lives in index.html: Netlify only detects forms in
+// HTML it can see at deploy time, so every field posted here must be declared
+// there too.
 
-// Set to the production URL of the n8n workflow "LHI — Intake submissions".
-export const INTAKE_WEBHOOK_URL = 'https://socialstudio.app.n8n.cloud/webhook/lhi-intake';
+const encode = (obj) =>
+  Object.keys(obj)
+    .map((k) => encodeURIComponent(k) + '=' + encodeURIComponent(obj[k] == null ? '' : obj[k]))
+    .join('&');
 
-export async function submitIntake(payload) {
-  if (!INTAKE_WEBHOOK_URL) {
-    return { ok: false, message: 'Online intake is not connected yet. Please call (954) 543-0853.' };
-  }
+export const makeReference = () => 'LHI-' + Date.now().toString(36).toUpperCase();
+
+export async function submitIntake(fields) {
   try {
-    const res = await fetch(INTAKE_WEBHOOK_URL, {
+    const res = await fetch('/', {
       method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(payload),
+      headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+      body: encode({ 'form-name': 'lhi-intake', ...fields }),
     });
-    if (!res.ok) throw new Error(`HTTP ${res.status}`);
-    let reference = null;
-    try {
-      reference = (await res.json()).reference || null;
-    } catch {
-      /* body is optional */
-    }
-    return { ok: true, reference };
+    if (!res.ok) throw new Error('HTTP ' + res.status);
+    return { ok: true, reference: fields.reference };
   } catch (err) {
     console.error('Intake submit failed:', err);
     return { ok: false, message: 'We could not send your request. Please try again or call (954) 543-0853.' };

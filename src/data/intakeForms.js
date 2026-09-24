@@ -230,8 +230,8 @@ export const INTAKE_FORMS = [
 
   // ═══ Businesses and corporations ═══
   {
-    id: 'small-group-health', audience: 'Businesses & Corporations', title: 'Small Business Health Insurance (2 to 50 employees)',
-    blurb: 'Group health, dental and vision for small employers, including level-funded and ICHRA options.',
+    id: 'small-group-health', audience: 'Businesses & Corporations', title: 'Small Business Health Insurance (up to 50 employees)',
+    blurb: 'Group health, dental and vision for small employers, including level-funded and ICHRA options. Some states define small group up to 100 employees; your advisor will confirm which rules apply.',
     sections: [
       businessContact,
       businessPerson,

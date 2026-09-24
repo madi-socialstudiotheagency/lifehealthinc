@@ -1,7 +1,7 @@
 // Carriers LifeHealthInc is appointed with, as provided by Matthew Anderson.
 // Text only: no carrier logos are used, and listing a name does not imply
 // endorsement. Products and availability vary by state and by carrier.
-// Names marked `verify` were typed informally and need confirming before launch.
+// Verified 2026-09-24: InstaBrain is a technology and underwriting platform, not an insurer; its policies are issued by Fidelity Life. "Price Health" could not be verified and is left off until confirmed.
 
 export const LIFE_CARRIERS = [
   { name: 'Foresters Financial' },
@@ -9,7 +9,7 @@ export const LIFE_CARRIERS = [
   { name: 'National Life Group' },
   { name: 'Transamerica' },
   { name: 'Mutual of Omaha' },
-  { name: 'InstaBrain', verify: true },
+  { name: 'Fidelity Life (instant decision through InstaBrain)' },
   { name: 'F&G (Fidelity & Guaranty Life)' },
   { name: 'Corebridge Financial' },
   { name: 'Pacific Life' },
@@ -21,7 +21,6 @@ export const LIFE_CARRIERS = [
 export const HEALTH_CARRIERS = [
   { name: 'Allstate' },
   { name: 'Manhattan Life' },
-  { name: 'Price Health', verify: true },
   { name: 'Philadelphia American Life' },
   { name: 'Aflac' },
 ];
