@@ -5,7 +5,7 @@
 // of being reported as "success". The webhook must allow this site's origin.
 
 // Set to the production URL of the n8n workflow "LHI — Intake submissions".
-export const INTAKE_WEBHOOK_URL = '';
+export const INTAKE_WEBHOOK_URL = 'https://socialstudio.app.n8n.cloud/webhook/lhi-intake';
 
 export async function submitIntake(payload) {
   if (!INTAKE_WEBHOOK_URL) {
