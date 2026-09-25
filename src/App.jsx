@@ -108,8 +108,8 @@ const AuthenticatedApp = () => {
       <Route path="/admin-settings" element={<LayoutWrapper currentPageName="AdminSettings"><AdminSettings /></LayoutWrapper>} />
       <Route path="/client-portal" element={<ClientPortal />} />
       <Route path="/get-quote" element={<LayoutWrapper currentPageName="QuotePage"><QuotePage /></LayoutWrapper>} />
-      <Route path="/intake" element={<LayoutWrapper currentPageName="Intake"><Intake /></LayoutWrapper>} />
-      <Route path="/intake/:formId" element={<LayoutWrapper currentPageName="Intake"><Intake /></LayoutWrapper>} />
+      <Route path="/get-started" element={<LayoutWrapper currentPageName="Intake"><Intake /></LayoutWrapper>} />
+      <Route path="/get-started/:formId" element={<LayoutWrapper currentPageName="Intake"><Intake /></LayoutWrapper>} />
       <Route path="/employers" element={<LayoutWrapper currentPageName="Employers"><Employers /></LayoutWrapper>} />
       <Route path="/become-your-own-bank" element={<LayoutWrapper currentPageName="OwnBank"><OwnBank /></LayoutWrapper>} />
       <Route path="/carriers" element={<LayoutWrapper currentPageName="Carriers"><Carriers /></LayoutWrapper>} />

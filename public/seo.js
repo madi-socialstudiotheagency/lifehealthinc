@@ -9,7 +9,7 @@
   // title ≤ 60 chars, description 140–160 chars. Each one is written to win the click, not just to rank.
   var META = {
     '/': { t: 'LifeHealthInc | Life, Health, Medicare & Retirement Insurance', d: 'Full-service independent brokerage. Life, health, Medicare, annuities, final expense and mortgage protection from 50+ carriers. All 50 states. Free quotes.', type: 'website' },
-    '/intake': { t: 'Start Your Request | Individuals, Employers & Groups | LifeHealthInc', d: 'Tell us what you need: life, health, Medicare, annuities, or employee benefits for your team. A licensed LifeHealthInc advisor follows up personally. Free, no obligation.' },
+    '/get-started': { t: 'Start Your Request | Individuals, Employers & Groups | LifeHealthInc', d: 'Tell us what you need: life, health, Medicare, annuities, or employee benefits for your team. A licensed LifeHealthInc advisor follows up personally. Free, no obligation.' },
     '/carriers': { t: 'Our Insurance Carriers | Independent Broker | LifeHealthInc', d: 'LifeHealthInc compares carriers including Transamerica, Mutual of Omaha, Prudential, Pacific Life, Foresters and more, so you get options, not a single company pitch.' },
     '/employers': { t: 'Employer Group Health Insurance | Compare Carriers | LifeHealthInc', d: 'Shop group health, dental, vision and benefits across carriers to find competitive pricing for your team. Fully insured, level-funded and ICHRA options. Free review.' },
     '/become-your-own-bank': { t: 'Become Your Own Bank | Cash Value Life Insurance Explained', d: 'How business owners use cash value life insurance to build accessible savings, with the real risks explained. Free, no-pressure illustration from a licensed broker.' },

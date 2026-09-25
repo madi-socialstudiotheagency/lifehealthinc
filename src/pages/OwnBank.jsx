@@ -64,7 +64,7 @@ export default function OwnBank() {
           the risks most sales pages leave out.
         </p>
         <div className="flex flex-wrap gap-3 justify-center">
-          <Link to="/intake/executive-benefits" className="rounded-lg bg-white px-7 py-3.5 font-bold" style={{ color: BLUE }}>
+          <Link to="/get-started/executive-benefits" className="rounded-lg bg-white px-7 py-3.5 font-bold" style={{ color: BLUE }}>
             Request a free illustration
           </Link>
           <Link to="/employers" className="rounded-lg border-2 border-white px-7 py-3.5 font-bold text-white">
@@ -141,7 +141,7 @@ export default function OwnBank() {
       <section className="max-w-3xl mx-auto px-4 pb-20 text-center text-white">
         <h2 className="text-3xl font-black mb-3">See real numbers for your situation</h2>
         <p className="text-blue-100 mb-6">A licensed advisor prepares a carrier illustration and walks you through every line. Free.</p>
-        <Link to="/intake/executive-benefits" className="inline-block rounded-lg bg-white px-8 py-3.5 font-bold" style={{ color: BLUE }}>
+        <Link to="/get-started/executive-benefits" className="inline-block rounded-lg bg-white px-8 py-3.5 font-bold" style={{ color: BLUE }}>
           Get my free illustration
         </Link>
         <p className="text-xs text-blue-200 mt-8 max-w-2xl mx-auto">

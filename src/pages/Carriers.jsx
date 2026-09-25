@@ -49,7 +49,7 @@ export default function Carriers() {
         <Grid title="Health & supplemental" items={HEALTH_CARRIERS} />
 
         <div className="text-center mb-8">
-          <Link to="/intake" className="inline-block rounded-lg bg-white px-8 py-3 font-bold" style={{ color: BLUE }}>
+          <Link to="/get-started" className="inline-block rounded-lg bg-white px-8 py-3 font-bold" style={{ color: BLUE }}>
             Start your request
           </Link>
         </div>

@@ -209,7 +209,7 @@ export default function Layout({ children, currentPageName }) {
               <Link to={createPageUrl("Blog")} className={`header-link ${currentPageName === 'Blog' ? 'active' : ''}`}>Blog</Link>
               <Link to="/employers" className={`header-link ${currentPageName === 'Employers' ? 'active' : ''}`}>Employers</Link>
               <Link to="/carriers" className={`header-link ${currentPageName === 'Carriers' ? 'active' : ''}`}>Carriers</Link>
-              <Link to="/intake" className={`header-link ${currentPageName === 'Intake' ? 'active' : ''}`}>Get Started</Link>
+              <Link to="/get-started" className={`header-link ${currentPageName === 'Intake' ? 'active' : ''}`}>Get Started</Link>
               <Link to={createPageUrl("Partners")} className={`header-link ${currentPageName === 'Partners' ? 'active' : ''}`}>Partners</Link>
               <Link to={createPageUrl("Contact")} className={`header-link ${currentPageName === 'Contact' ? 'active' : ''}`}>Contact</Link>
             </nav>

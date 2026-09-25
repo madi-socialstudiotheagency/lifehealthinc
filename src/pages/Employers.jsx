@@ -77,10 +77,10 @@ export default function Employers() {
           numbers actually land, before your next renewal, not after it.
         </p>
         <div className="flex flex-wrap gap-3 justify-center">
-          <Link to="/intake/small-group-health" className="rounded-lg bg-white px-7 py-3.5 font-bold" style={{ color: BLUE }}>
+          <Link to="/get-started/small-group-health" className="rounded-lg bg-white px-7 py-3.5 font-bold" style={{ color: BLUE }}>
             Up to 50 employees
           </Link>
-          <Link to="/intake/corporate-group-health" className="rounded-lg border-2 border-white px-7 py-3.5 font-bold text-white">
+          <Link to="/get-started/corporate-group-health" className="rounded-lg border-2 border-white px-7 py-3.5 font-bold text-white">
             50+ employees
           </Link>
           <a href="tel:9545430853" className="rounded-lg px-7 py-3.5 font-bold text-white inline-flex items-center gap-2 bg-white/10">
@@ -133,7 +133,7 @@ export default function Employers() {
         </div>
         <p className="text-center mt-8">
           Also quoting dental, vision, life, disability and voluntary benefits.{' '}
-          <Link to="/intake/group-ancillary" className="underline font-semibold">Request ancillary quotes</Link>
+          <Link to="/get-started/group-ancillary" className="underline font-semibold">Request ancillary quotes</Link>
         </p>
       </section>
 
@@ -152,7 +152,7 @@ export default function Employers() {
       <section className="max-w-3xl mx-auto px-4 pb-20 text-center text-white">
         <h2 className="text-3xl font-black mb-3">See where your renewal really stands</h2>
         <p className="text-blue-100 mb-6">Send us your renewal and headcount. We will show you the market.</p>
-        <Link to="/intake/small-group-health" className="inline-block rounded-lg bg-white px-8 py-3.5 font-bold" style={{ color: BLUE }}>
+        <Link to="/get-started/small-group-health" className="inline-block rounded-lg bg-white px-8 py-3.5 font-bold" style={{ color: BLUE }}>
           Start my employer review
         </Link>
         <p className="text-xs text-blue-200 mt-8 max-w-2xl mx-auto">
