@@ -12,6 +12,7 @@ import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/
 import NewsletterModal from '../components/NewsletterModal';
 import TestimonialSlider from '../components/TestimonialSlider';
 import ReferralForm from '../components/ReferralForm';
+import RealPriceCallout from '../components/RealPriceCallout';
 
 // ─── Brand tokens ────────────────────────────────────────────────────────────
 const GOLD   = '#FFFFFF';
@@ -226,6 +227,13 @@ export default function Home() {
               </span>
             ))}
           </div>
+        </div>
+      </section>
+
+      {/* ═══ REAL PRICE PROOF ═════════════════════════════════════════════════ */}
+      <section className="bg-white pb-12">
+        <div className="max-w-3xl mx-auto px-4">
+          <RealPriceCallout />
         </div>
       </section>
 
