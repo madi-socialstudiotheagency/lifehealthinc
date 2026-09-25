@@ -19,7 +19,7 @@ export default function RealPriceCallout({ compact = false }) {
             $179<span className="text-lg font-bold text-slate-500">/month</span>
           </p>
           <p className="text-sm text-slate-600">
-            Age 23, health coverage with Manhattan Life, found by shopping carriers through LifeHealthInc.
+            Age 23, a Manhattan Life health plan, found by shopping carriers through LifeHealthInc.
           </p>
         </div>
         <Link
@@ -31,8 +31,9 @@ export default function RealPriceCallout({ compact = false }) {
         </Link>
       </div>
       <p className="text-[11px] text-slate-400 mt-4">
-        Example of one client's actual premium. Your price depends on your age, ZIP code, health, household and the
-        plan you choose, and is set by the carrier.
+        Example of one client's actual premium for a fixed-benefit health plan, which pays set cash amounts for covered
+        services and is not ACA major medical coverage. We explain exactly what any plan covers before you enroll. Your
+        price depends on your age, ZIP code, health, household and the plan you choose, and is set by the carrier.
       </p>
     </div>
   );

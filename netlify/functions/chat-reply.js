@@ -34,18 +34,25 @@ export const handler = async (event) => {
     }
 
     if (process.env.GEMINI_API_KEY) {
-      const res = await fetch(
-        'https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=' + process.env.GEMINI_API_KEY,
-        {
-          method: 'POST',
-          headers: { 'content-type': 'application/json' },
-          body: JSON.stringify({ contents: [{ parts: [{ text: prompt }] }], generationConfig: { maxOutputTokens: 400 } }),
-        }
-      );
-      if (!res.ok) throw new Error('Gemini ' + res.status + ' ' + (await res.text()));
-      const j = await res.json();
-      const text = (j.candidates?.[0]?.content?.parts || []).map((p) => p.text || '').join('').trim();
-      return { statusCode: 200, body: JSON.stringify({ reply: text }) };
+      // Try current models in order; an overloaded or retired model falls through.
+      const MODELS = ['gemini-3.8-flash', 'gemini-3.7-flash', 'gemini-3.5-flash', 'gemini-flash-latest', 'gemini-3.5-flash-lite', 'gemini-flash-lite-latest'];
+      let lastErr = '';
+      for (const model of MODELS) {
+        const res = await fetch(
+          'https://generativelanguage.googleapis.com/v1beta/models/' + model + ':generateContent?key=' + process.env.GEMINI_API_KEY,
+          {
+            method: 'POST',
+            headers: { 'content-type': 'application/json' },
+            body: JSON.stringify({ contents: [{ parts: [{ text: prompt }] }], generationConfig: { maxOutputTokens: 500 } }),
+          }
+        );
+        if (!res.ok) { lastErr = model + ' ' + res.status; continue; }
+        const j = await res.json();
+        const text = (j.candidates?.[0]?.content?.parts || []).map((p) => p.text || '').join('').trim();
+        if (text) return { statusCode: 200, body: JSON.stringify({ reply: text, model }) };
+        lastErr = model + ' empty';
+      }
+      throw new Error('all Gemini models failed: ' + lastErr);
     }
 
     return { statusCode: 503, body: JSON.stringify({ error: 'no AI key configured' }) };
