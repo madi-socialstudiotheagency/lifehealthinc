@@ -3,6 +3,7 @@ import { Link, useParams } from 'react-router-dom';
 import { ArrowRight, CheckCircle2, ChevronLeft, ChevronRight, Lock, Phone, Zap } from 'lucide-react';
 import { AUDIENCES, CONSENT_TEXT, INTAKE_FORMS, PRIVACY_TEXT, getForm } from '@/data/intakeForms';
 import { makeReference, submitIntake } from '@/api/intakeClient';
+import TestimonialSlider from '@/components/TestimonialSlider';
 
 const NAVY = '#081730';
 const BLUE = '#1A3586';
@@ -90,6 +91,14 @@ function IntakeHub() {
           <Phone className="w-4 h-4" /> Prefer to talk? Call <a className="underline" href="tel:9545430853">(954) 543-0853</a>
         </p>
       </div>
+
+      <section className="py-16" style={{ background: 'linear-gradient(180deg,#1A3586 0%,#081730 100%)' }}>
+        <div className="max-w-6xl mx-auto px-4">
+          <h2 className="text-3xl font-black text-white text-center mb-2">What our clients say</h2>
+          <p className="text-center text-blue-200 text-sm mb-8">Verified Google reviews</p>
+          <TestimonialSlider />
+        </div>
+      </section>
     </div>
   );
 }

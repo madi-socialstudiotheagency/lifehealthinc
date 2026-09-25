@@ -30,6 +30,7 @@ const serviceLinks = [
   { label: 'Final Expense',         page: 'FinalExpense',     icon: Shield,       desc: 'Affordable End-of-Life Coverage' },
   { label: 'Whole Life',            page: 'WholeLife',        icon: DollarSign,   desc: 'Lifetime Coverage & Cash Value' },
   { label: 'IUL Structuring',       page: 'IULStructuring',   icon: FileText,     desc: 'Tax-Free Retirement Strategy' },
+  { label: 'Business Health',       page: 'Employers',        icon: Users,        desc: 'Affordable Group Plans for Staff' },
 ];
 
 // ─── Dropdown component ──────────────────────────────────────────────────────
