@@ -34,7 +34,8 @@ function render(d) {
     '<ol style="margin:0 0 16px;padding-left:20px;font-size:14px;line-height:1.7">' +
     '<li>Matthew reviews your answers and compares carriers on your behalf.</li>' +
     '<li>He prepares your application from what you submitted.</li>' +
-    '<li>He only contacts you' + (d.contactPref ? ' by ' + esc(String(d.contactPref).toLowerCase()) : '') + ' if something is missing, or when it is time to sign or verify your identity with the carrier.</li></ol>' +
+    '<li>He only contacts you' + (d.contactPref ? ' by ' + esc(String(d.contactPref).toLowerCase()) : '') + ' if something is missing, or when it is time to sign or verify your identity with the carrier.</li>' +
+    '<li>Once the carrier decides, we email you whether you were approved, along with your actual coverage amount and rate.</li></ol>' +
     '<p style="margin:0;color:#5b6b85;font-size:13px;line-height:1.6">No need to call unless you want to. Reply to this email any time, or reach us at ' + PHONE + '. ' +
     'Please never send a Social Security, bank or card number by email.</p>' +
     '</td></tr>' +
@@ -44,7 +45,7 @@ function render(d) {
   const text =
     'Hi ' + first + ',\n\nThank you for applying for ' + (d.formTitle || 'insurance') + '. Everything above is what Matthew needs. He is a licensed advisor and will start preparing your application himself from your answers, you do not need to call.\n' +
     (ref ? '\nYour reference: ' + d.reference + '\n' : '') +
-    '\nWhat happens next:\n1. Matthew reviews your answers and compares carriers on your behalf.\n2. He prepares your application from what you submitted.\n3. He only contacts you if something is missing, or when it is time to sign or verify your identity with the carrier.\n' +
+    '\nWhat happens next:\n1. Matthew reviews your answers and compares carriers on your behalf.\n2. He prepares your application from what you submitted.\n3. He only contacts you if something is missing, or when it is time to sign or verify your identity with the carrier.\n4. Once the carrier decides, we email you whether you were approved, along with your actual coverage amount and rate.\n' +
     '\nNo need to call unless you want to. Reply to this email any time, or reach us at ' + PHONE + '. Please never send a Social Security, bank or card number by email.\n\nLifeHealthInc';
   return { html, text };
 }

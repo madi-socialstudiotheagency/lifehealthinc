@@ -201,7 +201,9 @@ function IntakeForm({ form }) {
             application from your answers himself. You do not need to call. If anything is missing, or when it is
             time to sign or verify identity with the carrier, he will reach out
             {answers.contactPref ? ` by ${answers.contactPref.toLowerCase()}` : ''}.
-            Submitting this form is not a guarantee of coverage. Approval and pricing are set by the carrier after underwriting.
+            Once the carrier makes a decision, you will get an email letting you know whether you were approved,
+            along with your actual coverage amount and rate. Submitting this form is not a guarantee of coverage.
+            Approval and pricing are set by the carrier after underwriting.
           </p>
           {status.reference && <p className="text-xs text-slate-500 mb-4">Reference: {status.reference}</p>}
           <Link to="/get-started" className="text-blue-700 font-semibold underline">Back to all forms</Link>
