@@ -1,12 +1,19 @@
 import { useMemo, useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
-import { CheckCircle2, ChevronLeft, ChevronRight, Lock, Phone } from 'lucide-react';
+import { ArrowRight, CheckCircle2, ChevronLeft, ChevronRight, Lock, Phone, Zap } from 'lucide-react';
 import { AUDIENCES, CONSENT_TEXT, INTAKE_FORMS, getForm } from '@/data/intakeForms';
 import { makeReference, submitIntake } from '@/api/intakeClient';
 
 const NAVY = '#081730';
 const BLUE = '#1A3586';
 const SKY = '#3D6B9E';
+
+// Matthew's producer link into the carrier's own instant-quote and enrollment
+// system (National General / NatGenHealth). No login required, so it is safe
+// to link directly. Health applicants who use this go through the carrier's
+// real underwriting and identity-verification flow, not a copy built here.
+const NATGEN_QUICK_QUOTE_URL =
+  'https://customer.enroll.natgenhealth.com/quick-quote/?agent=CfDJ8KcuJeU1UfVFhwatU8NLwQnUuAwHAxktLqVFMx2duuToSmFy7GJJVIWSMhIqXZeRKo50zQYSVjXubSDtZslsI0T3vQ&product=all-products';
 
 const fieldClass =
   'w-full rounded-lg border border-slate-300 bg-white px-3 py-2.5 text-sm text-slate-900 focus:outline-none focus:ring-2 focus:ring-blue-500';
@@ -25,6 +32,29 @@ function IntakeHub() {
           Answer the questions once. Matthew uses what you submit to prepare your application himself, so in most
           cases you never have to get on a call. He only reaches out if something is missing or when it is time to sign.
         </p>
+
+        <a
+          href={NATGEN_QUICK_QUOTE_URL}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="flex flex-col sm:flex-row items-center justify-between gap-4 rounded-2xl bg-white p-6 mb-12 hover:shadow-xl transition-shadow"
+        >
+          <div className="flex items-center gap-4">
+            <div className="rounded-full p-3" style={{ background: `${BLUE}15` }}>
+              <Zap className="w-6 h-6" style={{ color: BLUE }} />
+            </div>
+            <div>
+              <h2 className="font-black text-slate-900 text-lg">Apply for health insurance now, instant quote</h2>
+              <p className="text-sm text-slate-600">
+                Real-time rates and enrollment direct with the carrier. See your options in minutes.
+              </p>
+            </div>
+          </div>
+          <span className="inline-flex items-center gap-2 rounded-lg px-6 py-3 font-bold text-white flex-shrink-0" style={{ background: BLUE }}>
+            Start instant quote <ArrowRight className="w-4 h-4" />
+          </span>
+        </a>
+
         {AUDIENCES.map((aud) => {
           const forms = INTAKE_FORMS.filter((f) => f.audience === aud);
           if (!forms.length) return null;
