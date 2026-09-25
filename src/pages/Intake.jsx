@@ -40,14 +40,14 @@ function IntakeHub() {
 
         <div className="grid md:grid-cols-2 gap-4 mb-12">
           {[
-            { href: NATGEN_QUICK_QUOTE_URL, title: 'Health insurance, instant quote', text: 'Real-time rates and enrollment direct with the carrier.', cta: 'Start health quote' },
+            { href: '/health-quote', internal: true, title: 'Health insurance, instant quote', text: 'See live carrier rates and enroll online, right here.', cta: 'See health prices' },
             { href: INSTABRAIN_URL, title: 'Life insurance, instant decision', text: 'Term life with no medical exam, decision in minutes (Fidelity Life).', cta: 'Start life application' },
           ].map((c) => (
             <a
               key={c.href}
               href={c.href}
-              target="_blank"
-              rel="noopener noreferrer"
+              target={c.internal ? undefined : '_blank'}
+              rel={c.internal ? undefined : 'noopener noreferrer'}
               className="flex flex-col justify-between gap-4 rounded-2xl bg-white p-6 hover:shadow-xl transition-shadow"
             >
               <div className="flex items-start gap-4">

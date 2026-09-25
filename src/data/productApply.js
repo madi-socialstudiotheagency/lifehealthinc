@@ -6,7 +6,7 @@ export const NATGEN_QUICK_QUOTE_URL =
 export const INSTABRAIN_URL = 'https://matthewchristpheranderson.instabrain.io/';
 
 const lifeInstant = { href: INSTABRAIN_URL, label: 'Instant-decision term life, no exam' };
-const healthInstant = { href: NATGEN_QUICK_QUOTE_URL, label: 'Instant health quote with live rates' };
+const healthInstant = { to: '/health-quote', label: 'See live health prices now' };
 
 export const PRODUCT_APPLY = {
   LifeInsurance: { formId: 'life-insurance', product: 'life insurance', instant: lifeInstant },
