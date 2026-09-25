@@ -50,7 +50,7 @@ export default function Carriers() {
 
         <div className="text-center mb-8">
           <Link to="/get-started" className="inline-block rounded-lg bg-white px-8 py-3 font-bold" style={{ color: BLUE }}>
-            Start your request
+            Apply now
           </Link>
         </div>
         <p className="text-xs text-blue-200 text-center max-w-3xl mx-auto">{CARRIER_DISCLAIMER}</p>

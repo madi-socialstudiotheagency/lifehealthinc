@@ -20,9 +20,10 @@ function IntakeHub() {
     <div className="min-h-screen" style={{ background: `linear-gradient(180deg, ${NAVY} 0%, ${BLUE} 60%, ${SKY} 100%)` }}>
       <div className="max-w-5xl mx-auto px-4 py-16 text-white">
         <p className="text-xs font-bold uppercase tracking-widest text-blue-200 text-center mb-3">Get started</p>
-        <h1 className="text-4xl md:text-5xl font-black text-center mb-4">Tell us what you need</h1>
+        <h1 className="text-4xl md:text-5xl font-black text-center mb-4">Apply for coverage online</h1>
         <p className="text-center text-blue-100 max-w-2xl mx-auto mb-12">
-          Choose the form that fits. A licensed LifeHealthInc advisor reviews every request and follows up personally.
+          Answer the questions once. Matthew uses what you submit to prepare your application himself, so in most
+          cases you never have to get on a call. He only reaches out if something is missing or when it is time to sign.
         </p>
         {AUDIENCES.map((aud) => {
           const forms = INTAKE_FORMS.filter((f) => f.audience === aud);
@@ -194,11 +195,13 @@ function IntakeForm({ form }) {
       <div className="min-h-screen flex items-center justify-center px-4" style={{ background: `linear-gradient(180deg, ${NAVY}, ${BLUE})` }}>
         <div className="max-w-lg bg-white rounded-2xl p-8 text-center shadow-2xl">
           <CheckCircle2 className="w-14 h-14 text-green-600 mx-auto mb-4" />
-          <h1 className="text-2xl font-black text-slate-900 mb-2">Request received</h1>
+          <h1 className="text-2xl font-black text-slate-900 mb-2">Got it — you're set</h1>
           <p className="text-slate-600 mb-4">
-            Thank you. A licensed LifeHealthInc advisor will review your information and reach out
-            {answers.contactPref ? ` by ${answers.contactPref.toLowerCase()}` : ''} shortly.
-            This is a request for information, not an application or a guarantee of coverage.
+            Everything above is what Matthew needs. He is a licensed advisor and will start preparing your
+            application from your answers himself. You do not need to call. If anything is missing, or when it is
+            time to sign or verify identity with the carrier, he will reach out
+            {answers.contactPref ? ` by ${answers.contactPref.toLowerCase()}` : ''}.
+            Submitting this form is not a guarantee of coverage. Approval and pricing are set by the carrier after underwriting.
           </p>
           {status.reference && <p className="text-xs text-slate-500 mb-4">Reference: {status.reference}</p>}
           <Link to="/get-started" className="text-blue-700 font-semibold underline">Back to all forms</Link>
@@ -252,7 +255,7 @@ function IntakeForm({ form }) {
               className="rounded-lg px-6 py-3 font-bold text-white disabled:opacity-60 inline-flex items-center gap-1"
               style={{ background: BLUE }}
             >
-              {isLast ? (status.state === 'sending' ? 'Sending…' : 'Submit request') : (<>Continue <ChevronRight className="w-4 h-4" /></>)}
+              {isLast ? (status.state === 'sending' ? 'Sending…' : 'Submit my application') : (<>Continue <ChevronRight className="w-4 h-4" /></>)}
             </button>
           </div>
 
