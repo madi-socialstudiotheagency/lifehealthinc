@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom';
 import { CheckCircle, Lock, ShieldCheck, Zap } from 'lucide-react';
 import { NATGEN_QUICK_QUOTE_URL } from '@/data/productApply';
+import RealPriceCallout from '@/components/RealPriceCallout';
 
 const NAVY = '#081730';
 const BLUE = '#1A3586';
@@ -68,6 +69,7 @@ export default function HealthQuote() {
       </section>
 
       <section className="max-w-6xl mx-auto px-2 sm:px-4 py-6">
+        <div className="mb-6"><RealPriceCallout compact /></div>
         <div className="rounded-2xl overflow-hidden border border-slate-200 shadow-sm bg-white">
           <iframe
             src={NATGEN_QUICK_QUOTE_URL}
