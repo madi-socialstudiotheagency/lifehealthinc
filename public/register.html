@@ -68,7 +68,7 @@
     <p class="err" id="err"></p>
     <button type="submit" id="btn" style="width:100%;margin-top:6px">Create my account</button>
   </form>
-  <div class="foot">Already have an account? <a href="/Clients">Sign in</a> &nbsp;·&nbsp; Questions? <a href="tel:3152122835">(315) 212-2835</a><br>Partnered with <a href="https://www.socialstudiotheagency.com" target="_blank" rel="noopener">Social Studio The Agency</a> for marketing, automation and web.</div>
+  <div class="foot">Already have an account? <a href="/Clients">Sign in</a> &nbsp;·&nbsp; Questions? <a href="tel:9545430853">(954) 543-0853</a><br>Partnered with <a href="https://www.socialstudiotheagency.com" target="_blank" rel="noopener">Social Studio The Agency</a> for marketing, automation and web.</div>
 </div>
 </main>
 <style>.lbl{display:block;font-size:11px;font-weight:600;letter-spacing:1px;text-transform:uppercase;color:var(--muted);margin-bottom:8px}.hint{font-size:12px;color:var(--muted);margin-top:6px}.agree{display:flex;gap:10px;align-items:flex-start;font-size:13px;line-height:19px;color:var(--ink)}.agree input{margin-top:3px;width:16px;height:16px;accent-color:var(--blue)}.agree a{color:var(--blue)}</style>
@@ -90,10 +90,10 @@
     try{
       var r=await fetch(ENDPOINT,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({form:'portal_register',name:name,email:email,phone:phone,password:pw,'bot-field':f['bot-field'].value,pageUrl:location.href})});
       var j=await r.json().catch(function(){return{}});
-      if(!r.ok||!j.ok){err.textContent=j.error||'Something went wrong. Please call (315) 212-2835.';btn.disabled=false;btn.textContent='Create my account';return}
+      if(!r.ok||!j.ok){err.textContent=j.error||'Something went wrong. Please call (954) 543-0853.';btn.disabled=false;btn.textContent='Create my account';return}
       if(sb){var s=await sb.auth.signInWithPassword({email:email,password:pw});if(!s.error){location.href='/client-portal';return}}
       location.href='/Clients';
-    }catch(x){err.textContent='Network error. Please try again or call (315) 212-2835.';btn.disabled=false;btn.textContent='Create my account'}
+    }catch(x){err.textContent='Network error. Please try again or call (954) 543-0853.';btn.disabled=false;btn.textContent='Create my account'}
   });
 })();
 </script>
