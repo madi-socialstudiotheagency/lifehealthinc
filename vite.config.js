@@ -7,6 +7,7 @@ import path from "path"
 // https://vite.dev/config/
 export default defineConfig({
       plugins: [
+              react(),
               base44({
                         // Support for legacy code that imports the base44 SDK with @integrations, @entities, etc.
                            // can be removed if the code has been updated to use the new SDK imports from @base44/sdk
