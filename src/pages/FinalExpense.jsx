@@ -6,6 +6,7 @@ import { Link } from 'react-router-dom';
 import { createPageUrl } from '@/utils';
 import { DollarSign, Shield, Heart, TrendingUp, CheckCircle, ArrowRight, Phone, Award, Users } from 'lucide-react';
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion';
+import ApplyOnlineBand from '@/components/ApplyOnlineBand';
 
 const finalExpenseTypes = [
   { title: 'Simplified Issue', description: 'The most affordable option — just a few health questions, no exam. Approved in days. Your premiums are locked in for life the moment you sign.', features: ['Approved in days — no medical exam', 'Premiums locked in forever — never go up', 'Builds cash value you can borrow against', 'Full death benefit from day one'], icon: Shield },
@@ -69,6 +70,8 @@ export default function FinalExpensePage() {
           </div>
         </div>
       </section>
+
+      <ApplyOnlineBand page="FinalExpense" />
 
       {/* Trust Badges */}
       <section className="py-8 bg-white border-y border-slate-200">

@@ -7,6 +7,7 @@ import { Card, CardContent } from '@/components/ui/card';
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion';
 import { CheckCircle2, ArrowRight, Shield, TrendingUp, DollarSign, Users, Clock, Award } from 'lucide-react';
 import WholeLifeCashValueEstimator from '../components/WholeLifeCashValueEstimator';
+import ApplyOnlineBand from '@/components/ApplyOnlineBand';
 
 export default function WholeLifePage() {
   const [zipCode, setZipCode] = useState('');
@@ -75,6 +76,8 @@ export default function WholeLifePage() {
           </div>
         </div>
       </section>
+
+      <ApplyOnlineBand page="WholeLife" />
 
       {/* Trust Badges */}
       <section className="py-8 bg-white border-y border-slate-200">

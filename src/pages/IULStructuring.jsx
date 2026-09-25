@@ -11,6 +11,7 @@ import { TooltipProvider } from "@/components/ui/tooltip";
 import NewsletterSignup from '../components/NewsletterSignup';
 import IULReadinessQuiz from '../components/IULReadinessQuiz';
 import IULComparisonTool from '../components/IULComparisonTool';
+import ApplyOnlineBand from '@/components/ApplyOnlineBand';
 
 const DARK1 = '#081730';
 const DARK2 = '#1A3586';
@@ -152,6 +153,8 @@ export default function IULStructuringPage() {
           </div>
         </div>
       </section>
+
+      <ApplyOnlineBand page="IULStructuring" />
 
       {/* Trust Badges */}
       <section className="py-8 bg-white border-y border-slate-200">

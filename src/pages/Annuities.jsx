@@ -12,6 +12,7 @@ import { Link } from 'react-router-dom';
 import { TrendingUp, Lock, Gift, PiggyBank, Briefcase, PlusCircle, MinusCircle, ArrowRight, Calendar, Check, Award, Loader2 } from 'lucide-react';
 import NewsletterSignup from '../components/NewsletterSignup';
 import { base44 } from '@/api/base44Client';
+import ApplyOnlineBand from '@/components/ApplyOnlineBand';
 
 const DARK1 = '#081730';
 const DARK2 = '#1A3586';
@@ -238,6 +239,8 @@ export default function AnnuitiesPage() {
                     </div>
                 </div>
             </section>
+
+      <ApplyOnlineBand page="Annuities" />
 
             {/* Trust Badges */}
             <section className="py-8 bg-white border-y border-slate-200">

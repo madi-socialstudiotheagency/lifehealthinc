@@ -6,6 +6,7 @@ import { Link } from 'react-router-dom';
 import { createPageUrl } from '@/utils';
 import { Shield, Heart, CheckCircle, ArrowRight, Phone, Award, Users, Eye, Volume2, Plus, Layers } from 'lucide-react';
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion';
+import ApplyOnlineBand from '@/components/ApplyOnlineBand';
 
 const healthInsuranceTypes = [
   { icon: Layers, title: 'ACA Marketplace Plans', description: 'Affordable Care Act plans offer comprehensive coverage that includes essential health benefits. Subsidies may be available to help lower your monthly premiums based on your income and family size.', features: ['Subsidies to lower costs', 'Essential Health Benefits', 'No denial for pre-existing conditions', 'Preventive care included'] },
@@ -77,6 +78,8 @@ export default function HealthInsurancePage() {
           </div>
         </div>
       </section>
+
+      <ApplyOnlineBand page="HealthInsurance" />
 
       {/* Trust Badges */}
       <section className="py-8 bg-white border-y border-slate-200">

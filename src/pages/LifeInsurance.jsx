@@ -7,6 +7,7 @@ import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/
 import { Alert, AlertDescription } from '@/components/ui/alert';
 import { createPageUrl } from '@/utils';
 import CalendlyModal from '../components/CalendlyModal';
+import ApplyOnlineBand from '@/components/ApplyOnlineBand';
 
 const lifeInsuranceTypes = [
   {
@@ -83,6 +84,8 @@ export default function LifeInsurancePage() {
           </div>
         </div>
       </section>
+
+      <ApplyOnlineBand page="LifeInsurance" />
 
       {/* Trust Badges */}
       <section className="py-8 bg-white border-y border-slate-200">

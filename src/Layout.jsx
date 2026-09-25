@@ -9,6 +9,7 @@ import {
 } from 'lucide-react';
 import NewsletterSignup from "./components/NewsletterSignup";
 import AIAssistant from "./components/AIAssistant";
+import MobileApplyBar from "./components/MobileApplyBar";
 import { Button } from "@/components/ui/button";
 
 import HealthQuoteWidget from "./components/HealthQuoteWidget";
@@ -355,6 +356,8 @@ export default function Layout({ children, currentPageName }) {
 
       <main className="flex-grow">{children}</main>
       <AIAssistant />
+      <MobileApplyBar currentPageName={currentPageName} />
+      <div className="md:hidden h-20" aria-hidden="true" />
 
       {/* ─── Client Portal Banner ─────────────────────────────────────────── */}
       {currentPageName !== 'Clients' && (
