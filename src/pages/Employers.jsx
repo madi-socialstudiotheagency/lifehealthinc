@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom';
 import ApplyOnlineBand from '@/components/ApplyOnlineBand';
+import TestimonialSlider from '@/components/TestimonialSlider';
 import { BarChart3, Building2, CalendarClock, CheckCircle2, FileText, Layers, Phone, ShieldCheck } from 'lucide-react';
 
 const NAVY = '#081730';
@@ -71,7 +72,7 @@ export default function Employers() {
       <section className="max-w-5xl mx-auto px-4 pt-20 pb-14 text-center text-white">
         <p className="text-xs font-bold uppercase tracking-widest text-blue-200 mb-4">For employers</p>
         <h1 className="text-4xl md:text-6xl font-black leading-tight mb-5">
-          Group benefits your team will use, priced to compete
+          Affordable business health insurance your team will actually use
         </h1>
         <p className="text-lg text-blue-100 max-w-3xl mx-auto mb-8">
           LifeHealthInc is an independent brokerage. We compare carriers and funding models side by side so you can see where your
@@ -138,6 +139,14 @@ export default function Employers() {
           Also quoting dental, vision, life, disability and voluntary benefits.{' '}
           <Link to="/get-started/group-ancillary" className="underline font-semibold">Request ancillary quotes</Link>
         </p>
+      </section>
+
+      <section className="py-16" style={{ background: 'linear-gradient(180deg,#1A3586 0%,#081730 100%)' }}>
+        <div className="max-w-6xl mx-auto px-4">
+          <h2 className="text-3xl font-black text-white text-center mb-2">What our clients say</h2>
+          <p className="text-center text-blue-200 text-sm mb-8">Verified Google reviews</p>
+          <TestimonialSlider />
+        </div>
       </section>
 
       <section className="max-w-3xl mx-auto px-4 pb-14">

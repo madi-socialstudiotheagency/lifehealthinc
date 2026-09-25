@@ -42,6 +42,7 @@ const services = [
   { id: 'annuities',          title: 'Annuities & AUM',     description: 'Fixed indexed annuities and income strategies to make your retirement bulletproof.', icon: TrendingUp,   page: 'Annuities',        cta: 'Build Retirement Income' },
   { id: 'mortgage',           title: 'Mortgage Protection', description: 'Keep your family in their home if the unexpected happens. Coverage that pays the mortgage.', icon: HomeIcon, page: 'MortgageProtection', cta: 'Protect My Home' },
   { id: 'final_expense',      title: 'Final Expense',       description: 'Simple, affordable whole-life policies that cover end-of-life costs with no medical exam.', icon: Shield,  page: 'FinalExpense',     cta: 'Get Final Expense Quote' },
+  { id: 'business_health', title: 'Business Health Insurance', description: 'Affordable group health, dental and vision for your employees. Small business, corporate, level-funded and ICHRA, all compared for you.', icon: Users, page: 'Employers', cta: 'Cover my team' },
 ];
 
 // ─── Audience segments ───────────────────────────────────────────────────────
