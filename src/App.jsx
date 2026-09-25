@@ -25,6 +25,7 @@ import Intake from '@/pages/Intake';
 import Carriers from '@/pages/Carriers';
 import Employers from '@/pages/Employers';
 import OwnBank from '@/pages/OwnBank';
+import HealthQuote from '@/pages/HealthQuote';
 
 const { Pages, Layout, mainPage } = pagesConfig;
 const mainPageKey = mainPage ?? Object.keys(Pages)[0];
@@ -110,6 +111,7 @@ const AuthenticatedApp = () => {
       <Route path="/get-quote" element={<LayoutWrapper currentPageName="QuotePage"><QuotePage /></LayoutWrapper>} />
       <Route path="/get-started" element={<LayoutWrapper currentPageName="Intake"><Intake /></LayoutWrapper>} />
       <Route path="/get-started/:formId" element={<LayoutWrapper currentPageName="Intake"><Intake /></LayoutWrapper>} />
+      <Route path="/health-quote" element={<LayoutWrapper currentPageName="HealthInsurance"><HealthQuote /></LayoutWrapper>} />
       <Route path="/employers" element={<LayoutWrapper currentPageName="Employers"><Employers /></LayoutWrapper>} />
       <Route path="/become-your-own-bank" element={<LayoutWrapper currentPageName="OwnBank"><OwnBank /></LayoutWrapper>} />
       <Route path="/carriers" element={<LayoutWrapper currentPageName="Carriers"><Carriers /></LayoutWrapper>} />

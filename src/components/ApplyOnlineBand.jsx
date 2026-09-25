@@ -39,7 +39,15 @@ export default function ApplyOnlineBand({ page }) {
             >
               Start my application <ArrowRight className="w-4 h-4" />
             </Link>
-            {cfg.instant && (
+            {cfg.instant && (cfg.instant.to ? (
+              <Link
+                to={cfg.instant.to}
+                className="inline-flex items-center justify-center gap-2 rounded-xl px-6 py-3.5 font-bold text-sm border-2"
+                style={{ borderColor: BLUE, color: BLUE }}
+              >
+                <Zap className="w-4 h-4" /> {cfg.instant.label}
+              </Link>
+            ) : (
               <a
                 href={cfg.instant.href}
                 target="_blank"
@@ -49,7 +57,7 @@ export default function ApplyOnlineBand({ page }) {
               >
                 <Zap className="w-4 h-4" /> {cfg.instant.label}
               </a>
-            )}
+            ))}
             <p className="text-xs text-slate-400 text-center">Free. No obligation. Licensed in all 50 states.</p>
           </div>
         </div>
