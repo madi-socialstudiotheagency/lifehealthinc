@@ -15,6 +15,10 @@ const SKY = '#3D6B9E';
 const NATGEN_QUICK_QUOTE_URL =
   'https://customer.enroll.natgenhealth.com/quick-quote/?agent=CfDJ8KcuJeU1UfVFhwatU8NLwQnUuAwHAxktLqVFMx2duuToSmFy7GJJVIWSMhIqXZeRKo50zQYSVjXubSDtZslsI0T3vQ&product=all-products';
 
+// Matthew's InstaBrain page: instant-decision term life, policies issued by
+// Fidelity Life. Public agent page, no login.
+const INSTABRAIN_URL = 'https://matthewchristpheranderson.instabrain.io/';
+
 const fieldClass =
   'w-full rounded-lg border border-slate-300 bg-white px-3 py-2.5 text-sm text-slate-900 focus:outline-none focus:ring-2 focus:ring-blue-500';
 
@@ -33,27 +37,33 @@ function IntakeHub() {
           cases you never have to get on a call. He only reaches out if something is missing or when it is time to sign.
         </p>
 
-        <a
-          href={NATGEN_QUICK_QUOTE_URL}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="flex flex-col sm:flex-row items-center justify-between gap-4 rounded-2xl bg-white p-6 mb-12 hover:shadow-xl transition-shadow"
-        >
-          <div className="flex items-center gap-4">
-            <div className="rounded-full p-3" style={{ background: `${BLUE}15` }}>
-              <Zap className="w-6 h-6" style={{ color: BLUE }} />
-            </div>
-            <div>
-              <h2 className="font-black text-slate-900 text-lg">Apply for health insurance now, instant quote</h2>
-              <p className="text-sm text-slate-600">
-                Real-time rates and enrollment direct with the carrier. See your options in minutes.
-              </p>
-            </div>
-          </div>
-          <span className="inline-flex items-center gap-2 rounded-lg px-6 py-3 font-bold text-white flex-shrink-0" style={{ background: BLUE }}>
-            Start instant quote <ArrowRight className="w-4 h-4" />
-          </span>
-        </a>
+        <div className="grid md:grid-cols-2 gap-4 mb-12">
+          {[
+            { href: NATGEN_QUICK_QUOTE_URL, title: 'Health insurance, instant quote', text: 'Real-time rates and enrollment direct with the carrier.', cta: 'Start health quote' },
+            { href: INSTABRAIN_URL, title: 'Life insurance, instant decision', text: 'Term life with no medical exam, decision in minutes (Fidelity Life).', cta: 'Start life application' },
+          ].map((c) => (
+            <a
+              key={c.href}
+              href={c.href}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex flex-col justify-between gap-4 rounded-2xl bg-white p-6 hover:shadow-xl transition-shadow"
+            >
+              <div className="flex items-start gap-4">
+                <div className="rounded-full p-3 flex-shrink-0" style={{ background: `${BLUE}15` }}>
+                  <Zap className="w-6 h-6" style={{ color: BLUE }} />
+                </div>
+                <div>
+                  <h2 className="font-black text-slate-900 text-lg">{c.title}</h2>
+                  <p className="text-sm text-slate-600">{c.text}</p>
+                </div>
+              </div>
+              <span className="inline-flex items-center justify-center gap-2 rounded-lg px-6 py-3 font-bold text-white" style={{ background: BLUE }}>
+                {c.cta} <ArrowRight className="w-4 h-4" />
+              </span>
+            </a>
+          ))}
+        </div>
 
         {AUDIENCES.map((aud) => {
           const forms = INTAKE_FORMS.filter((f) => f.audience === aud);
