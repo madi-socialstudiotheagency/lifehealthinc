@@ -214,14 +214,19 @@ Reply the way a warm, quick person texting would: one or two SHORT paragraphs se
       {isOpen && (
         <div className="fixed bottom-24 right-6 w-[calc(100%-3rem)] sm:w-96 h-[75vh] max-h-[560px] rounded-xl shadow-2xl z-50 border border-slate-200 flex flex-col overflow-hidden bg-white">
           {/* Header */}
-          <div className="flex justify-between items-center p-4" style={{ backgroundColor: NAVY }}>
-            <div>
-              <h3 className="font-bold text-white text-sm">LifeHealthInc Assistant</h3>
-              <p className="text-xs" style={{ color: '#9db4e0' }}>Usually replies in seconds</p>
+          <div className="flex justify-between items-center p-4 bg-white border-b" style={{ borderColor: '#E2E8F0' }}>
+            <div className="flex items-center gap-2">
+              <div className="w-8 h-8 rounded-full flex items-center justify-center flex-shrink-0" style={{ backgroundColor: BLUE }}>
+                <MessageCircle className="w-4 h-4 text-white" />
+              </div>
+              <div>
+                <h3 className="font-bold text-sm" style={{ color: NAVY }}>LifeHealthInc Assistant</h3>
+                <p className="text-xs text-slate-400">Usually replies in seconds</p>
+              </div>
             </div>
             <button
               onClick={closeChat}
-              className="text-blue-200 hover:text-white transition-colors"
+              className="text-slate-400 hover:text-slate-700 transition-colors"
               aria-label="Close chat"
             >
               <X className="w-5 h-5" />
