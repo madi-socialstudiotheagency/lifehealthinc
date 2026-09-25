@@ -8,6 +8,7 @@ import {
   Stethoscope, DollarSign, FileText, HelpCircle
 } from 'lucide-react';
 import NewsletterSignup from "./components/NewsletterSignup";
+import AIAssistant from "./components/AIAssistant";
 import { Button } from "@/components/ui/button";
 
 import HealthQuoteWidget from "./components/HealthQuoteWidget";
@@ -206,6 +207,8 @@ export default function Layout({ children, currentPageName }) {
 
               <Link to={createPageUrl("About")} className={`header-link ${currentPageName === 'About' ? 'active' : ''}`}>About Us</Link>
               <Link to={createPageUrl("Blog")} className={`header-link ${currentPageName === 'Blog' ? 'active' : ''}`}>Blog</Link>
+              <Link to="/carriers" className={`header-link ${currentPageName === 'Carriers' ? 'active' : ''}`}>Carriers</Link>
+              <Link to="/intake" className={`header-link ${currentPageName === 'Intake' ? 'active' : ''}`}>Get Started</Link>
               <Link to={createPageUrl("Partners")} className={`header-link ${currentPageName === 'Partners' ? 'active' : ''}`}>Partners</Link>
               <Link to={createPageUrl("Contact")} className={`header-link ${currentPageName === 'Contact' ? 'active' : ''}`}>Contact</Link>
             </nav>
@@ -348,6 +351,7 @@ export default function Layout({ children, currentPageName }) {
 
 
       <main className="flex-grow">{children}</main>
+      <AIAssistant />
 
       {/* ─── Client Portal Banner ─────────────────────────────────────────── */}
       {currentPageName !== 'Clients' && (

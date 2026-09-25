@@ -20,6 +20,8 @@ import QuotePage from '@/pages/QuotePage';
 import AgentDashboard from '@/pages/AgentDashboard';
 import AdminSettings from '@/pages/AdminSettings';
 import ClientPortal from '@/pages/ClientPortal';
+import Intake from '@/pages/Intake';
+import Carriers from '@/pages/Carriers';
 
 const { Pages, Layout, mainPage } = pagesConfig;
 const mainPageKey = mainPage ?? Object.keys(Pages)[0];
@@ -95,6 +97,9 @@ const AuthenticatedApp = () => {
       <Route path="/admin-settings" element={<LayoutWrapper currentPageName="AdminSettings"><AdminSettings /></LayoutWrapper>} />
       <Route path="/client-portal" element={<ClientPortal />} />
       <Route path="/get-quote" element={<LayoutWrapper currentPageName="QuotePage"><QuotePage /></LayoutWrapper>} />
+      <Route path="/intake" element={<LayoutWrapper currentPageName="Intake"><Intake /></LayoutWrapper>} />
+      <Route path="/intake/:formId" element={<LayoutWrapper currentPageName="Intake"><Intake /></LayoutWrapper>} />
+      <Route path="/carriers" element={<LayoutWrapper currentPageName="Carriers"><Carriers /></LayoutWrapper>} />
       <Route path="/privacy-policy" element={<Navigate to="/Privacy" replace />} />
       <Route path="/Article" element={<Navigate to="/Blog" replace />} />
       <Route path="*" element={<PageNotFound />} />
