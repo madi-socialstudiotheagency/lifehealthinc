@@ -5,7 +5,8 @@ import { createPageUrl } from '@/utils';
 import {
   Shield, Heart, Home as HomeIcon, Users, TrendingUp, DollarSign,
   Phone, Calendar, CheckCircle, Sparkles, Activity, Stethoscope,
-  FileText, ChevronRight, Star, ArrowRight, Award, Lock, Clock
+  FileText, ChevronRight, Star, ArrowRight, Award, Lock, Clock,
+  Zap, MessageSquare
 } from 'lucide-react';
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion';
 import NewsletterModal from '../components/NewsletterModal';
@@ -146,53 +147,55 @@ export default function Home() {
 
       {/* ═══ HERO ════════════════════════════════════════════════════════════ */}
       <section
-        className="relative min-h-[92vh] flex items-center justify-center text-white overflow-hidden"
-        style={{ background: `linear-gradient(135deg, ${DARK1} 0%, ${DARK2} 60%, ${DARK3} 100%)` }}
+        className="relative min-h-[88vh] flex items-center justify-center overflow-hidden"
+        style={{ background: '#ffffff' }}
       >
-        {/* Grid overlay */}
-        <div className="absolute inset-0 pointer-events-none"
-          style={{ backgroundImage:`linear-gradient(rgba(255,255,255,.04) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.04) 1px,transparent 1px)`, backgroundSize:'60px 60px' }} />
-        {/* Glow */}
-        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[600px] h-[600px] rounded-full pointer-events-none"
-          style={{ background:`radial-gradient(circle,${GOLD}15,transparent 70%)`, transform:'translateY(-30%) translateX(-50%)' }} />
+        {/* Soft blue glow, not a dark wall */}
+        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[700px] h-[500px] rounded-full pointer-events-none"
+          style={{ background: `radial-gradient(circle, ${DARK3}18, transparent 70%)`, transform: 'translateY(-35%) translateX(-50%)' }} />
 
         <div className="relative max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center py-24">
           {/* New / Existing Client */}
           <div className="flex items-center justify-center gap-2 mb-6 fade-in-up">
-          <Link to="/quote" className="text-sm font-semibold px-5 py-2 rounded-full border transition-colors" style={{ borderColor: `${GOLD}40`, color: GOLD, background: `${GOLD}12` }}>
+          <Link to="/get-started" className="text-sm font-semibold px-5 py-2 rounded-full border transition-colors" style={{ borderColor: `${DARK2}30`, color: DARK2, background: `${DARK2}0d` }}>
           New Client
           </Link>
-          <Link to={createPageUrl("Clients")} className="text-sm font-semibold px-5 py-2 rounded-full bg-white text-slate-900 hover:bg-slate-100 transition-colors">
+          <Link to={createPageUrl("Clients")} className="text-sm font-semibold px-5 py-2 rounded-full transition-colors" style={{ background: DARK2, color: '#fff' }}>
           Existing Client
           </Link>
           </div>
-          
+
           {/* Badge */}
           <div className="inline-flex items-center gap-2 rounded-full px-4 py-1.5 mb-8 text-xs font-bold uppercase tracking-widest fade-in-up"
-            style={{ background:`${GOLD}18`, border:`1px solid ${GOLD}40`, color:GOLD }}>
+            style={{ background: `${DARK2}0f`, border: `1px solid ${DARK2}30`, color: DARK2 }}>
             <Sparkles className="w-3.5 h-3.5" />
-            Licensed in All 50 States · Independent Brokers · No Cost to You
+            Licensed in All 50 States · AI-Assisted · Apply Online, No Call Needed
           </div>
 
-          <h1 className="text-5xl md:text-6xl lg:text-7xl font-black mb-6 leading-tight fade-in-up delay-1">
-            The Coverage You Need.
+          <h1 className="text-5xl md:text-6xl lg:text-7xl font-black mb-6 leading-tight fade-in-up delay-1" style={{ color: DARK1 }}>
+            Affordable Insurance.
             <br />
-            <span style={{ color: '#60A5FA' }}>
-              The Price You Deserve.
+            <span style={{ color: DARK3 }}>
+              Applied Online, Today.
             </span>
           </h1>
 
+          <p className="max-w-2xl mx-auto text-lg mb-10 fade-in-up delay-2" style={{ color: '#475569' }}>
+            Compare life, health, Medicare and annuity options from 50+ carriers in minutes. Fill it out online, our AI
+            assistant answers instantly, and a licensed advisor prepares your application, no phone call required
+            unless you want one.
+          </p>
 
           <div className="flex flex-col sm:flex-row gap-4 justify-center fade-in-up delay-3">
             <Button
               asChild
               size="lg"
               className="font-bold text-base px-8 py-6 rounded-xl shadow-lg"
-              style={{ background:`linear-gradient(135deg, #1A3586, #3D6B9E)`, color:'#FFFFFF' }}
+              style={{ background: `linear-gradient(135deg, ${DARK2}, ${DARK3})`, color: '#FFFFFF' }}
             >
-              <Link to="/quote">
-                <Calendar className="w-5 h-5 mr-2" />
-                Book a Free Consultation
+              <Link to="/get-started">
+                <Zap className="w-5 h-5 mr-2" />
+                Apply Online Now
               </Link>
             </Button>
             <Button
@@ -200,35 +203,54 @@ export default function Home() {
               variant="outline"
               size="lg"
               className="font-bold text-base px-8 py-6 rounded-xl"
-              style={{ borderColor:`${GOLD}60`, color:GOLD, background:'transparent' }}
+              style={{ borderColor: `${DARK2}60`, color: DARK2, background: 'transparent' }}
             >
               <Link to="/quote">
-                <Phone className="w-5 h-5 mr-2" />
-                Request Free Quotes
+                <Calendar className="w-5 h-5 mr-2" />
+                Or Book a Free Call
               </Link>
             </Button>
           </div>
           <div className="flex justify-center fade-in-up delay-3 mt-4">
-          <Link to={createPageUrl("Clients")} className="inline-flex items-center gap-2 font-bold text-base px-6 py-3 rounded-xl bg-white text-slate-900 hover:bg-slate-100 transition-colors shadow-lg">
+          <Link to={createPageUrl("Clients")} className="inline-flex items-center gap-2 font-bold text-sm px-6 py-3 rounded-xl border transition-colors" style={{ borderColor: '#E2E8F0', color: DARK2 }}>
           <Users className="w-5 h-5" />
           Just got a policy with us? Click here to set up your online portal
           </Link>
           </div>
 
           <div className="flex flex-wrap items-center justify-center gap-x-6 gap-y-2 mt-8 fade-in-up delay-4">
-            {['No commitment required', 'Results in 24 hrs or less', 'Serving clients since 2019'].map(t => (
-              <span key={t} className="flex items-center gap-1.5 text-xs text-slate-400">
-                <CheckCircle className="w-3.5 h-3.5 text-green-400" /> {t}
+            {['Apply online in minutes', 'AI assistant answers instantly', 'No call needed to get started'].map(t => (
+              <span key={t} className="flex items-center gap-1.5 text-xs" style={{ color: '#64748B' }}>
+                <CheckCircle className="w-3.5 h-3.5 text-green-600" /> {t}
               </span>
             ))}
           </div>
         </div>
+      </section>
 
-        {/* Wave separator */}
-        <div className="absolute bottom-0 left-0 right-0">
-          <svg viewBox="0 0 1440 64" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-full">
-            <path d="M0,32 C360,64 1080,0 1440,32 L1440,64 L0,64 Z" fill="#f8f7f4" />
-          </svg>
+      {/* ═══ EVERYTHING ONLINE ═══════════════════════════════════════════════ */}
+      <section className="py-16" style={{ background: '#f8f7f4' }}>
+        <div className="max-w-5xl mx-auto px-4">
+          <p className="text-center text-xs font-bold uppercase tracking-widest mb-3" style={{ color: DARK3 }}>How it works</p>
+          <h2 className="text-3xl md:text-4xl font-black text-center mb-10" style={{ color: DARK1 }}>
+            Everything you need, done online
+          </h2>
+          <div className="grid sm:grid-cols-2 md:grid-cols-4 gap-4">
+            {[
+              { icon: Zap, title: 'Apply online', text: 'Fill out one simple form, no login, no waiting on hold.' },
+              { icon: Sparkles, title: 'Ask our AI assistant', text: 'Get instant answers on coverage, cost and next steps, any time.' },
+              { icon: MessageSquare, title: 'Text or email updates', text: 'Prefer not to talk? We can follow up by text or email instead.' },
+              { icon: Calendar, title: 'Or book a call', text: 'Want to talk it through? Schedule a free call whenever works for you.' },
+            ].map(({ icon: Icon, title, text }) => (
+              <div key={title} className="bg-white rounded-xl p-5 border border-slate-100 shadow-sm">
+                <div className="w-10 h-10 rounded-lg flex items-center justify-center mb-3" style={{ background: `${DARK2}12` }}>
+                  <Icon className="w-5 h-5" style={{ color: DARK2 }} />
+                </div>
+                <h3 className="font-bold mb-1" style={{ color: DARK1 }}>{title}</h3>
+                <p className="text-sm text-slate-500">{text}</p>
+              </div>
+            ))}
+          </div>
         </div>
       </section>
 
