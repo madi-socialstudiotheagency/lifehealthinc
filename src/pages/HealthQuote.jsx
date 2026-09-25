@@ -45,7 +45,7 @@ export default function HealthQuote() {
         <div className="max-w-6xl mx-auto px-4 pt-10 pb-6 md:pt-14">
           <p className="text-xs font-bold uppercase tracking-widest mb-2" style={{ color: BLUE }}>Instant health insurance quote</p>
           <h1 className="text-3xl md:text-5xl font-black leading-tight mb-3" style={{ color: NAVY }}>
-            See real health insurance prices and enroll online
+            Apply for health insurance online and see real prices
           </h1>
           <p className="text-slate-600 max-w-3xl mb-5">
             Enter your ZIP code and date of birth below to see live plan rates from the carrier. Pick a plan and enroll
