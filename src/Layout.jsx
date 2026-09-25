@@ -93,16 +93,8 @@ export default function Layout({ children, currentPageName }) {
   const location = useLocation();
   const [mobileMenuOpen, setMobileMenuOpen] = React.useState(false);
 
-  // Load GHL chat widget
-  useEffect(() => {
-    const script = document.createElement('script');
-    script.src = 'https://widgets.leadconnectorhq.com/loader.js';
-    script.setAttribute('data-resources-url', 'https://widgets.leadconnectorhq.com/chat-widget/loader.js');
-    script.setAttribute('data-widget-id', '69f282150354321d42c26b1d');
-    script.setAttribute('data-source', 'WEB_USER');
-    document.body.appendChild(script);
-    return () => { document.body.removeChild(script); };
-  }, []);
+  // The GoHighLevel chat widget used to load here. Removed so the site's own
+  // assistant (components/AIAssistant.jsx) is the only chat bot.
   const [servicesOpen, setServicesOpen] = React.useState(false);
   const [mobileServicesOpen, setMobileServicesOpen] = React.useState(false);
   const dropdownRef = React.useRef(null);
@@ -267,6 +259,14 @@ export default function Layout({ children, currentPageName }) {
           {mobileMenuOpen && (
             <div className="md:hidden mt-4 pb-4" style={{ borderTop: '1px solid rgba(255,255,255,0.15)' }}>
               <nav className="flex flex-col space-y-1 mt-4">
+                <Link
+                  to="/get-started"
+                  onClick={() => setMobileMenuOpen(false)}
+                  className="mb-3 flex items-center justify-center rounded-xl py-3.5 font-bold text-base"
+                  style={{ background: '#FFFFFF', color: DARK1 }}
+                >
+                  Apply Online Now, No Call Needed
+                </Link>
                 <Link to={createPageUrl("Home")} className="header-link" onClick={() => setMobileMenuOpen(false)}>Home</Link>
 
                 {/* Mobile services accordion */}
@@ -293,7 +293,9 @@ export default function Layout({ children, currentPageName }) {
                   </div>
                 )}
 
-                <Link to={createPageUrl("About")} className="header-link" onClick={() => setMobileMenuOpen(false)}>About Us</Link>
+                <Link to="/employers" className="header-link" onClick={() => setMobileMenuOpen(false)}>For Employers</Link>
+                <Link to="/carriers" className="header-link" onClick={() => setMobileMenuOpen(false)}>Our Carriers</Link>
+                <Link to={createPageUrl("About")} className="header-link" onClick={() => setMobileMenuOpen(false)}>About Us &amp; Our Team</Link>
                 <Link to={createPageUrl("Blog")} className="header-link" onClick={() => setMobileMenuOpen(false)}>Blog</Link>
                 <Link to={createPageUrl("Partners")} className="header-link" onClick={() => setMobileMenuOpen(false)}>Partners</Link>
                 <Link to={createPageUrl("Contact")} className="header-link" onClick={() => setMobileMenuOpen(false)}>Contact</Link>
@@ -305,7 +307,7 @@ export default function Layout({ children, currentPageName }) {
                     style={{ backgroundColor: GOLD, color: DARK1 }}
                     onClick={() => setMobileMenuOpen(false)}
                   >
-                    <Link to={createPageUrl("Book")}>Free Consultation</Link>
+                    <Link to={createPageUrl("Book")}>Prefer to talk? Book a free call</Link>
                   </Button>
                   <Button
                     asChild

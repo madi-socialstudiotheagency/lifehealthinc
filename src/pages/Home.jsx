@@ -430,26 +430,36 @@ export default function Home() {
             <div className="grid grid-cols-2 gap-4">
               {[
                 { name: 'Matthew Anderson', title: 'Founder & Licensed Broker', img: 'https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/68c1ca7c80a1472f1eb4424c/98348aea7_D2X_8468.jpg', npn: '20770864' },
-                { name: 'Collin Thomas',    title: 'Licensed Broker',           img: 'https://media.base44.com/images/public/68c1ca7c80a1472f1eb4424c/c8e8522eb_D725CA06-0F39-4498-85BE-D46B9BEC1383.PNG', npn: '21766454' },
+                { name: 'Justin Brabant',   title: 'Licensed Broker',           img: 'https://media.base44.com/images/public/68c1ca7c80a1472f1eb4424c/b61dc8d67_image.png', npn: '22223194' },
                 { name: 'Christian Buot',   title: 'Licensed Broker',           img: 'https://media.base44.com/images/public/68c1ca7c80a1472f1eb4424c/34f065b81_matthewanderson5.png', npn: '21689453' },
-                { name: 'Rebecca Antonitis', title: 'Licensed Broker',          img: 'https://media.base44.com/images/public/68c1ca7c80a1472f1eb4424c/780f072e1_image.png', npn: '21768547' },
-                { name: 'Austin Dundon',    title: 'Licensed Broker',           img: 'https://media.base44.com/images/public/68c1ca7c80a1472f1eb4424c/3778176ba_Gemini_Generated_Image_tci2b3tci2b3tci21.png', npn: '22078337', bg: '#1a1a1a' },
+                { name: 'Demarco',          title: 'Client Team' },
+                { name: 'Luis',             title: 'Client Team' },
+                { name: 'Phoenix',          title: 'Client Team' },
               ].map(({ name, title: role, img, npn }) => (
                 <div key={name} className="rounded-2xl overflow-hidden border border-slate-100 shadow-sm">
-                  <div className="aspect-[3/4] overflow-hidden" style={{ background: name === 'Christian Buot' ? '#4a6fa5' : name === 'Austin Dundon' ? '#1a1a1a' : '#e8edf5' }}>
+                  <div className="aspect-[3/4] overflow-hidden flex items-center justify-center" style={{ background: name === 'Christian Buot' ? '#4a6fa5' : '#e8edf5' }}>
                     {img ? (
                       <img src={img} alt={name} className={`w-full h-full object-cover ${name === 'Christian Buot' ? 'object-center' : 'object-top'}`} />
                     ) : (
-                      <div className="w-full h-full bg-slate-200" />
+                      <span className="text-5xl font-black" style={{ color: DARK2 }}>{name[0]}</span>
                     )}
                   </div>
                   <div className="p-4 bg-white">
                     <p className="font-bold text-sm" style={{ color:DARK2 }}>{name}</p>
                     <p className="text-xs text-slate-400">{role}</p>
-                    <p className="text-xs mt-1" style={{ color:'#1A3586' }}>NPN: {npn}</p>
+                    {npn && <p className="text-xs mt-1" style={{ color:'#1A3586' }}>NPN: {npn}</p>}
                   </div>
                 </div>
               ))}
+              <div className="col-span-2 rounded-2xl border border-slate-100 shadow-sm p-5 bg-white flex items-center gap-4">
+                <div className="w-12 h-12 rounded-full flex items-center justify-center flex-shrink-0" style={{ background: DARK2 }}>
+                  <Sparkles className="w-6 h-6 text-white" />
+                </div>
+                <div>
+                  <p className="font-bold text-sm" style={{ color: DARK2 }}>LifeHealthInc AI Assistant</p>
+                  <p className="text-xs text-slate-500">Answers coverage questions 24/7 and hands your request straight to our team. Tap the chat button to start.</p>
+                </div>
+              </div>
             </div>
           </div>
         </div>

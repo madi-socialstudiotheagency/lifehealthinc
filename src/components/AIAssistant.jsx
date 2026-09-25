@@ -3,7 +3,6 @@ import { useNavigate } from 'react-router-dom';
 import { X, Send, MessageCircle, User } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
-import { base44 } from '@/api/base44Client';
 import { sendChatTranscript } from '@/api/chatClient';
 
 const NAVY = '#081730';
@@ -151,9 +150,15 @@ ${conversationHistory}
 
 Reply the way a warm, quick person texting would: one or two SHORT paragraphs separated by a blank line, plain language, no headings or bullet lists.`;
 
-      const request = base44.integrations.Core.InvokeLLM({
-        prompt: prompt,
-        add_context_from_internet: false
+      const request = fetch('/.netlify/functions/chat-reply', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ prompt }),
+      }).then(async (r) => {
+        if (!r.ok) throw new Error('chat-reply ' + r.status);
+        const j = await r.json();
+        if (!j.reply) throw new Error('empty reply');
+        return j.reply;
       });
 
       await wait(400);
@@ -178,11 +183,16 @@ Reply the way a warm, quick person texting would: one or two SHORT paragraphs se
       }
     } catch (error) {
       console.error('Error getting AI response:', error);
-      setMessages(cur => [...cur, {
+      const fallback = {
         role: 'assistant',
-        content: "Sorry, I hit a snag on my end. Please apply online at lifehealthinc.org/get-started or call/text (954) 543-0853 and a licensed broker will help right away.",
+        content: "Thanks, I've passed your message to Matthew, a licensed advisor, and he'll follow up. The fastest way to see real pricing is to apply online at lifehealthinc.org/get-started, it takes a couple of minutes and no call is needed. You can also call or text (954) 543-0853.",
         time: nowLabel()
-      }]);
+      };
+      const withFallback = [...newMessages.map(m => m === userMsg ? { ...m, status: 'Seen' } : m), fallback];
+      setMessages(withFallback);
+      // Matthew still gets the visitor's message even when the AI is down.
+      transcriptStartedRef.current = true;
+      sendChatTranscript(withFallback, { initial: isFirstRealMessage });
     } finally {
       setIsLoading(false);
     }
