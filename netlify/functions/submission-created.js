@@ -27,26 +27,26 @@ function render(d) {
     '<tr><td style="padding:28px;color:#0b1a33">' +
     '<h1 style="margin:0 0 12px;font-size:22px;color:#081730">We received your request</h1>' +
     '<p style="margin:0 0 12px;font-size:15px;line-height:1.6">Hi ' + esc(first) + ',</p>' +
-    '<p style="margin:0 0 12px;font-size:15px;line-height:1.6">Thank you for reaching out about <strong>' + esc(d.formTitle || 'insurance') + '</strong>. ' +
-    'A licensed LifeHealthInc advisor is reviewing your information and will contact you personally' +
-    (d.contactPref ? ' by ' + esc(String(d.contactPref).toLowerCase()) : '') + '.</p>' +
+    '<p style="margin:0 0 12px;font-size:15px;line-height:1.6">Thank you for applying for <strong>' + esc(d.formTitle || 'insurance') + '</strong>. ' +
+    'Everything above is what Matthew needs. He is a licensed advisor and will start preparing your application himself from your answers &mdash; you do not need to call.</p>' +
     (ref ? '<table role="presentation" width="100%" style="background:#f3f5f9;border-radius:8px;margin:16px 0"><tr><td style="padding:14px 16px;font-size:14px"><strong>Your reference:</strong> ' + ref + '</td></tr></table>' : '') +
     '<p style="margin:16px 0 8px;font-size:15px"><strong>What happens next</strong></p>' +
     '<ol style="margin:0 0 16px;padding-left:20px;font-size:14px;line-height:1.7">' +
-    '<li>An advisor reviews your request and compares carriers.</li>' +
-    '<li>We reach out to confirm details and answer your questions.</li>' +
-    '<li>If you decide to move forward, we complete the carrier application with you.</li></ol>' +
-    '<p style="margin:0;color:#5b6b85;font-size:13px;line-height:1.6">Questions in the meantime? Call or text ' + PHONE + ' or reply to this email. ' +
+    '<li>Matthew reviews your answers and compares carriers on your behalf.</li>' +
+    '<li>He prepares your application from what you submitted.</li>' +
+    '<li>He only contacts you' + (d.contactPref ? ' by ' + esc(String(d.contactPref).toLowerCase()) : '') + ' if something is missing, or when it is time to sign or verify your identity with the carrier.</li>' +
+    '<li>Once the carrier decides, we email you whether you were approved, along with your actual coverage amount and rate.</li></ol>' +
+    '<p style="margin:0;color:#5b6b85;font-size:13px;line-height:1.6">No need to call unless you want to. Reply to this email any time, or reach us at ' + PHONE + '. ' +
     'Please never send a Social Security, bank or card number by email.</p>' +
     '</td></tr>' +
     '<tr><td style="background:#f3f5f9;padding:16px 28px;color:#6b7a94;font-size:11px;line-height:1.5">' +
     'LifeHealthInc, 18245 Paulson Dr Ste VP-2 #508, Port Charlotte, FL 33954. This message confirms we received your request. It is not an offer, quote or binder of coverage.</td></tr>' +
     '</table></div>';
   const text =
-    'Hi ' + first + ',\n\nThank you for reaching out about ' + (d.formTitle || 'insurance') + '. A licensed LifeHealthInc advisor is reviewing your information and will contact you personally.\n' +
+    'Hi ' + first + ',\n\nThank you for applying for ' + (d.formTitle || 'insurance') + '. Everything above is what Matthew needs. He is a licensed advisor and will start preparing your application himself from your answers, you do not need to call.\n' +
     (ref ? '\nYour reference: ' + d.reference + '\n' : '') +
-    '\nWhat happens next:\n1. An advisor reviews your request and compares carriers.\n2. We reach out to confirm details and answer your questions.\n3. If you decide to move forward, we complete the carrier application with you.\n' +
-    '\nQuestions? Call or text ' + PHONE + ' or reply to this email. Please never send a Social Security, bank or card number by email.\n\nLifeHealthInc';
+    '\nWhat happens next:\n1. Matthew reviews your answers and compares carriers on your behalf.\n2. He prepares your application from what you submitted.\n3. He only contacts you if something is missing, or when it is time to sign or verify your identity with the carrier.\n4. Once the carrier decides, we email you whether you were approved, along with your actual coverage amount and rate.\n' +
+    '\nNo need to call unless you want to. Reply to this email any time, or reach us at ' + PHONE + '. Please never send a Social Security, bank or card number by email.\n\nLifeHealthInc';
   return { html, text };
 }
 
@@ -69,7 +69,7 @@ export const handler = async (event) => {
         from: FROM,
         to: [to],
         reply_to: REPLY_TO,
-        subject: 'We received your request' + (d.reference ? ' (' + d.reference + ')' : ''),
+        subject: 'Your application is being prepared' + (d.reference ? ' (' + d.reference + ')' : ''),
         html,
         text,
       }),
