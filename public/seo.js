@@ -3,7 +3,7 @@
 (function () {
   var SITE = 'https://www.lifehealthinc.org';
   var BRAND = 'LifeHealthInc';
-  var PHONE = '(315) 212-2835';
+  var PHONE = '(954) 543-0853';
   var OG_IMAGE = SITE + '/assets/img/og-lifehealthinc.png';
 
   // title ≤ 60 chars, description 140–160 chars. Each one is written to win the click, not just to rank.
@@ -31,7 +31,7 @@
     '/calculator': { t: 'Life Insurance Calculator | How Much Coverage Do You Need?', d: 'Find your coverage number in 60 seconds with the DIME method: debt, income, mortgage and education. Free calculator, then real quotes from a licensed broker.' },
     '/retirementcalculator': { t: 'Retirement Income Calculator | Will Your Savings Last?', d: 'See how long a 401k or IRA lasts in retirement, and the guaranteed monthly income an annuity can produce from the same savings. Free calculator.' },
     '/results': { t: 'Your Coverage Estimate | LifeHealthInc', d: 'Your personalized coverage estimate. A licensed broker can turn it into real carrier quotes in one call — free, no obligation.' },
-    '/contact': { t: 'Contact LifeHealthInc | Talk to a Licensed Broker Today', d: 'Call (315) 212-2835, book a free consultation or meet us for coffee at our Miami Worldcenter office. Serving clients in all 50 states by phone and video.' },
+    '/contact': { t: 'Contact LifeHealthInc | Talk to a Licensed Broker Today', d: 'Call (954) 543-0853, book a free consultation or meet us for coffee at our Miami Worldcenter office. Serving clients in all 50 states by phone and video.' },
     '/faq': { t: 'Insurance FAQ | Straight Answers From Licensed Brokers', d: 'Is the consultation free? Do I need a medical exam? Medicare Advantage or Supplement? Term or whole life? Plain-English answers from independent brokers.' },
     '/resources': { t: 'Insurance Resources & Guides | LifeHealthInc', d: 'Guides, calculators and checklists on life insurance, Medicare, retirement income and health coverage — written by licensed brokers, free to use.' },
     '/blog': { t: 'Insurance Blog | Life, Health, Medicare & Retirement Guides', d: 'Guides by licensed brokers on life insurance, Medicare, annuities, IUL and health coverage. No jargon, no sales pitch, just what you need to decide well.' },
@@ -79,7 +79,7 @@
     logo: SITE + '/assets/img/6bb5a4d12_Untitleddesign.png',
     image: OG_IMAGE,
     description: 'Independent insurance brokerage licensed in all 50 states. Life, health, Medicare, annuities, final expense and mortgage protection from 50+ nationwide select carriers. We represent you, not the carrier.',
-    telephone: '+1-315-212-2835',
+    telephone: '+1-954-543-0853',
     email: 'info@lifehealthinc.org',
     priceRange: 'Free consultation',
     address: { '@type': 'PostalAddress', streetAddress: '697 N Miami Ave', addressLocality: 'Miami', addressRegion: 'FL', postalCode: '33136', addressCountry: 'US' },
@@ -153,7 +153,7 @@
     jsonld('org', ORG);
     jsonld('website', { '@context': 'https://schema.org', '@type': 'WebSite', '@id': SITE + '/#website', url: SITE, name: 'LifeHealthInc', alternateName: ['Life Health Inc', 'LifeHealth Inc', 'LifeHealth'], publisher: { '@id': SITE + '/#organization' }, creator: { '@type': 'Organization', name: 'Social Studio The Agency', url: 'https://www.socialstudiotheagency.com', description: 'Marketing, automation and web partner of LifeHealthInc' } });
     if (key === '/brokers/matthew-anderson' || key === '/matthew-anderson') {
-      jsonld('person', { '@context': 'https://schema.org', '@type': 'Person', '@id': SITE + '/brokers/matthew-anderson#person', name: 'Matthew Anderson', alternateName: ['Matthew Anderson Insurance', 'Matthew Insurance'], jobTitle: 'Founder & Licensed Insurance Broker', worksFor: { '@id': SITE + '/#organization' }, url: canonical, telephone: '+1-315-212-2835', email: 'matthew@lifehealthinc.org', identifier: { '@type': 'PropertyValue', propertyID: 'NPN', value: '20770864' }, knowsAbout: ['Life Insurance', 'Indexed Universal Life', 'Medicare', 'Annuities', 'Health Insurance'], sameAs: ['https://www.linkedin.com/in/matthew-anderson-797939296/'] });
+      jsonld('person', { '@context': 'https://schema.org', '@type': 'Person', '@id': SITE + '/brokers/matthew-anderson#person', name: 'Matthew Anderson', alternateName: ['Matthew Anderson Insurance', 'Matthew Insurance'], jobTitle: 'Founder & Licensed Insurance Broker', worksFor: { '@id': SITE + '/#organization' }, url: canonical, telephone: '+1-954-543-0853', email: 'matthew@lifehealthinc.org', identifier: { '@type': 'PropertyValue', propertyID: 'NPN', value: '20770864' }, knowsAbout: ['Life Insurance', 'Indexed Universal Life', 'Medicare', 'Annuities', 'Health Insurance'], sameAs: ['https://www.linkedin.com/in/matthew-anderson-797939296/'] });
     } else removeJsonld('person');
     if (m && m.article) {
       jsonld('article', { '@context': 'https://schema.org', '@type': 'Article', headline: t.replace(/ \| LifeHealthInc$/, ''), description: d, url: canonical, image: OG_IMAGE, author: { '@type': 'Organization', name: 'LifeHealthInc' }, publisher: { '@id': SITE + '/#organization' }, mainEntityOfPage: canonical });

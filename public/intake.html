@@ -108,7 +108,7 @@
     <button type="submit" id="btn">Send to my broker</button>
     <div class="err" id="err"></div>
   </form>
-  <div class="foot">LifeHealthInc is an independent insurance brokerage. We represent you, not the carrier. &nbsp;<a href="https://www.lifehealthinc.org">lifehealthinc.org</a> · <a href="tel:3152122835">(315) 212-2835</a><br>Partnered with <a href="https://www.socialstudiotheagency.com" target="_blank" rel="noopener">Social Studio The Agency</a> for marketing, automation and web.</div>
+  <div class="foot">LifeHealthInc is an independent insurance brokerage. We represent you, not the carrier. &nbsp;<a href="https://www.lifehealthinc.org">lifehealthinc.org</a> · <a href="tel:9545430853">(954) 543-0853</a><br>Partnered with <a href="https://www.socialstudiotheagency.com" target="_blank" rel="noopener">Social Studio The Agency</a> for marketing, automation and web.</div>
 </div>
 </main>
 <script>
@@ -130,9 +130,9 @@
       var r=await fetch('https://ytyjawfaptjdguxykzem.supabase.co/functions/v1/lhi-forms',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(payload)});
       var j=await r.json().catch(function(){return{}});
       if(!r.ok||!j.ok)throw new Error(j.error||'Request failed');
-      document.getElementById('card').innerHTML='<div class="done"><h1>Thank you, '+fullName.split(' ')[0].replace(/[<>&]/g,'')+'</h1><p class="lead">Your answers are with your broker. We\'ll use them to prepare for your appointment so the conversation starts where it matters.</p><p class="lead">Need us sooner? <a href="tel:3152122835" style="color:var(--blue);font-weight:600;text-decoration:none">Call (315) 212-2835</a></p><div class="foot">LifeHealthInc is an independent insurance brokerage. We represent you, not the carrier. &nbsp;<a href="https://www.lifehealthinc.org">lifehealthinc.org</a></div></div>';
+      document.getElementById('card').innerHTML='<div class="done"><h1>Thank you, '+fullName.split(' ')[0].replace(/[<>&]/g,'')+'</h1><p class="lead">Your answers are with your broker. We\'ll use them to prepare for your appointment so the conversation starts where it matters.</p><p class="lead">Need us sooner? <a href="tel:9545430853" style="color:var(--blue);font-weight:600;text-decoration:none">Call (954) 543-0853</a></p><div class="foot">LifeHealthInc is an independent insurance brokerage. We represent you, not the carrier. &nbsp;<a href="https://www.lifehealthinc.org">lifehealthinc.org</a></div></div>';
       window.scrollTo(0,0);
-    }catch(e){err.textContent=(e&&e.message)||'Something went wrong. Please call (315) 212-2835.';btn.disabled=false;btn.textContent='Send to my broker'}
+    }catch(e){err.textContent=(e&&e.message)||'Something went wrong. Please call (954) 543-0853.';btn.disabled=false;btn.textContent='Send to my broker'}
   });
 })();
 </script>
