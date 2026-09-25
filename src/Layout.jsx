@@ -139,7 +139,7 @@ export default function Layout({ children, currentPageName }) {
         :root{--brand-primary:#081730;--brand-secondary:#1A3586;--brand-accent:#FFFFFF;--brand-text-on-primary:#FFFFFF}
         .social-icon{width:32px;height:32px;border-radius:50%;background:rgba(255,255,255,0.1);color:white;transition:all .3s ease;display:flex;align-items:center;justify-content:center}
         .social-icon:hover{background:#FFFFFF;color:#1A3586;transform:scale(1.1)}
-        .header-link{color:rgba(255,255,255,0.88);text-decoration:none;font-weight:500;font-size:14px;padding:.45rem .85rem;border-radius:.5rem;transition:all .25s ease;display:flex;align-items:center;gap:4px}
+        .header-link{color:rgba(255,255,255,0.88);text-decoration:none;font-weight:500;font-size:14px;padding:.45rem .85rem;border-radius:.5rem;transition:all .25s ease;display:flex;align-items:center;gap:4px;white-space:nowrap}
         .header-link:hover,.header-link.active{background:rgba(255,255,255,0.15);color:#FFFFFF}
         .header-logo{height:42px;width:auto;transition:transform .3s ease}
         .header-logo:hover{transform:scale(1.05)}
@@ -199,12 +199,9 @@ export default function Layout({ children, currentPageName }) {
                 )}
               </div>
 
-              <Link to={createPageUrl("About")} className={`header-link ${currentPageName === 'About' ? 'active' : ''}`}>About Us</Link>
-              <Link to={createPageUrl("Blog")} className={`header-link ${currentPageName === 'Blog' ? 'active' : ''}`}>Blog</Link>
-              <Link to="/employers" className={`header-link ${currentPageName === 'Employers' ? 'active' : ''}`}>Employers</Link>
+              <Link to="/employers" className={`header-link ${currentPageName === 'Employers' ? 'active' : ''}`}>For Employers</Link>
               <Link to="/carriers" className={`header-link ${currentPageName === 'Carriers' ? 'active' : ''}`}>Carriers</Link>
-              <Link to="/get-started" className={`header-link ${currentPageName === 'Intake' ? 'active' : ''}`}>Get Started</Link>
-              <Link to={createPageUrl("Partners")} className={`header-link ${currentPageName === 'Partners' ? 'active' : ''}`}>Partners</Link>
+              <Link to={createPageUrl("About")} className={`header-link ${currentPageName === 'About' ? 'active' : ''}`}>About</Link>
               <Link to={createPageUrl("Contact")} className={`header-link ${currentPageName === 'Contact' ? 'active' : ''}`}>Contact</Link>
             </nav>
 
@@ -214,7 +211,7 @@ export default function Layout({ children, currentPageName }) {
                 asChild
                 size="sm"
                 className="font-bold rounded-lg"
-                style={{ backgroundColor: GOLD, color: DARK1 }}
+                style={{ backgroundColor: 'transparent', color: '#FFFFFF', border: '1px solid rgba(255,255,255,0.35)' }}
               >
                 <Link to={createPageUrl("Clients")}>
                   <Users className="w-4 h-4 mr-1.5" />
@@ -227,12 +224,12 @@ export default function Layout({ children, currentPageName }) {
                 className="font-bold rounded-lg"
                 style={{ backgroundColor: GOLD, color: DARK1 }}
               >
-                <Link to={createPageUrl("Book")}>
-                  <Calculator className="w-4 h-4 mr-1.5" />
-                  Free Consultation
+                <Link to="/get-started">
+                  <Sparkles className="w-4 h-4 mr-1.5" />
+                  Apply Now
                 </Link>
               </Button>
-              <div className="flex items-center gap-1.5 pl-3" style={{ borderLeft: '1px solid rgba(255,255,255,0.15)' }}>
+              <div className="hidden 2xl:flex items-center gap-1.5 pl-3" style={{ borderLeft: '1px solid rgba(255,255,255,0.15)' }}>
                 {[
                   { href: 'https://www.linkedin.com/in/matthew-anderson-797939296/', Icon: Linkedin, label: 'LinkedIn' },
                   { href: 'https://www.instagram.com/lifehealthinc', Icon: Instagram, label: 'Instagram' },
@@ -344,14 +341,7 @@ export default function Layout({ children, currentPageName }) {
       </header>
 
       {/* Sticky floating CTA - desktop */}
-      <Link
-        to={createPageUrl("Book")}
-        className="sticky-cta-btn hidden md:flex items-center gap-1.5 rounded-lg font-bold text-xs"
-        style={{ backgroundColor: GOLD, color: DARK1 }}
-      >
-        <Sparkles className="w-3.5 h-3.5" />
-        Free Consult
-      </Link>
+
 
 
 
