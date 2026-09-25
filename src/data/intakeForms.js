@@ -509,5 +509,8 @@ export const getForm = (id) => INTAKE_FORMS.find((f) => f.id === id);
 
 export const AUDIENCES = ['Individuals & Families', 'Businesses & Corporations', 'Agents & Partners', 'Existing Clients'];
 
+export const PRIVACY_TEXT =
+  'Your information is safe with us. It is sent over an encrypted (HTTPS) connection, used only to prepare and service your insurance application, shared only with the insurance carriers needed to process it, and never sold. I have read and agree to the LifeHealthInc Privacy Policy.';
+
 export const CONSENT_TEXT =
   'By submitting, I agree that LifeHealthInc and its licensed advisors may contact me by phone, text message and email about insurance, including with automated technology, at the number and email provided. Message and data rates may apply. Consent is not a condition of purchase. I can reply STOP to opt out of texts at any time.';

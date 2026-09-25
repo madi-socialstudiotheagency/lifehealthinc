@@ -16,7 +16,7 @@ const TEAM = [
     image: 'https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/68c1ca7c80a1472f1eb4424c/98348aea7_D2X_8468.jpg',
     objectPosition: 'object-top',
     bg: undefined,
-    bio: "Matthew founded LifeHealthInc with one mission: make life and health insurance simple, honest, and accessible for every American family. With years of experience in the field, he's helped hundreds of clients find the right coverage at the right price — without the runaround.",
+    bio: "Matthew founded LifeHealthInc to make life and health insurance simple, fast and honest. Over the last five years he has personally written about 500 insurance applications, which means he has seen almost every situation a family or business owner can bring to the table and knows exactly which carrier will say yes. That volume is why he built LifeHealthInc to work online: you share your details once, and Matthew does the shopping, the paperwork and the follow-up for you.",
     specialties: ['Life Insurance', 'Mortgage Protection', 'Annuities', 'IUL Structuring'],
     quote: '"My job isn\'t to sell you a policy. It\'s to make sure your family is protected no matter what happens."',
     social: { linkedin: '#', phone: 'tel:9545430853' },

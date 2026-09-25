@@ -6,6 +6,7 @@ import { Link } from 'react-router-dom';
 import { createPageUrl } from '@/utils';
 import { Home, Shield, Heart, ArrowRight, CheckCircle, Users, Phone, Award } from 'lucide-react';
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion';
+import ApplyOnlineBand from '@/components/ApplyOnlineBand';
 
 const mortgageProtectionTypes = [
   { title: 'Mortgage Term Life', description: 'Level term coverage that pays off your mortgage if you pass away', features: ['Fixed death benefit', 'Level premiums', 'Convertible options', 'Portable coverage'], icon: Shield },
@@ -72,6 +73,8 @@ function MortgageProtectionPage() {
           </div>
         </div>
       </section>
+
+      <ApplyOnlineBand page="MortgageProtection" />
 
       {/* Trust Badges */}
       <section className="py-8 bg-white border-y border-slate-200">

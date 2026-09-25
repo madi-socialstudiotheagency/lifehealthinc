@@ -1,7 +1,7 @@
 import { useMemo, useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import { ArrowRight, CheckCircle2, ChevronLeft, ChevronRight, Lock, Phone, Zap } from 'lucide-react';
-import { AUDIENCES, CONSENT_TEXT, INTAKE_FORMS, getForm } from '@/data/intakeForms';
+import { AUDIENCES, CONSENT_TEXT, INTAKE_FORMS, PRIVACY_TEXT, getForm } from '@/data/intakeForms';
 import { makeReference, submitIntake } from '@/api/intakeClient';
 
 const NAVY = '#081730';
@@ -164,6 +164,7 @@ function IntakeForm({ form }) {
   const [step, setStep] = useState(0);
   const [answers, setAnswers] = useState({});
   const [consent, setConsent] = useState(false);
+  const [privacyAck, setPrivacyAck] = useState(false);
   const [honeypot, setHoneypot] = useState('');
   const [errors, setErrors] = useState({});
   const [status, setStatus] = useState({ state: 'idle' });
@@ -188,6 +189,7 @@ function IntakeForm({ form }) {
       else if (f.type === 'tel' && String(v).replace(/\D/g, '').length < 10) errs[f.name] = 'Enter a 10-digit phone number';
     });
     if (isLast && !consent) errs._consent = 'Please agree so we can contact you';
+    if (isLast && !privacyAck) errs._privacy = 'Please confirm you have read how we protect your information';
     setErrors(errs);
     return Object.keys(errs).length === 0;
   };
@@ -221,7 +223,7 @@ function IntakeForm({ form }) {
       contactPref: answers.contactPref || '',
       submittedAt: new Date().toISOString(),
       sourceUrl: window.location.href,
-      consent: 'Agreed: ' + CONSENT_TEXT,
+      consent: 'Agreed: ' + CONSENT_TEXT + ' | Privacy acknowledged: ' + PRIVACY_TEXT,
       'bot-field': honeypot,
       details: lines.join('\n'),
     });
@@ -282,6 +284,11 @@ function IntakeForm({ form }) {
                 <span className="text-xs text-slate-600 leading-relaxed">{CONSENT_TEXT}</span>
               </label>
               {errors._consent && <p className="text-xs text-red-600 mt-2">{errors._consent}</p>}
+              <label className="flex gap-3 items-start cursor-pointer mt-3 pt-3 border-t border-slate-200">
+                <input type="checkbox" className="mt-1" checked={privacyAck} onChange={(e) => { setPrivacyAck(e.target.checked); setErrors((x) => ({ ...x, _privacy: undefined })); }} />
+                <span className="text-xs text-slate-600 leading-relaxed"><Lock className="inline w-3 h-3 mr-1" />{PRIVACY_TEXT}</span>
+              </label>
+              {errors._privacy && <p className="text-xs text-red-600 mt-2">{errors._privacy}</p>}
             </div>
           )}
 

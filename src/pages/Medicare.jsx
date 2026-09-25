@@ -6,6 +6,7 @@ import { Link } from 'react-router-dom';
 import { createPageUrl } from '@/utils';
 import { Shield, Heart, Users, CheckCircle, ArrowRight, Phone, Award, Stethoscope } from 'lucide-react';
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion';
+import ApplyOnlineBand from '@/components/ApplyOnlineBand';
 
 const medicareOptions = [
   {
@@ -86,6 +87,8 @@ export default function MedicarePage() {
           </div>
         </div>
       </section>
+
+      <ApplyOnlineBand page="Medicare" />
 
       {/* Trust Badges */}
       <section className="py-8 bg-white border-y border-slate-200">

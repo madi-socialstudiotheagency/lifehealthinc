@@ -1,4 +1,5 @@
 import { Link } from 'react-router-dom';
+import ApplyOnlineBand from '@/components/ApplyOnlineBand';
 import { BarChart3, Building2, CalendarClock, CheckCircle2, FileText, Layers, Phone, ShieldCheck } from 'lucide-react';
 
 const NAVY = '#081730';
@@ -89,6 +90,8 @@ export default function Employers() {
         </div>
         <p className="text-xs text-blue-200 mt-4">Free review. No obligation. No SSN or medical information needed.</p>
       </section>
+
+      <ApplyOnlineBand page="Employers" />
 
       <section className="max-w-5xl mx-auto px-4 pb-14 grid md:grid-cols-3 gap-4">
         {[
