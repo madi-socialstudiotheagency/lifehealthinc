@@ -1,4 +1,5 @@
 import './App.css'
+import { useEffect } from 'react'
 import { Toaster } from "@/components/ui/toaster"
 import { QueryClientProvider } from '@tanstack/react-query'
 import { queryClientInstance } from '@/lib/query-client'
@@ -22,6 +23,8 @@ import AdminSettings from '@/pages/AdminSettings';
 import ClientPortal from '@/pages/ClientPortal';
 import Intake from '@/pages/Intake';
 import Carriers from '@/pages/Carriers';
+import Employers from '@/pages/Employers';
+import OwnBank from '@/pages/OwnBank';
 
 const { Pages, Layout, mainPage } = pagesConfig;
 const mainPageKey = mainPage ?? Object.keys(Pages)[0];
@@ -30,6 +33,14 @@ const MainPage = mainPageKey ? Pages[mainPageKey] : <></>;
 const LayoutWrapper = ({ children, currentPageName }) => Layout ?
   <Layout currentPageName={currentPageName}>{children}</Layout>
   : <>{children}</>;
+
+const SeoTracker = () => {
+  const location = useLocation();
+  useEffect(() => {
+    if (typeof window !== 'undefined' && window.__lhiSeo) window.__lhiSeo(location.pathname);
+  }, [location.pathname]);
+  return null;
+};
 
 const CalculatorRedirect = () => {
   const location = useLocation();
@@ -97,8 +108,10 @@ const AuthenticatedApp = () => {
       <Route path="/admin-settings" element={<LayoutWrapper currentPageName="AdminSettings"><AdminSettings /></LayoutWrapper>} />
       <Route path="/client-portal" element={<ClientPortal />} />
       <Route path="/get-quote" element={<LayoutWrapper currentPageName="QuotePage"><QuotePage /></LayoutWrapper>} />
-      <Route path="/intake" element={<LayoutWrapper currentPageName="Intake"><Intake /></LayoutWrapper>} />
-      <Route path="/intake/:formId" element={<LayoutWrapper currentPageName="Intake"><Intake /></LayoutWrapper>} />
+      <Route path="/get-started" element={<LayoutWrapper currentPageName="Intake"><Intake /></LayoutWrapper>} />
+      <Route path="/get-started/:formId" element={<LayoutWrapper currentPageName="Intake"><Intake /></LayoutWrapper>} />
+      <Route path="/employers" element={<LayoutWrapper currentPageName="Employers"><Employers /></LayoutWrapper>} />
+      <Route path="/become-your-own-bank" element={<LayoutWrapper currentPageName="OwnBank"><OwnBank /></LayoutWrapper>} />
       <Route path="/carriers" element={<LayoutWrapper currentPageName="Carriers"><Carriers /></LayoutWrapper>} />
       <Route path="/privacy-policy" element={<Navigate to="/Privacy" replace />} />
       <Route path="/Article" element={<Navigate to="/Blog" replace />} />
@@ -116,6 +129,7 @@ function App() {
         <Router>
 
           <NavigationTracker />
+          <SeoTracker />
           <AuthenticatedApp />
         </Router>
         <Toaster />

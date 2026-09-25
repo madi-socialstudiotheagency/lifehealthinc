@@ -1,0 +1,140 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex">
+<title>Pre-appointment survey — LifeHealthInc</title>
+<link rel="icon" type="image/png" href="/assets/img/6bb5a4d12_Untitleddesign.png">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Jost:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{--navy:#081730;--blue:#1A3586;--ink:#0F172A;--muted:#64748B;--line:#E2E8F0;--wash:#F4F6FA}
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--wash);font-family:Jost,'Helvetica Neue',Arial,sans-serif;color:var(--ink);-webkit-font-smoothing:antialiased}
+  header{background:var(--navy);padding:16px 24px}
+  header .brand{display:flex;align-items:center;gap:12px;max-width:640px;margin:0 auto}
+  header img{width:42px;height:41px;border-radius:8px;display:block}
+  header .name{font-family:'Playfair Display',Georgia,serif;font-size:19px;font-weight:700;color:#fff;line-height:22px}
+  header .tag{font-size:11px;letter-spacing:.6px;color:#B9C4E0;margin-top:2px}
+  main{max-width:640px;margin:28px auto 60px;padding:0 16px}
+  .card{background:#fff;border-radius:14px;box-shadow:0 2px 12px rgba(8,23,48,.08);padding:28px 24px}
+  h1{font-family:'Playfair Display',Georgia,serif;font-size:24px;line-height:30px;color:var(--blue);margin:0 0 8px}
+  p.lead{margin:0 0 22px;font-size:15px;line-height:23px;color:var(--ink)}
+  fieldset{border:0;padding:0;margin:0 0 22px}
+  legend{font-size:11px;font-weight:600;letter-spacing:1px;text-transform:uppercase;color:var(--muted);margin-bottom:10px}
+  .opts{display:flex;flex-wrap:wrap;gap:8px}
+  .opt{position:relative}
+  .opt input{position:absolute;opacity:0;inset:0;cursor:pointer}
+  .opt span{display:inline-block;padding:9px 14px;border:1px solid var(--line);border-radius:999px;font-size:14px;font-weight:500;color:var(--ink);background:#fff;cursor:pointer;transition:.12s}
+  .opt input:checked+span{background:var(--blue);border-color:var(--blue);color:#fff}
+  .opt input:focus-visible+span{outline:2px solid var(--blue);outline-offset:2px}
+  textarea,input[type=text],input[type=email]{width:100%;padding:11px 13px;border:1px solid var(--line);border-radius:10px;font:inherit;font-size:14px;color:var(--ink);background:#fff}
+  textarea{min-height:88px;resize:vertical}
+  .row{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+  @media(max-width:520px){.row{grid-template-columns:1fr}}
+  button{background:var(--blue);color:#fff;border:0;border-radius:10px;padding:13px 24px;font:inherit;font-size:15px;font-weight:600;cursor:pointer}
+  button:disabled{opacity:.6;cursor:default}
+  .err{color:#b91c1c;font-size:13px;margin:8px 0 0;min-height:18px}
+  .foot{margin-top:18px;font-size:12px;line-height:18px;color:var(--muted);border-top:1px solid var(--line);padding-top:14px}
+  .foot a{color:var(--blue);text-decoration:none}
+  .hp{position:absolute;left:-9999px;top:-9999px}
+  .done h1{margin-bottom:12px}
+</style>
+</head>
+<body>
+<header><div class="brand">
+  <img src="/assets/img/6bb5a4d12_Untitleddesign.png" alt="LifeHealthInc">
+  <div><div class="name">LifeHealthInc</div><div class="tag">Life / Health and Everything Incorporated</div></div>
+</div></header>
+<main>
+<div class="card" id="card">
+  <h1>Before we talk</h1>
+  <p class="lead">A licensed broker will reach out shortly. Six quick questions — nothing personal, no numbers — so your broker understands what you're looking for and your appointment starts where it matters.</p>
+  <form id="f" novalidate>
+    <div class="hp" aria-hidden="true"><label>Leave this empty <input name="bot-field" tabindex="-1" autocomplete="off"></label></div>
+    <div class="row">
+      <div><label class="legend-like" style="display:block;font-size:11px;font-weight:600;letter-spacing:1px;text-transform:uppercase;color:var(--muted);margin-bottom:8px">Your name</label><input type="text" name="fullName" id="fullName" autocomplete="name" required></div>
+      <div><label style="display:block;font-size:11px;font-weight:600;letter-spacing:1px;text-transform:uppercase;color:var(--muted);margin-bottom:8px">Email</label><input type="email" name="email" id="email" autocomplete="email" required></div>
+    </div>
+    <div style="height:22px"></div>
+
+    <fieldset><legend>1. What brought you to LifeHealthInc today?</legend><div class="opts">
+      <label class="opt"><input type="checkbox" name="reason" value="Protecting my family"><span>Protecting my family</span></label>
+      <label class="opt"><input type="checkbox" name="reason" value="Health coverage for me or my family"><span>Health coverage for me or my family</span></label>
+      <label class="opt"><input type="checkbox" name="reason" value="Turning 65 / Medicare"><span>Turning 65 / Medicare</span></label>
+      <label class="opt"><input type="checkbox" name="reason" value="Planning for retirement"><span>Planning for retirement</span></label>
+      <label class="opt"><input type="checkbox" name="reason" value="Moving an old 401k or IRA"><span>Moving an old 401k or IRA</span></label>
+      <label class="opt"><input type="checkbox" name="reason" value="Leaving something behind / estate"><span>Leaving something behind / estate</span></label>
+      <label class="opt"><input type="checkbox" name="reason" value="A life change (new job, baby, home, marriage)"><span>A life change — new job, baby, home, marriage</span></label>
+      <label class="opt"><input type="checkbox" name="reason" value="Coverage for my business or team"><span>Coverage for my business or team</span></label>
+      <label class="opt"><input type="checkbox" name="reason" value="Just exploring"><span>Just exploring</span></label>
+    </div></fieldset>
+
+    <fieldset><legend>2. What matters most to you in this decision?</legend><div class="opts">
+      <label class="opt"><input type="checkbox" name="priority" value="Keeping the cost predictable"><span>Keeping the cost predictable</span></label>
+      <label class="opt"><input type="checkbox" name="priority" value="Getting the right amount of coverage"><span>Getting the right amount of coverage</span></label>
+      <label class="opt"><input type="checkbox" name="priority" value="Understanding my options in plain terms"><span>Understanding my options in plain terms</span></label>
+      <label class="opt"><input type="checkbox" name="priority" value="Getting this done quickly"><span>Getting this done quickly</span></label>
+      <label class="opt"><input type="checkbox" name="priority" value="Having one person I can call"><span>Having one person I can call</span></label>
+    </div></fieldset>
+
+    <fieldset><legend>3. Where are you in the process?</legend><div class="opts">
+      <label class="opt"><input type="radio" name="stage" value="Just starting to look"><span>Just starting to look</span></label>
+      <label class="opt"><input type="radio" name="stage" value="Comparing a few options"><span>Comparing a few options</span></label>
+      <label class="opt"><input type="radio" name="stage" value="Reviewing what I already have"><span>Reviewing what I already have</span></label>
+      <label class="opt"><input type="radio" name="stage" value="Ready to move forward"><span>Ready to move forward</span></label>
+    </div></fieldset>
+
+    <fieldset><legend>4. Is there a date or event driving this?</legend><div class="opts">
+      <label class="opt"><input type="radio" name="timing" value="Within the next 30 days"><span>Within the next 30 days</span></label>
+      <label class="opt"><input type="radio" name="timing" value="In the next 1–3 months"><span>In the next 1–3 months</span></label>
+      <label class="opt"><input type="radio" name="timing" value="An enrollment deadline"><span>An enrollment deadline</span></label>
+      <label class="opt"><input type="radio" name="timing" value="No rush — planning ahead"><span>No rush — planning ahead</span></label>
+    </div></fieldset>
+
+    <fieldset><legend>5. How would you like us to reach you?</legend><div class="opts" style="margin-bottom:8px">
+      <label class="opt"><input type="radio" name="method" value="Call"><span>Call</span></label>
+      <label class="opt"><input type="radio" name="method" value="Text"><span>Text</span></label>
+      <label class="opt"><input type="radio" name="method" value="Email"><span>Email</span></label>
+    </div><div class="opts">
+      <label class="opt"><input type="radio" name="when" value="Morning"><span>Morning</span></label>
+      <label class="opt"><input type="radio" name="when" value="Afternoon"><span>Afternoon</span></label>
+      <label class="opt"><input type="radio" name="when" value="Evening"><span>Evening</span></label>
+    </div></fieldset>
+
+    <fieldset><legend>6. Anything you'd like your broker to know before you talk? <span style="text-transform:none;letter-spacing:0;font-weight:500">(optional)</span></legend>
+      <textarea name="notes" placeholder="A question you want answered, something you're unsure about, or context that would help…"></textarea></fieldset>
+
+    <button type="submit" id="btn">Send to my broker</button>
+    <div class="err" id="err"></div>
+  </form>
+  <div class="foot">LifeHealthInc is an independent insurance brokerage. We represent you, not the carrier. &nbsp;<a href="https://www.lifehealthinc.org">lifehealthinc.org</a> · <a href="tel:3152122835">(315) 212-2835</a><br>Partnered with <a href="https://www.socialstudiotheagency.com" target="_blank" rel="noopener">Social Studio The Agency</a> for marketing, automation and web.</div>
+</div>
+</main>
+<script>
+(function(){
+  var q=new URLSearchParams(location.search);
+  if(q.get('n'))document.getElementById('fullName').value=q.get('n');
+  if(q.get('e'))document.getElementById('email').value=q.get('e');
+  var f=document.getElementById('f'),btn=document.getElementById('btn'),err=document.getElementById('err');
+  function vals(name){return Array.prototype.map.call(f.querySelectorAll('[name="'+name+'"]:checked'),function(i){return i.value})}
+  f.addEventListener('submit',async function(ev){
+    ev.preventDefault(); err.textContent='';
+    var fullName=f.fullName.value.trim(), email=f.email.value.trim();
+    if(!fullName||!/^\S+@\S+\.\S{2,}$/.test(email)){err.textContent='Please add your name and a valid email.';return}
+    var reason=vals('reason'); if(!reason.length){err.textContent='Please choose at least one option in question 1.';return}
+    btn.disabled=true; btn.textContent='Sending…';
+    var payload={form:'intake',fullName:fullName,email:email,'bot-field':f['bot-field'].value,parentId:q.get('s')||'',pageUrl:location.href,
+      reason:reason,priority:vals('priority'),stage:vals('stage')[0]||'',timing:vals('timing')[0]||'',method:vals('method')[0]||'',when:vals('when')[0]||'',notes:f.notes.value.trim()};
+    try{
+      var r=await fetch('https://ytyjawfaptjdguxykzem.supabase.co/functions/v1/lhi-forms',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(payload)});
+      var j=await r.json().catch(function(){return{}});
+      if(!r.ok||!j.ok)throw new Error(j.error||'Request failed');
+      document.getElementById('card').innerHTML='<div class="done"><h1>Thank you, '+fullName.split(' ')[0].replace(/[<>&]/g,'')+'</h1><p class="lead">Your answers are with your broker. We\'ll use them to prepare for your appointment so the conversation starts where it matters.</p><p class="lead">Need us sooner? <a href="tel:3152122835" style="color:var(--blue);font-weight:600;text-decoration:none">Call (315) 212-2835</a></p><div class="foot">LifeHealthInc is an independent insurance brokerage. We represent you, not the carrier. &nbsp;<a href="https://www.lifehealthinc.org">lifehealthinc.org</a></div></div>';
+      window.scrollTo(0,0);
+    }catch(e){err.textContent=(e&&e.message)||'Something went wrong. Please call (315) 212-2835.';btn.disabled=false;btn.textContent='Send to my broker'}
+  });
+})();
+</script>
+</body>
+</html>

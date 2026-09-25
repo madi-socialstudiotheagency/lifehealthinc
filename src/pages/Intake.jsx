@@ -34,7 +34,7 @@ function IntakeHub() {
                 {forms.map((f) => (
                   <Link
                     key={f.id}
-                    to={`/intake/${f.id}`}
+                    to={`/get-started/${f.id}`}
                     className="block rounded-xl border border-white/15 bg-white/5 p-5 hover:bg-white/10 transition-colors"
                   >
                     <h3 className="font-bold text-lg mb-1">{f.title}</h3>
@@ -201,7 +201,7 @@ function IntakeForm({ form }) {
             This is a request for information, not an application or a guarantee of coverage.
           </p>
           {status.reference && <p className="text-xs text-slate-500 mb-4">Reference: {status.reference}</p>}
-          <Link to="/intake" className="text-blue-700 font-semibold underline">Back to all forms</Link>
+          <Link to="/get-started" className="text-blue-700 font-semibold underline">Back to all forms</Link>
         </div>
       </div>
     );
@@ -210,7 +210,7 @@ function IntakeForm({ form }) {
   return (
     <div className="min-h-screen py-10 px-4" style={{ background: `linear-gradient(180deg, ${NAVY} 0%, ${BLUE} 100%)` }}>
       <div className="max-w-2xl mx-auto">
-        <Link to="/intake" className="text-blue-200 text-sm inline-flex items-center gap-1 mb-4">
+        <Link to="/get-started" className="text-blue-200 text-sm inline-flex items-center gap-1 mb-4">
           <ChevronLeft className="w-4 h-4" /> All forms
         </Link>
         <h1 className="text-3xl font-black text-white mb-1">{form.title}</h1>

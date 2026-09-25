@@ -1,0 +1,14 @@
+User-agent: *
+Allow: /
+Disallow: /Clients
+Disallow: /client-portal
+Disallow: /agent-dashboard
+Disallow: /admin-settings
+Disallow: /register.html
+Disallow: /forgot-password.html
+Disallow: /reset-password.html
+Disallow: /intake.html
+Disallow: /thank-you
+Disallow: /QuoteComplete
+
+Sitemap: https://www.lifehealthinc.org/sitemap.xml
