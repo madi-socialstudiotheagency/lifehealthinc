@@ -1,0 +1,101 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex">
+<title>Create your Client Portal account — LifeHealthInc</title>
+<link rel="icon" type="image/png" href="/assets/img/6bb5a4d12_Untitleddesign.png">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Jost:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{--navy:#081730;--blue:#1A3586;--ink:#0F172A;--muted:#64748B;--line:#E2E8F0;--wash:#F4F6FA}
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--wash);font-family:Jost,'Helvetica Neue',Arial,sans-serif;color:var(--ink);-webkit-font-smoothing:antialiased}
+  header{background:var(--navy);padding:16px 24px}
+  header .brand{display:flex;align-items:center;gap:12px;max-width:640px;margin:0 auto}
+  header img{width:42px;height:41px;border-radius:8px;display:block}
+  header .name{font-family:'Playfair Display',Georgia,serif;font-size:19px;font-weight:700;color:#fff;line-height:22px}
+  header .tag{font-size:11px;letter-spacing:.6px;color:#B9C4E0;margin-top:2px}
+  main{max-width:640px;margin:28px auto 60px;padding:0 16px}
+  .card{background:#fff;border-radius:14px;box-shadow:0 2px 12px rgba(8,23,48,.08);padding:28px 24px}
+  h1{font-family:'Playfair Display',Georgia,serif;font-size:24px;line-height:30px;color:var(--blue);margin:0 0 8px}
+  p.lead{margin:0 0 22px;font-size:15px;line-height:23px;color:var(--ink)}
+  fieldset{border:0;padding:0;margin:0 0 22px}
+  legend{font-size:11px;font-weight:600;letter-spacing:1px;text-transform:uppercase;color:var(--muted);margin-bottom:10px}
+  .opts{display:flex;flex-wrap:wrap;gap:8px}
+  .opt{position:relative}
+  .opt input{position:absolute;opacity:0;inset:0;cursor:pointer}
+  .opt span{display:inline-block;padding:9px 14px;border:1px solid var(--line);border-radius:999px;font-size:14px;font-weight:500;color:var(--ink);background:#fff;cursor:pointer;transition:.12s}
+  .opt input:checked+span{background:var(--blue);border-color:var(--blue);color:#fff}
+  .opt input:focus-visible+span{outline:2px solid var(--blue);outline-offset:2px}
+  textarea,input[type=text],input[type=email],input[type=tel],input[type=password]{width:100%;padding:11px 13px;border:1px solid var(--line);border-radius:10px;font:inherit;font-size:14px;color:var(--ink);background:#fff}
+  textarea{min-height:88px;resize:vertical}
+  .row{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+  @media(max-width:520px){.row{grid-template-columns:1fr}}
+  button{background:var(--blue);color:#fff;border:0;border-radius:10px;padding:13px 24px;font:inherit;font-size:15px;font-weight:600;cursor:pointer}
+  button:disabled{opacity:.6;cursor:default}
+  .err{color:#b91c1c;font-size:13px;margin:8px 0 0;min-height:18px}
+  .foot{margin-top:18px;font-size:12px;line-height:18px;color:var(--muted);border-top:1px solid var(--line);padding-top:14px}
+  .foot a{color:var(--blue);text-decoration:none}
+  .hp{position:absolute;left:-9999px;top:-9999px}
+  .done h1{margin-bottom:12px}
+</style>
+</head>
+<body>
+<header><div class="brand">
+  <a href="/" style="display:flex;align-items:center;gap:12px;text-decoration:none"><img src="/assets/img/6bb5a4d12_Untitleddesign.png" alt="LifeHealthInc">
+  <div><div class="name">LifeHealthInc</div><div class="tag">Life / Health and Everything Incorporated</div></div></a>
+</div></header>
+<main>
+<div class="card" id="card">
+  <h1>Create your Client Portal account</h1>
+  <p class="lead">See your policies, reach your broker, and open every carrier's member portal from one place. Takes about a minute.</p>
+  <form id="f" novalidate>
+    <div class="hp" aria-hidden="true"><label>Leave this empty <input name="bot-field" tabindex="-1" autocomplete="off"></label></div>
+    <div class="row">
+      <div><label class="lbl">Full name</label><input type="text" name="name" id="name" autocomplete="name" required></div>
+      <div><label class="lbl">Phone</label><input type="tel" name="phone" id="phone" autocomplete="tel" placeholder="(555) 555-5555"></div>
+    </div>
+    <div style="height:14px"></div>
+    <div><label class="lbl">Email</label><input type="email" name="email" id="email" autocomplete="email" required><div class="hint">Use the email your broker has on file so your policies link automatically.</div></div>
+    <div style="height:14px"></div>
+    <div class="row">
+      <div><label class="lbl">Password</label><input type="password" name="password" id="password" autocomplete="new-password" minlength="8" required><div class="hint">At least 8 characters.</div></div>
+      <div><label class="lbl">Confirm password</label><input type="password" name="confirm" id="confirm" autocomplete="new-password" required></div>
+    </div>
+    <div style="height:18px"></div>
+    <label class="agree"><input type="checkbox" id="agree" required> I agree to the <a href="/terms" target="_blank">Terms</a> and <a href="/privacy" target="_blank">Privacy Policy</a>.</label>
+    <p class="err" id="err"></p>
+    <button type="submit" id="btn" style="width:100%;margin-top:6px">Create my account</button>
+  </form>
+  <div class="foot">Already have an account? <a href="/Clients">Sign in</a> &nbsp;·&nbsp; Questions? <a href="tel:3152122835">(315) 212-2835</a><br>Partnered with <a href="https://www.socialstudiotheagency.com" target="_blank" rel="noopener">Social Studio The Agency</a> for marketing, automation and web.</div>
+</div>
+</main>
+<style>.lbl{display:block;font-size:11px;font-weight:600;letter-spacing:1px;text-transform:uppercase;color:var(--muted);margin-bottom:8px}.hint{font-size:12px;color:var(--muted);margin-top:6px}.agree{display:flex;gap:10px;align-items:flex-start;font-size:13px;line-height:19px;color:var(--ink)}.agree input{margin-top:3px;width:16px;height:16px;accent-color:var(--blue)}.agree a{color:var(--blue)}</style>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.49.4/dist/umd/supabase.min.js" crossorigin="anonymous"></script>
+<script>
+(function(){
+  var f=document.getElementById('f'),btn=document.getElementById('btn'),err=document.getElementById('err');
+  var ENDPOINT='https://ytyjawfaptjdguxykzem.supabase.co/functions/v1/lhi-forms';
+  var sb=window.supabase&&window.supabase.createClient('https://ytyjawfaptjdguxykzem.supabase.co','sb_publishable_bSzUO4KLJRDS8nwAQ93ZEQ_TFXjhgP0',{auth:{persistSession:true,storageKey:'lhi-portal'}});
+  f.addEventListener('submit',async function(e){
+    e.preventDefault(); err.textContent='';
+    var name=f.name.value.trim(),email=f.email.value.trim().toLowerCase(),phone=f.phone.value.trim(),pw=f.password.value,cf=f.confirm.value;
+    if(!name){err.textContent='Please enter your full name.';return}
+    if(!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(email)){err.textContent='Please enter a valid email address.';return}
+    if(pw.length<8){err.textContent='Your password needs at least 8 characters.';return}
+    if(pw!==cf){err.textContent='Passwords do not match.';return}
+    if(!document.getElementById('agree').checked){err.textContent='Please agree to the Terms and Privacy Policy.';return}
+    btn.disabled=true; btn.textContent='Creating your account…';
+    try{
+      var r=await fetch(ENDPOINT,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({form:'portal_register',name:name,email:email,phone:phone,password:pw,'bot-field':f['bot-field'].value,pageUrl:location.href})});
+      var j=await r.json().catch(function(){return{}});
+      if(!r.ok||!j.ok){err.textContent=j.error||'Something went wrong. Please call (315) 212-2835.';btn.disabled=false;btn.textContent='Create my account';return}
+      if(sb){var s=await sb.auth.signInWithPassword({email:email,password:pw});if(!s.error){location.href='/client-portal';return}}
+      location.href='/Clients';
+    }catch(x){err.textContent='Network error. Please try again or call (315) 212-2835.';btn.disabled=false;btn.textContent='Create my account'}
+  });
+})();
+</script>
+</body>
+</html>
