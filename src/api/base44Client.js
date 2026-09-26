@@ -30,7 +30,7 @@ const rawClient = createClient({
 // (netlify/functions/lead-alert.js) so a lead is never only sitting in Base44.
 const ALERT_ENTITIES = new Set(['Lead', 'Newsletter']);
 
-function sendLeadAlert(kind, data) {
+export function sendLeadAlert(kind, data) {
   try {
     fetch('/.netlify/functions/lead-alert', {
       method: 'POST',

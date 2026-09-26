@@ -1,7 +1,7 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
-import { base44 } from '@/api/base44Client';
+import { base44, sendLeadAlert } from '@/api/base44Client';
 import {
   Heart, Shield, Activity, Stethoscope,
   ChevronRight, ChevronLeft, CheckCircle, DollarSign, Star
@@ -25,20 +25,58 @@ const US_STATES = [
   'VA','WA','WV','WI','WY'
 ];
 
-function estimateMonthly(product, age, coverageK) {
-  if (!product) return null;
-  const p = PRODUCTS.find(x => x.id === product);
-  if (!p || p.base === 0) return null;
-  const ageMultiplier = age ? Math.max(1, 1 + (age - 30) * 0.04) : 1;
-  const coverageMultiplier = coverageK ? coverageK / 250 : 1;
-  if (product === 'life_insurance') {
-    return Math.round(p.base * ageMultiplier * coverageMultiplier);
-  }
-  if (product === 'health_insurance') {
-    return Math.round(p.base * ageMultiplier);
-  }
-  return Math.round(p.base * ageMultiplier);
-}
+// Where each product's visitor goes next, and what it really costs. Every figure
+// is a published example with its source; nothing here is computed or invented.
+const NEXT_STEP = {
+  life_insurance: '/get-started/life-insurance',
+  health_insurance: '/health-quote',
+  medicare: '/get-started/medicare',
+  final_expense: '/get-started/final-expense',
+};
+
+const COST_INFO = {
+  medicare: {
+    title: 'What Medicare costs (2026)',
+    rows: [
+      ['Part A, hospital', '$0 for most people'],
+      ['Part B, doctor visits', '$202.90/mo standard, usually taken from Social Security'],
+      ['Medicare Advantage', 'Often $0 extra premium. CMS estimates the average at about $14/mo'],
+      ['Medicare Supplement (Medigap)', 'Varies by age, state and plan. We compare carriers for you'],
+    ],
+    note: 'Medicare itself is paid for by the government. Our help choosing the plan that fills the gaps is free.',
+    source: 'Source: CMS 2026 premiums and deductibles.',
+  },
+  life_insurance: {
+    title: 'Sample life insurance prices',
+    rows: [
+      ['Woman, 30, 20-year $500K, non-smoker (Pacific Life)', 'about $16/mo'],
+      ['Man, 40, same coverage (Pacific Life)', 'about $28/mo'],
+      ['Man, 45, same coverage (Prudential)', 'about $48/mo'],
+    ],
+    note: 'Published examples for top health class. Your price depends on your age, health and coverage.',
+    source: 'Source: carrier rates reported by NerdWallet, 2025-2026.',
+  },
+  health_insurance: {
+    title: 'Health insurance prices',
+    rows: [
+      ['Short-term medical (Allstate Health Solutions)', 'about $132/mo average, from about $70/mo'],
+      ['ACA Marketplace plans', 'Depends on your income. You may qualify for savings'],
+    ],
+    note: 'The fastest way to see your real price is the live quote tool.',
+    source: 'Source: ValuePenguin.',
+    link: ['/health-quote', 'See live prices for my ZIP'],
+  },
+  final_expense: {
+    title: 'Sample final expense prices',
+    rows: [
+      ['$15,000 whole life, woman, 55 (Mutual of Omaha)', 'about $40/mo'],
+      ['$15,000 whole life, man, 55 (Mutual of Omaha)', 'about $52/mo'],
+      ['$10,000, woman, 60, non-smoker (Fidelity Life)', 'about $44/mo'],
+    ],
+    note: 'Published examples. Your price depends on your age, health and the amount you choose.',
+    source: 'Source: carrier and third-party rate charts.',
+  },
+};
 
 export default function QuoteCalculator() {
   const [step, setStep] = useState(1);
@@ -49,15 +87,21 @@ export default function QuoteCalculator() {
   const [submitting, setSubmitting] = useState(false);
 
   const product = PRODUCTS.find(p => p.id === selected);
-  const age = null; // no age in this simplified version
-  const monthly = estimateMonthly(selected, age, coverageK);
+  const cost = selected ? COST_INFO[selected] : null;
+
+  // After a successful submit, move the visitor on to that product's application.
+  useEffect(() => {
+    if (!submitted) return undefined;
+    const t = setTimeout(() => window.location.assign(NEXT_STEP[selected] || '/get-started'), 2500);
+    return () => clearTimeout(t);
+  }, [submitted, selected]);
 
   const handleSubmit = async () => {
     if (!form.fullName || !form.phone || !form.email || !form.state) return;
     setSubmitting(true);
     const [firstName, ...rest] = form.fullName.trim().split(' ');
     const lastName = rest.join(' ');
-    await base44.entities.Lead.create({
+    const lead = {
       firstName,
       lastName,
       phone: form.phone,
@@ -71,7 +115,14 @@ export default function QuoteCalculator() {
       promotionalSmsConsent: form.promotionalSmsConsent || false,
       consentText: 'LIFEHEALTHINC LLC A2P consent obtained at submission.',
       consentAt: new Date().toISOString(),
-    });
+    };
+    try {
+      await base44.entities.Lead.create(lead);
+    } catch (err) {
+      // The save can fail, but the lead must never be lost or the button left spinning.
+      console.error('Lead save failed, alerting Matthew directly:', err);
+      sendLeadAlert('Lead', lead);
+    }
     setSubmitting(false);
     setSubmitted(true);
   };
@@ -82,11 +133,18 @@ export default function QuoteCalculator() {
         <div className="w-16 h-16 rounded-full flex items-center justify-center mb-5" style={{ background: '#e8f5e9' }}>
           <CheckCircle className="w-8 h-8 text-green-600" />
         </div>
-        <h2 className="text-2xl font-black mb-2" style={{ color: DARK2 }}>You're All Set!</h2>
+        <h2 className="text-2xl font-black mb-2" style={{ color: DARK2 }}>Got it, thank you!</h2>
         <p className="text-slate-500 max-w-sm">
-          A licensed broker will reach out to <strong>{form.email}</strong> within 24 hours with your personalized quote.
+          Taking you to the next step now. Matthew will follow up at <strong>{form.email}</strong> if anything is missing.
         </p>
-        <p className="text-xs text-slate-400 mt-4">Questions? Call <a href="tel:9545430853" className="underline">(954) 543-0853</a></p>
+        <a
+          href={NEXT_STEP[selected] || '/get-started'}
+          className="mt-6 inline-flex items-center justify-center rounded-xl px-7 py-3.5 font-bold text-white"
+          style={{ background: DARK2 }}
+        >
+          Continue my application
+        </a>
+        <p className="text-xs text-slate-400 mt-4">Questions? Call or text <a href="tel:9545430853" className="underline">(954) 543-0853</a></p>
       </div>
     );
   }
@@ -248,70 +306,50 @@ export default function QuoteCalculator() {
                   className="w-full font-bold text-base py-5"
                   style={{ background: `linear-gradient(135deg, ${DARK2}, #3D6B9E)`, color: '#fff' }}
                 >
-                  {submitting ? 'Finding Your Best Rate...' : '🎯 Show Me My Best Rate →'}
+                  {submitting ? 'Sending…' : 'Continue →'}
                 </Button>
               </div>
             </>
           )}
         </div>
 
-        {/* RIGHT PANEL — Estimated Cost */}
+        {/* RIGHT PANEL — what it costs, from published sources */}
         <div
           className="rounded-2xl p-6 flex flex-col"
           style={{ background: `linear-gradient(135deg, ${DARK1}, ${DARK2})`, border: `2px solid ${GOLD}40` }}
         >
-          <h3 className="text-center font-black text-lg mb-2" style={{ color: GOLD }}>Estimated Cost</h3>
+          <h3 className="text-center font-black text-lg mb-4" style={{ color: GOLD }}>{cost ? cost.title : 'What will it cost?'}</h3>
 
-          <div className="flex-1 flex flex-col items-center justify-center py-8">
-            {monthly ? (
-              <>
-                <div className="flex items-start gap-1 mb-1">
-                  <span className="text-2xl font-bold text-white mt-2">$</span>
-                  <span className="text-6xl font-black" style={{ color: GOLD }}>{monthly}</span>
-                </div>
-                <p className="text-sm text-slate-300">per month</p>
-                <p className="text-xs text-slate-400 mt-1 text-center max-w-xs">
-                  Estimate for {product?.label}
-                  {selected === 'life_insurance' ? ` — $${coverageK}k coverage` : ''}
-                </p>
-              </>
-            ) : (
-              <>
-                <div className="flex items-start gap-1 mb-1 opacity-40">
-                  <span className="text-2xl font-bold text-white mt-2">$</span>
-                  <span className="text-6xl font-black text-white">—</span>
-                </div>
-                <p className="text-sm text-slate-400">per month</p>
-                <p className="text-xs text-slate-500 mt-2 text-center">Example: $22/mo for a 34-year-old in good health</p>
-                {selected && (
-                  <p className="text-xs text-slate-400 mt-2 text-center max-w-xs">
-                    A broker will provide a personalized quote for {product?.label}.
-                  </p>
-                )}
-              </>
-            )}
-          </div>
-
-          {/* Coverage / Term display */}
-          <div className="space-y-2 mb-5">
-            <div className="flex justify-between items-center px-4 py-2.5 rounded-xl" style={{ background: 'rgba(255,255,255,0.08)' }}>
-              <span className="text-sm text-slate-300">Product</span>
-              <span className="text-sm font-semibold text-white">{product?.label ?? '—'}</span>
+          {cost ? (
+            <div className="flex-1 flex flex-col">
+              <ul className="space-y-2 mb-4">
+                {cost.rows.map(([label, value]) => (
+                  <li key={label} className="rounded-xl px-4 py-3" style={{ background: 'rgba(255,255,255,0.08)' }}>
+                    <span className="block text-xs text-slate-300">{label}</span>
+                    <span className="block text-sm font-bold text-white mt-0.5">{value}</span>
+                  </li>
+                ))}
+              </ul>
+              <p className="text-sm text-slate-200 leading-relaxed mb-2">{cost.note}</p>
+              <p className="text-[11px] text-slate-400 mb-4">{cost.source}</p>
+              {cost.link && (
+                <a href={cost.link[0]} className="text-center rounded-xl bg-white px-5 py-3 font-bold text-sm mb-4" style={{ color: DARK2 }}>
+                  {cost.link[1]}
+                </a>
+              )}
             </div>
-            {selected === 'life_insurance' && (
-              <div className="flex justify-between items-center px-4 py-2.5 rounded-xl" style={{ background: 'rgba(255,255,255,0.08)' }}>
-                <span className="text-sm text-slate-300">Coverage</span>
-                <span className="text-sm font-semibold text-white">${coverageK}k</span>
-              </div>
-            )}
-          </div>
+          ) : (
+            <div className="flex-1 flex items-center justify-center py-10">
+              <p className="text-sm text-slate-300 text-center max-w-xs">Pick what you want to protect and we will show typical real-world costs here.</p>
+            </div>
+          )}
 
           <div className="rounded-xl p-4" style={{ background: 'rgba(255,255,255,0.06)', border: '1px solid rgba(255,255,255,0.1)' }}>
             <p className="text-xs text-slate-300 leading-relaxed">
-              ↗ This is an <strong className="text-white">instant estimate</strong> based on your inputs. Final premium depends on health class, state, and carrier underwriting.
+              These are published examples, not a quote. Your actual price depends on your age, health, state and the carrier.
             </p>
           </div>
-          <p className="text-center text-xs text-slate-500 mt-3 flex items-center justify-center gap-1"><Star className="w-3 h-3 fill-white text-white" /> Independent brokers — we work for <em>you</em>, not the carrier</p>
+          <p className="text-center text-xs text-slate-400 mt-3 flex items-center justify-center gap-1"><Star className="w-3 h-3 fill-white text-white" /> Independent brokers, we work for <em>you</em>, not the carrier</p>
         </div>
       </div>
     </div>

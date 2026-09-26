@@ -10,6 +10,7 @@ const DARK2 = '#1A3586';
 export default function ReferralForm({ open, onClose }) {
   const [submitted, setSubmitted] = useState(false);
   const [loading, setLoading] = useState(false);
+  const [error, setError] = useState('');
   const [form, setForm] = useState({
     // Referrer info
     referrerName: '',
@@ -42,6 +43,8 @@ export default function ReferralForm({ open, onClose }) {
 
   const handleSubmit = async () => {
     setLoading(true);
+    setError('');
+    try {
     await base44.entities.Lead.create({
       firstName: form.refFirstName,
       lastName: form.refLastName,
@@ -60,8 +63,13 @@ export default function ReferralForm({ open, onClose }) {
       status: 'new',
       submissionDate: new Date().toISOString(),
     });
-    setLoading(false);
     setSubmitted(true);
+    } catch (err) {
+      console.error('Referral submit failed:', err);
+      setError("We couldn't send that just now. Please try again, or call or text (954) 543-0853.");
+    } finally {
+      setLoading(false);
+    }
   };
 
   const reset = () => {
@@ -194,6 +202,7 @@ export default function ReferralForm({ open, onClose }) {
 
               <p className="text-xs text-slate-500 leading-relaxed">By submitting, you confirm you have permission to share this person's contact information with a licensed insurance broker.</p>
 
+              {error && <p className="text-sm text-red-300 mb-3 text-center">{error}</p>}
               <Button onClick={handleSubmit} disabled={!canSubmit || loading} className="w-full font-bold rounded-xl py-6 text-base"
                 style={{ background: canSubmit ? `linear-gradient(135deg, ${GOLD}, #C9D8FF)` : 'rgba(255,255,255,0.1)', color: canSubmit ? DARK1 : '#64748b' }}>
                 {loading ? 'Submitting…' : 'Submit Referral'} {!loading && <ChevronRight className="w-4 h-4 ml-1" />}
