@@ -27,7 +27,7 @@ async function trackApplication(event, d) {
   if (!d.reference || !d.statusKey) return;
   try {
     connectLambda(event);
-    await getStore({ name: 'applications', consistency: 'strong' }).setJSON(String(d.reference), {
+    await getStore('applications').setJSON(String(d.reference), {
       ref: String(d.reference),
       statusKey: String(d.statusKey),
       status: 'pending',
