@@ -128,7 +128,8 @@
     var m = META[key] || null;
     var t = m ? m.t : (BRAND + ' | Independent Insurance Brokerage');
     var d = m ? m.d : 'Independent insurance brokerage licensed in all 50 states. Life, health, Medicare and annuities from top-rated carriers. ' + PHONE;
-    var canonical = SITE + (key === '/' ? '/' : key);
+    var CANON = { '/matthew-anderson': '/brokers/matthew-anderson', '/justin-brabant': '/brokers/justin-brabant', '/schedulerchat': '/book', '/get-quote': '/quote', '/quotepage': '/quote', '/privacy-policy': '/privacy' };
+    var canonical = SITE + (key === '/' ? '/' : (CANON[key] || key));
     var noindex = !!(m && m.noindex);
 
     document.title = t;

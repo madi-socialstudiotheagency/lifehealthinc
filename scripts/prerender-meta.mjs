@@ -23,7 +23,8 @@ const esc = (s) => String(s).replace(/&/g, '&amp;').replace(/"/g, '&quot;').repl
 const baseHtml = readFileSync(join(DIST, 'index.html'), 'utf8');
 
 function withMeta(html, path, m) {
-  const url = SITE + (path === '/' ? '/' : path);
+  const CANON = { '/matthew-anderson': '/brokers/matthew-anderson', '/justin-brabant': '/brokers/justin-brabant', '/schedulerchat': '/book', '/get-quote': '/quote', '/quotepage': '/quote', '/privacy-policy': '/privacy' };
+  const url = SITE + (path === '/' ? '/' : (CANON[path] || path));
   const set = (re, tag) => (re.test(html) ? html.replace(re, tag) : html.replace('</head>', tag + '\n  </head>'));
   html = set(/<title>[^<]*<\/title>/, `<title>${esc(m.t)}</title>`);
   html = set(/<meta name="description"[^>]*>/, `<meta name="description" content="${esc(m.d || '')}" />`);
@@ -38,7 +39,7 @@ function withMeta(html, path, m) {
 // Home page: rewrite dist/index.html in place.
 writeFileSync(join(DIST, 'index.html'), withMeta(baseHtml, '/', META['/']));
 
-const ALIASES = new Set(['/get-quote', '/quotepage', '/privacy-policy']);
+const ALIASES = new Set(['/get-quote', '/quotepage', '/privacy-policy', '/matthew-anderson', '/justin-brabant', '/schedulerchat']);
 let count = 0;
 for (const [path, m] of Object.entries(META)) {
   if (path === '/' || ALIASES.has(path) || !m.t) continue;
