@@ -42,9 +42,11 @@ const ALIASES = new Set(['/get-quote', '/quotepage', '/privacy-policy']);
 let count = 0;
 for (const [path, m] of Object.entries(META)) {
   if (path === '/' || ALIASES.has(path) || !m.t) continue;
-  const dir = join(DIST, path.replace(/^\//, ''));
-  mkdirSync(dir, { recursive: true });
-  writeFileSync(join(dir, 'index.html'), withMeta(baseHtml, path, m));
+  // <route>.html (not <route>/index.html): Netlify's pretty URLs then serve /route
+  // directly, with no redirect to /route/ that would disagree with the canonical.
+  const file = join(DIST, path.replace(/^\//, '') + '.html');
+  mkdirSync(join(file, '..'), { recursive: true });
+  writeFileSync(file, withMeta(baseHtml, path, m));
   count++;
 }
 
