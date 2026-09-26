@@ -126,6 +126,7 @@ export const handler = async (event) => {
       body: JSON.stringify({
         from: FROM,
         to: [to],
+        bcc: [REPLY_TO],
         reply_to: REPLY_TO,
         subject: 'Your application is being prepared' + (d.reference ? ' (' + d.reference + ')' : ''),
         html,
