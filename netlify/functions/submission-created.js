@@ -27,7 +27,7 @@ async function trackApplication(event, d) {
   if (!d.reference || !d.statusKey) return;
   try {
     connectLambda(event);
-    await getStore('applications').setJSON(String(d.reference), {
+    await getStore({ name: 'applications', consistency: 'strong' }).setJSON(String(d.reference), {
       ref: String(d.reference),
       statusKey: String(d.statusKey),
       status: 'pending',
@@ -49,15 +49,22 @@ async function notifyMatthew(d) {
   try {
     const link = SITE + '/.netlify/functions/approve?ref=' + encodeURIComponent(d.reference) + '&t=' + approvalToken(String(d.reference));
     const html =
-      '<div style="font-family:-apple-system,BlinkMacSystemFont,\'Segoe UI\',Helvetica,Arial,sans-serif;max-width:520px;margin:0 auto;padding:16px">' +
-      '<p style="font-size:16px"><strong>' + esc(d.name || 'An applicant') + '</strong> is waiting on their screen for a price.</p>' +
-      '<p style="color:#5b6b85;font-size:14px">' + esc(d.formTitle || '') + (d.carrier && d.carrier !== 'No preference' ? ' &middot; ' + esc(d.carrier) : '') + '<br>Ref ' + esc(d.reference) + '</p>' +
-      '<p style="margin:22px 0"><a href="' + link + '" style="display:inline-block;background:#1A3586;color:#fff;text-decoration:none;font-weight:700;padding:15px 28px;border-radius:10px">Review and send price</a></p>' +
-      '<p style="color:#5b6b85;font-size:12px">Enter the monthly amount and paste the carrier\'s secure payment link. They see it on their screen and get it by email.</p></div>';
+      '<div style="font-family:-apple-system,BlinkMacSystemFont,\'Segoe UI\',Helvetica,Arial,sans-serif;max-width:640px;margin:0 auto;padding:16px">' +
+      '<p style="font-size:17px;margin:0 0 4px"><strong>' + esc(d.name || 'New applicant') + '</strong> just applied and may be waiting on their screen for a price.</p>' +
+      '<p style="color:#5b6b85;font-size:14px;margin:0 0 14px">' + esc(d.formTitle || '') + (d.carrier && d.carrier !== 'No preference' ? ' &middot; ' + esc(d.carrier) : '') + '<br>Ref ' + esc(d.reference) + '</p>' +
+      '<p style="margin:0 0 18px"><a href="' + link + '" style="display:inline-block;background:#1A3586;color:#fff;text-decoration:none;font-weight:700;padding:15px 28px;border-radius:10px">Review and send price</a></p>' +
+      '<table role="presentation" width="100%" style="border-collapse:collapse;font-size:14px;margin-bottom:14px">' +
+      [['Email', d.email], ['Phone', d.phone], ['State', d.state], ['Prefers', d.contactPref], ['Submitted from', d.sourceUrl]]
+        .filter((r) => r[1])
+        .map((r) => '<tr><td style="padding:6px 10px;border-bottom:1px solid #e3e8f0;color:#5b6b85;width:30%">' + r[0] + '</td><td style="padding:6px 10px;border-bottom:1px solid #e3e8f0">' + esc(r[1]) + '</td></tr>')
+        .join('') +
+      '</table>' +
+      '<pre style="white-space:pre-wrap;font-family:inherit;font-size:14px;line-height:1.55;background:#f3f5f9;border-radius:10px;padding:14px;margin:0">' + esc(d.details || '') + '</pre>' +
+      '<p style="color:#5b6b85;font-size:12px;margin-top:14px">The button opens a private page: enter the monthly amount and paste the carrier\'s secure payment link. They see it on their screen and by email.</p></div>';
     const res = await fetch('https://api.resend.com/emails', {
       method: 'POST',
       headers: { Authorization: 'Bearer ' + process.env.RESEND_API_KEY, 'Content-Type': 'application/json' },
-      body: JSON.stringify({ from: FROM, to: [REPLY_TO], subject: 'Send price: ' + (d.name || 'applicant') + ' (' + d.reference + ')', html }),
+      body: JSON.stringify({ from: FROM, to: [REPLY_TO], subject: 'New application: ' + (d.name || 'applicant') + ' (' + d.reference + ')', html }),
     });
     if (!res.ok) console.error('notifyMatthew failed', res.status, await res.text());
   } catch (err) {

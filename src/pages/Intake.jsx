@@ -5,6 +5,7 @@ import { AUDIENCES, CONSENT_TEXT, INTAKE_FORMS, PRIVACY_TEXT, getForm } from '@/
 import { makeReference, submitIntake } from '@/api/intakeClient';
 import { ALL_CARRIERS, logoFor } from '@/data/carriers';
 import TestimonialSlider from '@/components/TestimonialSlider';
+import GroupCostPanel from '@/components/GroupCostPanel';
 
 const NAVY = '#081730';
 const BLUE = '#1A3586';
@@ -171,7 +172,9 @@ function Field({ field, value, onChange, error }) {
 }
 
 // ── After submit: live wait for Matthew's approval, then the price ───────────
-function WaitingScreen({ reference, statusKey, contactPref }) {
+const GROUP_FORMS = ['small-group-health', 'corporate-group-health'];
+
+function WaitingScreen({ reference, statusKey, contactPref, formId }) {
   const [result, setResult] = useState({ status: 'pending' });
   const [seconds, setSeconds] = useState(0);
 
@@ -254,6 +257,8 @@ function WaitingScreen({ reference, statusKey, contactPref }) {
             <p className="text-slate-600">{result.note || 'This one was not approved as submitted. Matthew will email you other options that may fit.'}</p>
           </>
         )}
+
+        {result.status === 'pending' && GROUP_FORMS.includes(formId) && <div className="mt-6"><GroupCostPanel compact /></div>}
 
         <p className="text-xs text-slate-400 mt-6">Reference: {reference}</p>
         <Link to="/get-started" className="text-blue-700 text-sm font-semibold underline">Back to all forms</Link>
@@ -341,7 +346,7 @@ function IntakeForm({ form }) {
   const pct = useMemo(() => Math.round(((step + 1) / total) * 100), [step, total]);
 
   if (status.state === 'done') {
-    return <WaitingScreen reference={status.reference} statusKey={status.key} contactPref={answers.contactPref} />;
+    return <WaitingScreen reference={status.reference} statusKey={status.key} contactPref={answers.contactPref} formId={form.id} />;
   }
 
   return (
@@ -352,6 +357,7 @@ function IntakeForm({ form }) {
         </Link>
         <h1 className="text-3xl font-black text-white mb-1">{form.title}</h1>
         <p className="text-blue-100 mb-4">{form.blurb}</p>
+        {GROUP_FORMS.includes(form.id) && <div className="mb-6"><GroupCostPanel compact /></div>}
         {carrier && (
           <div className="flex items-center gap-3 rounded-xl bg-white/10 border border-white/20 px-4 py-3 mb-6">
             <span className="w-9 h-9 rounded-lg bg-white flex items-center justify-center flex-shrink-0 overflow-hidden">

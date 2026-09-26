@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom';
 import ApplyOnlineBand from '@/components/ApplyOnlineBand';
+import GroupCostPanel from '@/components/GroupCostPanel';
 import TestimonialSlider from '@/components/TestimonialSlider';
 import { BarChart3, Building2, CalendarClock, CheckCircle2, FileText, Layers, Phone, ShieldCheck } from 'lucide-react';
 
@@ -93,6 +94,30 @@ export default function Employers() {
       </section>
 
       <ApplyOnlineBand page="Employers" />
+
+      <section className="max-w-3xl mx-auto px-4 py-10"><GroupCostPanel /></section>
+
+      <section className="max-w-3xl mx-auto px-4 pb-10">
+        <div className="rounded-2xl border border-blue-100 bg-white p-6 md:p-8 shadow-sm">
+          <p className="text-xs font-bold uppercase tracking-widest mb-2" style={{ color: '#1A3586' }}>Beyond health insurance</p>
+          <h2 className="text-2xl font-black mb-3" style={{ color: '#081730' }}>Whole life for your team or key people</h2>
+          <p className="text-sm text-slate-600 leading-relaxed mb-3">
+            Many employers add permanent life insurance as a benefit or as an executive perk. Whole life pays a death benefit for the
+            insured&apos;s lifetime, builds cash value over time, and can be offered as a voluntary group benefit that employees pay
+            for through payroll, or structured for owners and key employees.
+          </p>
+          <ul className="text-sm text-slate-600 space-y-1.5 list-disc pl-5 mb-4">
+            <li>Employees keep coverage they own, and it can stay with them if they change jobs.</li>
+            <li>Cash value grows over time, and some policies may pay dividends. Dividends are not guaranteed.</li>
+            <li>We show you the carrier&apos;s own illustration with guaranteed and non-guaranteed columns before you decide.</li>
+            <li>Employer-owned policies have special federal notice and consent rules, so we coordinate with your tax advisor.</li>
+          </ul>
+          <Link to="/get-started/executive-benefits" className="inline-flex items-center justify-center rounded-xl px-6 py-3.5 font-bold text-white" style={{ background: '#1A3586' }}>
+            Ask for a whole life illustration
+          </Link>
+          <p className="text-[11px] text-slate-400 mt-3">Educational overview, not a quote or tax or legal advice. Availability and features vary by carrier and state.</p>
+        </div>
+      </section>
 
       <section className="max-w-5xl mx-auto px-4 pb-14 grid md:grid-cols-3 gap-4">
         {[
