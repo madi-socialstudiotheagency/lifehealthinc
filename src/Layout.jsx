@@ -156,7 +156,8 @@ export default function Layout({ children, currentPageName }) {
         className="w-full text-center py-1 px-4 text-xs font-semibold tracking-wide"
         style={{ background: `linear-gradient(90deg, ${DARK1}, ${DARK2})`, color: GOLD }}
       >
-        📞 Licensed in All 50 States · (954) 543-0853 · No Cost Consultations Available
+        <span className="sm:hidden">📞 (954) 543-0853 · Apply online, no call needed</span>
+        <span className="hidden sm:inline">📞 Licensed in All 50 States · (954) 543-0853 · No Cost Consultations Available</span>
       </div>
 
       {/* ─── Sticky Header ────────────────────────────────────────────────── */}

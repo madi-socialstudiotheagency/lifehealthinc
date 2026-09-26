@@ -143,16 +143,16 @@ export default function Home() {
 
       {/* ═══ HERO ════════════════════════════════════════════════════════════ */}
       <section
-        className="relative min-h-[88vh] flex items-center justify-center overflow-hidden"
+        className="relative md:min-h-[88vh] flex items-center justify-center overflow-hidden"
         style={{ background: '#ffffff' }}
       >
         {/* Soft blue glow, not a dark wall */}
         <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[700px] h-[500px] rounded-full pointer-events-none"
           style={{ background: `radial-gradient(circle, ${DARK3}18, transparent 70%)`, transform: 'translateY(-35%) translateX(-50%)' }} />
 
-        <div className="relative max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center py-24">
+        <div className="relative max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center pt-5 pb-8 md:py-24">
           {/* New / Existing Client */}
-          <div className="flex items-center justify-center gap-2 mb-6 fade-in-up">
+          <div className="hidden sm:flex items-center justify-center gap-2 mb-6 fade-in-up">
           <Link to="/get-started" className="text-sm font-semibold px-5 py-2 rounded-full border transition-colors" style={{ borderColor: `${DARK2}30`, color: DARK2, background: `${DARK2}0d` }}>
           New Client
           </Link>
@@ -162,13 +162,14 @@ export default function Home() {
           </div>
 
           {/* Badge */}
-          <div className="inline-flex items-center gap-2 rounded-full px-4 py-1.5 mb-8 text-xs font-bold uppercase tracking-widest fade-in-up"
+          <div className="inline-flex items-center gap-2 rounded-full px-3 sm:px-4 py-1.5 mb-4 md:mb-8 text-[10px] sm:text-xs font-bold uppercase tracking-wider sm:tracking-widest fade-in-up"
             style={{ background: `${DARK2}0f`, border: `1px solid ${DARK2}30`, color: DARK2 }}>
             <Sparkles className="w-3.5 h-3.5" />
-            Licensed in All 50 States · AI-Assisted · Apply Online, No Call Needed
+            <span className="sm:hidden">Licensed in 50 States · Apply Online</span>
+            <span className="hidden sm:inline">Licensed in All 50 States · AI-Assisted · Apply Online, No Call Needed</span>
           </div>
 
-          <h1 className="text-5xl md:text-6xl lg:text-7xl font-black mb-6 leading-tight fade-in-up delay-1" style={{ color: DARK1 }}>
+          <h1 className="text-3xl sm:text-5xl md:text-6xl lg:text-7xl font-black mb-3 md:mb-6 leading-[1.15] md:leading-tight fade-in-up delay-1" style={{ color: DARK1 }}>
             Affordable Insurance.
             <br />
             <span style={{ color: DARK3 }}>
@@ -176,17 +177,17 @@ export default function Home() {
             </span>
           </h1>
 
-          <p className="max-w-2xl mx-auto text-lg mb-10 fade-in-up delay-2" style={{ color: '#475569' }}>
+          <p className="max-w-2xl mx-auto text-[15px] md:text-lg leading-relaxed mb-5 md:mb-10 fade-in-up delay-2" style={{ color: '#475569' }}>
             Compare life, health, Medicare and annuity options from 50+ carriers in minutes. Fill it out online, our AI
             assistant answers instantly, and a licensed advisor prepares your application, no phone call required
             unless you want one.
           </p>
 
-          <div className="flex flex-col sm:flex-row gap-4 justify-center fade-in-up delay-3">
+          <div className="flex flex-col sm:flex-row gap-3 md:gap-4 justify-center fade-in-up delay-3">
             <Button
               asChild
               size="lg"
-              className="font-bold text-base px-8 py-6 rounded-xl shadow-lg"
+              className="w-full sm:w-auto font-bold text-base px-8 py-5 md:py-6 rounded-xl shadow-lg"
               style={{ background: `linear-gradient(135deg, ${DARK2}, ${DARK3})`, color: '#FFFFFF' }}
             >
               <Link to="/get-started">
@@ -198,7 +199,7 @@ export default function Home() {
               asChild
               variant="outline"
               size="lg"
-              className="font-bold text-base px-8 py-6 rounded-xl"
+              className="w-full sm:w-auto font-bold text-base px-8 py-5 md:py-6 rounded-xl"
               style={{ borderColor: `${DARK2}60`, color: DARK2, background: 'transparent' }}
             >
               <Link to="/quote">
@@ -208,13 +209,13 @@ export default function Home() {
             </Button>
           </div>
           <div className="flex justify-center fade-in-up delay-3 mt-4">
-          <Link to={createPageUrl("Clients")} className="inline-flex items-center gap-2 font-bold text-sm px-6 py-3 rounded-xl border transition-colors" style={{ borderColor: '#E2E8F0', color: DARK2 }}>
+          <Link to={createPageUrl("Clients")} className="inline-flex items-center gap-2 font-semibold text-sm px-4 py-2 rounded-xl transition-colors" style={{ borderColor: '#E2E8F0', color: DARK2 }}>
           <Users className="w-5 h-5" />
-          Just got a policy with us? Click here to set up your online portal
+          Already a client? Open your portal
           </Link>
           </div>
 
-          <div className="flex flex-wrap items-center justify-center gap-x-6 gap-y-2 mt-8 fade-in-up delay-4">
+          <div className="flex flex-wrap items-center justify-center gap-x-4 md:gap-x-6 gap-y-1.5 mt-4 md:mt-8 fade-in-up delay-4">
             {['Apply online in minutes', 'AI assistant answers instantly', 'No call needed to get started'].map(t => (
               <span key={t} className="flex items-center gap-1.5 text-xs" style={{ color: '#64748B' }}>
                 <CheckCircle className="w-3.5 h-3.5 text-green-600" /> {t}
@@ -289,7 +290,7 @@ export default function Home() {
       </section>
 
       {/* ═══ WHO WE HELP ═════════════════════════════════════════════════════ */}
-      <section className="py-24" style={{ background:'#f8f7f4' }}>
+      <section className="py-14 md:py-24" style={{ background:'#f8f7f4' }}>
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-14">
             <SectionLabel>Who We Help</SectionLabel>
@@ -337,7 +338,7 @@ export default function Home() {
       <GoldDivider />
 
       {/* ═══ SERVICES GRID ═══════════════════════════════════════════════════ */}
-      <section className="py-24" style={{ background: `linear-gradient(180deg, ${DARK1} 0%, ${DARK2} 100%)` }}>
+      <section className="py-14 md:py-24" style={{ background: `linear-gradient(180deg, ${DARK1} 0%, ${DARK2} 100%)` }}>
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-14">
             <SectionLabel>Our Services</SectionLabel>
@@ -393,7 +394,7 @@ export default function Home() {
       </section>
 
       {/* ═══ WHY US ══════════════════════════════════════════════════════════ */}
-      <section className="py-24 bg-white">
+      <section className="py-14 md:py-24 bg-white">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid md:grid-cols-2 gap-16 items-center">
             {/* Left — copy */}
@@ -472,7 +473,7 @@ export default function Home() {
       </section>
 
       {/* ═══ TESTIMONIALS ════════════════════════════════════════════════════ */}
-      <section className="py-24" style={{ background:`linear-gradient(180deg,${DARK2} 0%,${DARK1} 100%)` }}>
+      <section className="py-14 md:py-24" style={{ background:`linear-gradient(180deg,${DARK2} 0%,${DARK1} 100%)` }}>
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-10">
             <SectionLabel>Client Reviews</SectionLabel>
@@ -487,7 +488,7 @@ export default function Home() {
       </section>
 
       {/* ═══ FAQ ═════════════════════════════════════════════════════════════ */}
-      <section className="py-24 bg-white">
+      <section className="py-14 md:py-24 bg-white">
         <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
             <SectionLabel>Common Questions</SectionLabel>
