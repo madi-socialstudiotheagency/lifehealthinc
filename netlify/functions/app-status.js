@@ -22,7 +22,7 @@ export const handler = async (event) => {
     connectLambda(event);
     const { ref, k } = event.queryStringParameters || {};
     if (!ref || !k) return json(400, { status: 'unknown' });
-    const rec = await getStore('applications').get(String(ref), { type: 'json' });
+    const rec = await getStore({ name: 'applications', consistency: 'strong' }).get(String(ref), { type: 'json' });
     if (!rec || !same(rec.statusKey, k)) return json(200, { status: 'pending' });
     if (rec.status === 'pending') return json(200, { status: 'pending' });
     return json(200, {

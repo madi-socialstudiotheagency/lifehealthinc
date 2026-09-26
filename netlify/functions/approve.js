@@ -86,7 +86,7 @@ function applicantEmail(rec, o) {
 export const handler = async (event) => {
   try {
     connectLambda(event);
-    const store = getStore('applications');
+    const store = getStore({ name: 'applications', consistency: 'strong' });
     const q = event.queryStringParameters || {};
     const isPost = event.httpMethod === 'POST';
     const params = isPost ? Object.fromEntries(new URLSearchParams(event.body || '')) : q;

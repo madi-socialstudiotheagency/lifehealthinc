@@ -96,6 +96,27 @@ const timeline = (extra = []) => ({
 
 // ── The forms ─────────────────────────────────────────────────────────────
 
+const employerNetwork = {
+  title: 'Location, network and budget',
+  fields: [
+    { name: 'companyZip', label: 'Company ZIP code', type: 'text', required: true },
+    { name: 'ownerDob', label: 'Date of birth (owner or primary contact)', type: 'date', required: true },
+    { name: 'monthlyBudgetTotal', label: 'Monthly budget for the company plan (total, or per employee)', type: 'text', placeholder: 'e.g. $6,000 total or $450 per employee', required: true },
+    { name: 'doctors', label: 'Doctors your team wants to keep', type: 'textarea', placeholder: 'Names or practices, one per line' },
+    { name: 'hospitals', label: 'Hospitals your team wants in network', type: 'textarea', placeholder: 'One per line' },
+    { name: 'groupRx', label: 'Do any employees take regular or high-cost prescriptions?', type: 'radio', options: ynu, required: true },
+    {
+      name: 'groupRxNames',
+      label: 'Prescription names',
+      type: 'textarea',
+      required: true,
+      showIf: { field: 'groupRx', equals: 'Yes' },
+      placeholder: 'Drug names only, no employee names needed',
+      help: 'Drug lists change which plans cost the team the least.',
+    },
+  ],
+};
+
 export const INTAKE_FORMS = [
   // ═══ Individuals and families ═══
   {
@@ -309,6 +330,7 @@ export const INTAKE_FORMS = [
           { name: 'currentBOR', label: 'Current broker or agency', type: 'text' },
         ],
       },
+      employerNetwork,
       timeline([
         { name: 'censusReady', label: 'Can you provide an employee census (age, ZIP, coverage tier)?', type: 'radio', options: ['Yes, I can send it now', 'Yes, later', 'I need a template'], required: true },
       ]),
@@ -374,6 +396,7 @@ export const INTAKE_FORMS = [
           { name: 'stakeholders', label: 'Who signs off (roles)?', type: 'text' },
         ],
       },
+      employerNetwork,
       timeline(),
     ],
   },
