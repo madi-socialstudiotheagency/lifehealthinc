@@ -8,14 +8,14 @@
 
   // title ≤ 60 chars, description 140–160 chars. Each one is written to win the click, not just to rank.
   var META = {
-    '/': { t: 'Affordable Life & Health Insurance | Apply Online', d: 'Compare affordable life, health, Medicare and annuity plans from 50+ carriers and apply online in minutes. Licensed brokers, no call required.', type: 'website' },
+    '/': { t: 'Affordable Life & Health Insurance | Apply Online', d: 'Compare affordable life, health, Medicare and annuity plans from top-rated carriers and apply online in minutes. Licensed brokers, no call required.', type: 'website' },
     '/get-started': { t: 'Apply for Insurance Online | Instant Quotes', d: 'Apply for life, health, Medicare or business coverage online in minutes. Instant health insurance quotes, no call required to get started.' },
     '/carriers': { t: 'Our Insurance Carriers | Independent Broker | LifeHealthInc', d: 'LifeHealthInc compares carriers including Transamerica, Mutual of Omaha, Prudential, Pacific Life, Foresters and more, so you get options, not a single company pitch.' },
     '/health-quote': { t: 'Apply for Health Insurance Online | Live Prices', d: 'Apply for health insurance online and see live, affordable plan prices in minutes. Enroll today with no phone call. Open Enrollment for 2027 starts November 1.' },
     '/employers': { t: 'Affordable Business Health Insurance | Small Group Plans', d: 'Affordable health insurance for small businesses and employers. Compare group health, dental, vision, level-funded and ICHRA plans and apply online. Free review.' },
     '/become-your-own-bank': { t: 'Become Your Own Bank | Cash Value Life Insurance Explained', d: 'How business owners use cash value life insurance to build accessible savings, with the real risks explained. Free, no-pressure illustration from a licensed broker.' },
-    '/about': { t: 'About LifeHealthInc | Full-Service Independent Insurance Brokers', d: 'Life, health and everything in between, under one roof. Brokers licensed in all 50 states who compare 50+ carriers and work for you, not the insurer.' },
-    '/lifeinsurance': { t: 'Life Insurance Quotes | Term, Whole & IUL | LifeHealthInc', d: 'Compare term, whole life and IUL from 50+ top-rated carriers. Coverage from $100K to $10M+, no-exam options, licensed brokers. Get your free quote in minutes.' },
+    '/about': { t: 'About LifeHealthInc | Full-Service Independent Insurance Brokers', d: 'Life, health and everything in between, under one roof. Brokers licensed in all 50 states who compare top-rated carriers and work for you, not the insurer.' },
+    '/lifeinsurance': { t: 'Life Insurance Quotes | Term, Whole & IUL | LifeHealthInc', d: 'Compare term, whole life and IUL from top-rated carriers. Coverage from $100K to $10M+, no-exam options, licensed brokers. Get your free quote in minutes.' },
     '/wholelife': { t: 'Whole Life Insurance Quotes & Guide | LifeHealthInc', d: 'Lifetime coverage with guaranteed cash value. See how whole life compares to term and IUL, what it costs at your age, and get a no-pressure quote from a licensed broker.' },
     '/healthinsurance': { t: 'Health Insurance: Apply Online | Cheap Plans', d: 'Apply for health insurance online in minutes. Compare cheap and affordable ACA, private and short-term plans during Open Enrollment, no phone call needed.' },
     '/medicare': { t: 'Affordable Medicare Plans for Seniors | Apply Online', d: 'Turning 65 or switching plans? Compare Medicare Advantage, Medigap and Part D from top carriers and apply online in minutes. Free help from licensed brokers.' },
@@ -26,9 +26,9 @@
     '/illustration': { t: 'Free IUL Illustration | See Your Tax-Free Income Projection', d: 'Request a personalized indexed universal life illustration. See projected cash value, income and death benefit from top carriers — free, from a licensed broker.' },
     '/illustrationquote': { t: 'Request a Carrier Illustration | LifeHealthInc', d: 'Get a real carrier illustration for IUL, whole life or annuities. A licensed broker prepares it and walks you through every number — no cost, no obligation.' },
     '/lifeinsurancecomparison': { t: 'Term vs. Whole vs. IUL: Life Insurance Comparison', d: 'Side-by-side comparison of term, whole life and indexed universal life — cost, cash value, flexibility and who each is right for. Decide with a licensed broker.' },
-    '/quote': { t: 'Free Insurance Quotes | 50+ Carriers, One Request', d: 'One request, every product: life, health, Medicare, annuities, final expense and mortgage protection. A licensed broker calls with real quotes. No obligation.' },
-    '/get-quote': { t: 'Free Insurance Quotes | 50+ Carriers, One Request', d: 'One request, every product: life, health, Medicare, annuities, final expense and mortgage protection. A licensed broker calls with real quotes. No obligation.' },
-    '/quotepage': { t: 'Free Insurance Quotes | 50+ Carriers, One Request', d: 'One request, every product: life, health, Medicare, annuities, final expense and mortgage protection. A licensed broker calls with real quotes. No obligation.' },
+    '/quote': { t: 'Free Insurance Quotes | Top Carriers, One Request', d: 'One request, every product: life, health, Medicare, annuities, final expense and mortgage protection. A licensed broker calls with real quotes. No obligation.' },
+    '/get-quote': { t: 'Free Insurance Quotes | Top Carriers, One Request', d: 'One request, every product: life, health, Medicare, annuities, final expense and mortgage protection. A licensed broker calls with real quotes. No obligation.' },
+    '/quotepage': { t: 'Free Insurance Quotes | Top Carriers, One Request', d: 'One request, every product: life, health, Medicare, annuities, final expense and mortgage protection. A licensed broker calls with real quotes. No obligation.' },
     '/calculator': { t: 'Life Insurance Calculator | How Much Coverage Do You Need?', d: 'Find your coverage number in 60 seconds with the DIME method: debt, income, mortgage and education. Free calculator, then real quotes from a licensed broker.' },
     '/retirementcalculator': { t: 'Retirement Income Calculator | Will Your Savings Last?', d: 'See how long a 401k or IRA lasts in retirement, and the guaranteed monthly income an annuity can produce from the same savings. Free calculator.' },
     '/results': { t: 'Your Coverage Estimate | LifeHealthInc', d: 'Your personalized coverage estimate. A licensed broker can turn it into real carrier quotes in one call — free, no obligation.' },
@@ -79,7 +79,7 @@
     url: SITE,
     logo: SITE + '/assets/img/6bb5a4d12_Untitleddesign.png',
     image: OG_IMAGE,
-    description: 'Independent insurance brokerage licensed in all 50 states. Life, health, Medicare, annuities, final expense and mortgage protection from 50+ nationwide select carriers. We represent you, not the carrier.',
+    description: 'Independent insurance brokerage licensed in all 50 states. Life, health, Medicare, annuities, final expense and mortgage protection from top-rated carriers. We represent you, not the carrier.',
     telephone: '+1-954-543-0853',
     email: 'info@lifehealthinc.org',
     priceRange: 'Free consultation',
@@ -127,7 +127,7 @@
     var key = path.toLowerCase();
     var m = META[key] || null;
     var t = m ? m.t : (BRAND + ' | Independent Insurance Brokerage');
-    var d = m ? m.d : 'Independent insurance brokerage licensed in all 50 states. Life, health, Medicare and annuities from 50+ carriers. ' + PHONE;
+    var d = m ? m.d : 'Independent insurance brokerage licensed in all 50 states. Life, health, Medicare and annuities from top-rated carriers. ' + PHONE;
     var canonical = SITE + (key === '/' ? '/' : key);
     var noindex = !!(m && m.noindex);
 

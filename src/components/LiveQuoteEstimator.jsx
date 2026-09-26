@@ -108,7 +108,7 @@ export default function LiveQuoteEstimator({ coverage, termLength, gender, tobac
 
       <div className="mt-4 text-center">
         <p className="text-xs text-slate-500">
-          Licensed brokers shop 50+ carriers for your best rate
+          Licensed brokers shop top-rated carriers for your best rate
         </p>
       </div>
     </div>

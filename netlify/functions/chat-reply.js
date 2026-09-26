@@ -5,8 +5,16 @@
 // env vars). With neither set it returns 503 and the widget shows its
 // fallback reply, which points visitors at the apply links.
 
+// Only our own pages may call this endpoint (stops outside abuse of the AI
+// quota and Matthew's inbox).
+const okOrigin = (h) => {
+  const o = h.origin || h.referer || '';
+  return /^https:\/\/([a-z0-9-]+\.)?lifehealthinc\.org(\/|$)/.test(o) || /^https:\/\/[a-z0-9-]*lifehealthinc\.netlify\.app(\/|$)/.test(o);
+};
+
 export const handler = async (event) => {
   if (event.httpMethod !== 'POST') return { statusCode: 405, body: 'POST only' };
+  if (!okOrigin(event.headers || {})) return { statusCode: 403, body: 'forbidden' };
   try {
     const { prompt } = JSON.parse(event.body || '{}');
     if (!prompt || typeof prompt !== 'string' || prompt.length > 20000) {

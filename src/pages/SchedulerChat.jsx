@@ -25,10 +25,10 @@ export default function SchedulerChat() {
           Free Consultation &mdash; No Pressure
         </p>
         <h1 className="text-3xl md:text-4xl font-bold text-white mb-3">
-          Request Free Quotes
+          Book a Free Call
         </h1>
         <p className="text-blue-200 text-base">
-          Fill out the form below. A licensed advisor will review your coverage options and answer your questions.
+          Pick a time and a licensed advisor will walk you through your options. Rather skip the call? You can apply online in a few minutes instead.
         </p>
       </div>
 
@@ -62,6 +62,10 @@ export default function SchedulerChat() {
           onLoad={() => setLoaded(true)}
         />
       </div>
+
+      <p className="text-center mt-6">
+        <a href="/get-started" className="inline-block rounded-lg bg-white px-6 py-3 font-bold" style={{ color: "#1A3586" }}>Apply online instead</a>
+      </p>
 
       <div className="max-w-2xl mx-auto mt-6 flex flex-wrap justify-center gap-6 text-blue-300 text-xs">
         <span>&#x1F4C5; Pick Any Available Time Slot</span>

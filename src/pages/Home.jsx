@@ -61,7 +61,7 @@ const audiences = [
   {
     title: 'Protecting Your Family?',
     subtitle: 'Life & Health Insurance',
-    description: 'From term life to permanent coverage, we shop 20+ top-rated carriers to find affordable protection for the people who depend on you most.',
+    description: 'From term life to permanent coverage, we shop top-rated carriers to find affordable protection for the people who depend on you most.',
     icon: Heart,
     page: 'LifeInsurance',
     cta: 'Protect My Family',
@@ -90,7 +90,7 @@ const audiences = [
 // ─── Trust stats ─────────────────────────────────────────────────────────────
 const stats = [
   { value: '50',   label: 'States Licensed' },
-  { value: '20+',  label: 'Carrier Partners' },
+  { value: '15',  label: 'Carrier Partners' },
   { value: '100%', label: 'Independent & Unbiased' },
   { value: '$0',   label: 'Consultation Fee' },
 ];
@@ -106,7 +106,7 @@ const whyUs = [
 // ─── FAQs ─────────────────────────────────────────────────────────────────────
 const faqs = [
   { q: 'Is your consultation really free?',             a: 'Yes — 100%. Our compensation comes from the carrier after you enroll in a plan. You pay nothing for our time, recommendations, or ongoing support.' },
-  { q: 'How do I know you\'re recommending the best plan?', a: 'Because we\'re independent brokers, we have no incentive to steer you toward one carrier. We shop 20+ top-rated carriers and show you your top options side by side.' },
+  { q: 'How do I know you\'re recommending the best plan?', a: 'Because we\'re independent brokers, we have no incentive to steer you toward one carrier. We shop top-rated carriers and show you your top options side by side.' },
   { q: 'Can you help someone in my state?',             a: 'Yes. Our team is licensed in all 50 states, so we can help you wherever you live — entirely by phone or video call if you prefer.' },
   { q: 'I already have coverage. Can you still help?',  a: 'Absolutely. We do free policy reviews all the time. Many clients find they\'re overpaying or underinsured. A second opinion costs nothing.' },
   { q: 'What is the difference between Medicare Advantage and Medicare Supplement?', a: 'Medicare Advantage replaces Original Medicare with an all-in-one plan. Medicare Supplement (Medigap) works alongside Original Medicare to fill coverage gaps. The right choice depends on your health, budget, and preferred doctors — we\'ll walk you through both.' },
@@ -195,7 +195,7 @@ export default function Home() {
           </h1>
 
           <p className="max-w-2xl mx-auto text-[15px] md:text-lg leading-relaxed mb-5 md:mb-10 fade-in-up delay-2" style={{ color: '#475569' }}>
-            Compare life, health, Medicare and annuity options from 50+ carriers in minutes. Fill it out online, our AI
+            Compare life, health, Medicare and annuity options from top-rated carriers in minutes. Fill it out online, our AI
             assistant answers instantly, and a licensed advisor prepares your application, no phone call required
             unless you want one.
           </p>

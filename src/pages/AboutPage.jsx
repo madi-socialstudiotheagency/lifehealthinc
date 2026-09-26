@@ -45,7 +45,7 @@ const VALUES = [
 const MILESTONES = [
   { value: '500+', label: 'Families Protected' },
   { value: '15+', label: 'Years Combined Experience' },
-  { value: '20+', label: 'Carrier Relationships' },
+  { value: '15', label: 'Carrier Relationships' },
   { value: '50', label: 'States Licensed' },
 ];
 

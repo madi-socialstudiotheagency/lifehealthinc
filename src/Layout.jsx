@@ -76,13 +76,13 @@ function ServicesDropdown({ onClose }) {
         </div>
         <div className="mt-4 pt-4" style={{ borderTop: `1px solid ${GOLD}20` }}>
           <Link
-            to={createPageUrl("Calculator")}
+            to="/get-started"
             onClick={onClose}
             className="flex items-center justify-center gap-2 w-full py-3 rounded-xl font-bold text-sm transition-all"
             style={{ background: 'linear-gradient(135deg, #1A3586, #3D6B9E)', color: '#FFFFFF' }}
           >
             <Calculator className="w-4 h-4" />
-            Get a Free Quote Across All Products
+            Apply Online for Any Product
             <ArrowRight className="w-4 h-4" />
           </Link>
         </div>

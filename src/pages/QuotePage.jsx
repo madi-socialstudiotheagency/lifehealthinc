@@ -16,7 +16,7 @@ export default function QuotePage() {
   return (
     <>
       {/* SEO meta via document title */}
-      <title>Free Insurance Quote Calculator | LifeHealthInc — Compare 50+ Carriers</title>
+      <title>Free Insurance Quote Calculator | LifeHealthInc — Compare Top Carriers</title>
 
       <div className="min-h-screen py-16 px-4" style={{ background: `linear-gradient(135deg, ${DARK1} 0%, ${DARK2} 100%)` }}>
         <div className="max-w-4xl mx-auto">
@@ -32,7 +32,7 @@ export default function QuotePage() {
             </h1>
             <p className="text-slate-300 max-w-2xl mx-auto text-lg leading-relaxed">
               Most Americans pay <strong className="text-white">20–40% more than they should</strong> because they bought from one carrier.
-              Our independent brokers shop 50+ top-rated carriers in seconds — and the comparison is 100% free.
+              Our independent brokers shop top-rated carriers in seconds — and the comparison is 100% free.
             </p>
 
             {/* Trust badges */}

@@ -308,7 +308,7 @@ Use the DIME method or income multiplier to determine coverage amount.
 Different insurance companies price risk differently. You could save 20-40% by comparing carriers.
 
 ### Step 4: Work With an Independent Broker
-Unlike captive agents (who only sell one company), independent brokers compare 20+ carriers to find your best rate.
+Unlike captive agents (who only sell one company), independent brokers compare top-rated carriers to find your best rate.
 
 ### Step 5: Be Honest on Your Application
 Don't hide health issues. It will only delay or deny your claim later.
@@ -387,7 +387,7 @@ Now that you understand how much life insurance you need, here's what to do next
 Input your specific numbers to get a personalized coverage recommendation.
 
 ### 2. Compare Quotes from Multiple Carriers
-We represent 50+ top-rated insurance companies to find you the best rate.
+We represent top-rated insurance companies to find you the best rate.
 
 ### 3. Apply in Minutes
 Most applications take 15-20 minutes and many are approved instantly with no medical exam.
@@ -437,7 +437,7 @@ Remember: Life insurance isn't about you—**it's about protecting the people wh
 
 ## Ready to Get Covered?
 
-Get personalized quotes from 50+ top-rated carriers in minutes. Our independent brokers will find you the best coverage at the best price—guaranteed.
+Get personalized quotes from top-rated carriers in minutes. Our independent brokers will find you the best coverage at the best price—guaranteed.
 `;
 
   return (
@@ -616,7 +616,7 @@ Get personalized quotes from 50+ top-rated carriers in minutes. Our independent 
             Ready to Protect Your Family?
           </h3>
           <p className="text-xl text-slate-300 mb-8 max-w-2xl mx-auto">
-            Get personalized quotes from 50+ top-rated carriers in minutes. Our independent brokers will find you the best coverage at the best price.
+            Get personalized quotes from top-rated carriers in minutes. Our independent brokers will find you the best coverage at the best price.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Button 
@@ -643,7 +643,7 @@ Get personalized quotes from 50+ top-rated carriers in minutes. Our independent 
             </Button>
           </div>
           <p className="text-sm text-slate-400 mt-6">
-            Free consultation • No obligation • 50+ carriers compared
+            Free consultation • No obligation • top carriers compared
           </p>
         </div>
       </div>

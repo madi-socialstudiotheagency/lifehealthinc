@@ -36,7 +36,7 @@ const getAppParamValue = (paramName, { defaultValue = undefined, removeFromUrl =
 
 const getAppParams = () => {
 	return {
-		appId: getAppParamValue("app_id", { defaultValue: import.meta.env.VITE_BASE44_APP_ID }),
+		appId: getAppParamValue("app_id", { defaultValue: import.meta.env.VITE_BASE44_APP_ID || "68c1ca7c80a1472f1eb4424c" }),
 		serverUrl: getAppParamValue("server_url", { defaultValue: import.meta.env.VITE_BASE44_BACKEND_URL }),
 		token: getAppParamValue("access_token", { removeFromUrl: true }),
 		fromUrl: getAppParamValue("from_url", { defaultValue: window.location.href }),

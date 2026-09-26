@@ -49,9 +49,9 @@ export default function HealthQuote() {
             Apply for health insurance online and see real prices
           </h1>
           <p className="text-slate-600 max-w-3xl mb-5">
-            Enter your ZIP code and date of birth below to see live plan rates from the carrier. Pick a plan and enroll
-            online in minutes. No phone call needed, and your LifeHealthInc advisor is attached to your policy for any
-            help you want later.
+            Looking for cheap, affordable health insurance? Enter your ZIP code and date of birth below to see live plan
+            prices for individuals and families, then apply online in minutes. No phone call needed, and your
+            LifeHealthInc advisor stays attached to your policy for any help you want later.
           </p>
           <div className="flex flex-wrap gap-x-6 gap-y-2 text-sm text-slate-600">
             {[

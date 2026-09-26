@@ -73,7 +73,7 @@ export default function CalculatorPage() {
               </h2>
               <ul style={{ listStyle: "none", padding: 0, margin: 0, display: "flex", flexDirection: "column", gap: "16px" }}>
                 {[
-                  { icon: "💰", title: "Save Up to 40% on Premiums", desc: "We shop 20+ carriers to find your lowest rate instantly." },
+                  { icon: "💰", title: "Shop Multiple Carriers", desc: "We compare top-rated carriers to find you a competitive rate." },
                   { icon: "🛡️", title: "Coverage That Actually Pays Out", desc: "We match you to policies with fast, hassle-free claims." },
                   { icon: "📅", title: "No Long-Term Commitment", desc: "Flexible plans that fit your budget and life stage." },
                   { icon: "🤝", title: "Dedicated Licensed Advisor", desc: "A real expert guides you — not a chatbot or call center." },

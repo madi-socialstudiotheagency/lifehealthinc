@@ -37,7 +37,7 @@ export default function HealthInsurancePage() {
   const [zipCode, setZipCode] = useState('');
 
   const handleGetStarted = () => {
-    window.location.href = `${createPageUrl('Calculator')}?zip=${zipCode}`;
+    window.location.href = '/health-quote' + (zipCode ? '?zip=' + encodeURIComponent(zipCode) : '');
   };
 
   return (
@@ -50,23 +50,23 @@ export default function HealthInsurancePage() {
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <div className="max-w-3xl">
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6">
-              One Surprise Medical Bill <span className="text-blue-300">Could Wipe Out Your Savings</span>
+              Cheap, Affordable Health Insurance <span className="text-blue-300">You Can Apply for Online</span>
             </h1>
             <p className="text-xl text-slate-200 mb-8">
-              The average ER visit costs $2,200 — without insurance. We'll find you a plan that covers medical, dental, vision, and hearing, and we'll do it for free.
+              Compare affordable health insurance plans for individuals, families and small businesses, see live prices, and apply online in minutes. No phone call needed, and our help is free.
             </p>
             <Card className="bg-white/95 backdrop-blur-sm">
               <CardContent className="p-6">
-                <h3 className="text-xl font-semibold mb-2 text-slate-900">Find Your Lowest Rate</h3>
-                <p className="text-slate-600 mb-4">Enter your ZIP and a licensed specialist will compare every plan available in your area.</p>
+                <h3 className="text-xl font-semibold mb-2 text-slate-900">See health insurance prices now</h3>
+                <p className="text-slate-600 mb-4">Enter your ZIP to see live plan prices from our carriers and apply online.</p>
                 <div className="flex gap-3">
                   <Input type="text" placeholder="ZIP Code" value={zipCode} onChange={e => setZipCode(e.target.value)} className="flex-1" maxLength={5} />
                   <Button onClick={handleGetStarted} size="lg" className="font-semibold" style={{ backgroundColor: '#1A3586', color: '#FFFFFF' }}>
-                    Get Started <ArrowRight className="w-4 h-4 ml-2" />
+                    See prices <ArrowRight className="w-4 h-4 ml-2" />
                   </Button>
                 </div>
                 <p className="text-sm text-slate-500 mt-4 text-center">
-                  Or call <a href="tel:9545430853" className="font-semibold hover:underline" style={{ color: '#1A3586' }}>(954) 543-0853</a> for a quote
+                  Prefer to talk? Call or text <a href="tel:9545430853" className="font-semibold hover:underline" style={{ color: '#1A3586' }}>(954) 543-0853</a>
                 </p>
                 <div className="mt-4 flex justify-center">
                   <a href="https://shop.uhone.com/en/quote/census?brokerid=AA5595037" target="_blank" rel="noopener noreferrer">

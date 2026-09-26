@@ -1,5 +1,5 @@
 import './App.css'
-import { useEffect } from 'react'
+import { lazy, Suspense, useEffect } from 'react'
 import { Toaster } from "@/components/ui/toaster"
 import { QueryClientProvider } from '@tanstack/react-query'
 import { queryClientInstance } from '@/lib/query-client'
@@ -10,30 +10,32 @@ import { BrowserRouter as Router, Route, Routes, Navigate, useLocation } from 'r
 import PageNotFound from './lib/PageNotFound';
 import { AuthProvider, useAuth } from '@/lib/AuthContext';
 import UserNotRegisteredError from '@/components/UserNotRegisteredError';
-import WholeLife from '@/pages/WholeLife';
-import Calculator from '@/pages/Calculator';
+const WholeLife = lazy(() => import('@/pages/WholeLife'));
+const Calculator = lazy(() => import('@/pages/Calculator'));
 import Home from '@/pages/Home';
-import AboutPage from '@/pages/AboutPage';
-import SchedulerChat from '@/pages/SchedulerChat';
-import MatthewAndersonPage from '@/pages/brokers/MatthewAnderson';
-import JustinBrabantPage from '@/pages/brokers/JustinBrabant';
-import QuotePage from '@/pages/QuotePage';
-import AgentDashboard from '@/pages/AgentDashboard';
-import AdminSettings from '@/pages/AdminSettings';
-import ClientPortal from '@/pages/ClientPortal';
-import Intake from '@/pages/Intake';
-import Carriers from '@/pages/Carriers';
-import Employers from '@/pages/Employers';
-import OwnBank from '@/pages/OwnBank';
-import HealthQuote from '@/pages/HealthQuote';
+const AboutPage = lazy(() => import('@/pages/AboutPage'));
+const SchedulerChat = lazy(() => import('@/pages/SchedulerChat'));
+const MatthewAndersonPage = lazy(() => import('@/pages/brokers/MatthewAnderson'));
+const JustinBrabantPage = lazy(() => import('@/pages/brokers/JustinBrabant'));
+const QuotePage = lazy(() => import('@/pages/QuotePage'));
+const AgentDashboard = lazy(() => import('@/pages/AgentDashboard'));
+const AdminSettings = lazy(() => import('@/pages/AdminSettings'));
+const ClientPortal = lazy(() => import('@/pages/ClientPortal'));
+const Intake = lazy(() => import('@/pages/Intake'));
+const Carriers = lazy(() => import('@/pages/Carriers'));
+const Employers = lazy(() => import('@/pages/Employers'));
+const OwnBank = lazy(() => import('@/pages/OwnBank'));
+const HealthQuote = lazy(() => import('@/pages/HealthQuote'));
 
 const { Pages, Layout, mainPage } = pagesConfig;
 const mainPageKey = mainPage ?? Object.keys(Pages)[0];
 const MainPage = mainPageKey ? Pages[mainPageKey] : <></>;
 
+const PageFallback = () => <div style={{ minHeight: '70vh' }} aria-busy="true" />;
+
 const LayoutWrapper = ({ children, currentPageName }) => Layout ?
-  <Layout currentPageName={currentPageName}>{children}</Layout>
-  : <>{children}</>;
+  <Layout currentPageName={currentPageName}><Suspense fallback={<PageFallback />}>{children}</Suspense></Layout>
+  : <Suspense fallback={<PageFallback />}>{children}</Suspense>;
 
 const SeoTracker = () => {
   const location = useLocation();
@@ -107,7 +109,7 @@ const AuthenticatedApp = () => {
       <Route path="/QuotePage" element={<LayoutWrapper currentPageName="QuotePage"><QuotePage /></LayoutWrapper>} />
       <Route path="/agent-dashboard" element={<LayoutWrapper currentPageName="AgentDashboard"><AgentDashboard /></LayoutWrapper>} />
       <Route path="/admin-settings" element={<LayoutWrapper currentPageName="AdminSettings"><AdminSettings /></LayoutWrapper>} />
-      <Route path="/client-portal" element={<ClientPortal />} />
+      <Route path="/client-portal" element={<Suspense fallback={<PageFallback />}><ClientPortal /></Suspense>} />
       <Route path="/get-quote" element={<LayoutWrapper currentPageName="QuotePage"><QuotePage /></LayoutWrapper>} />
       <Route path="/get-started" element={<LayoutWrapper currentPageName="Intake"><Intake /></LayoutWrapper>} />
       <Route path="/get-started/:formId" element={<LayoutWrapper currentPageName="Intake"><Intake /></LayoutWrapper>} />
