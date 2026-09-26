@@ -13,6 +13,7 @@ import NewsletterModal from '../components/NewsletterModal';
 import TestimonialSlider from '../components/TestimonialSlider';
 import ReferralForm from '../components/ReferralForm';
 import RealPriceCallout from '../components/RealPriceCallout';
+import { ALL_CARRIERS, logoFor } from '@/data/carriers';
 
 // ─── Brand tokens ────────────────────────────────────────────────────────────
 const GOLD   = '#FFFFFF';
@@ -113,14 +114,7 @@ const faqs = [
 ];
 
 // ─── Carrier logos ────────────────────────────────────────────────────────────
-const carriers = [
-  { name: 'Mutual of Omaha', logo: 'https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/68c1ca7c80a1472f1eb4424c/abb98e4f5_image.png' },
-  { name: 'Aetna',           logo: 'https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/68c1ca7c80a1472f1eb4424c/32c6dfb53_image.png' },
-  { name: 'United of Omaha', logo: 'https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/68c1ca7c80a1472f1eb4424c/4e8d0fa6d_image.png' },
-  { name: 'Allianz',         logo: 'https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/68c1ca7c80a1472f1eb4424c/a5a3e4686_image.png' },
-  { name: 'Athene',          logo: 'https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/68c1ca7c80a1472f1eb4424c/f558b5fce_image.png' },
-  { name: 'North American',  logo: 'https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/68c1ca7c80a1472f1eb4424c/ed0abeff7_image.png' },
-];
+const carriers = ALL_CARRIERS;
 
 // ─── Component ────────────────────────────────────────────────────────────────
 export default function Home() {
@@ -285,7 +279,10 @@ export default function Home() {
         <div className="relative overflow-hidden" style={{ maskImage:'linear-gradient(90deg,transparent,black 12%,black 88%,transparent)' }}>
           <div className="carrier-strip">
             {[...carriers, ...carriers].map((c, i) => (
-              <img key={i} src={c.logo} alt={c.name} title={c.name} />
+              <span key={i} className="inline-flex items-center gap-2 flex-shrink-0 rounded-full bg-white border border-slate-200 px-4 py-2 text-sm font-semibold text-slate-700 whitespace-nowrap">
+                {logoFor(c.domain) && <img src={logoFor(c.domain)} alt="" style={{ height: 18, width: 18, filter: 'none', opacity: 1 }} />}
+                {c.short || c.name}
+              </span>
             ))}
           </div>
         </div>

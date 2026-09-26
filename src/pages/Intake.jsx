@@ -1,8 +1,9 @@
 import { useMemo, useState } from 'react';
-import { Link, useParams } from 'react-router-dom';
+import { Link, useParams, useSearchParams } from 'react-router-dom';
 import { ArrowRight, CheckCircle2, ChevronLeft, ChevronRight, Lock, Phone, Zap } from 'lucide-react';
 import { AUDIENCES, CONSENT_TEXT, INTAKE_FORMS, PRIVACY_TEXT, getForm } from '@/data/intakeForms';
 import { makeReference, submitIntake } from '@/api/intakeClient';
+import { ALL_CARRIERS, logoFor } from '@/data/carriers';
 import TestimonialSlider from '@/components/TestimonialSlider';
 
 const NAVY = '#081730';
@@ -170,6 +171,9 @@ function Field({ field, value, onChange, error }) {
 }
 
 function IntakeForm({ form }) {
+  const [params] = useSearchParams();
+  const carrier = (params.get('carrier') || '').slice(0, 80);
+  const carrierInfo = ALL_CARRIERS.find((c) => (c.short || c.name) === carrier);
   const [step, setStep] = useState(0);
   const [answers, setAnswers] = useState({});
   const [consent, setConsent] = useState(false);
@@ -234,7 +238,8 @@ function IntakeForm({ form }) {
       sourceUrl: window.location.href,
       consent: 'Agreed: ' + CONSENT_TEXT + ' | Privacy acknowledged: ' + PRIVACY_TEXT,
       'bot-field': honeypot,
-      details: lines.join('\n'),
+      carrier: carrier || 'No preference',
+      details: (carrier ? 'Preferred carrier: ' + carrier + '\n\n' : '') + lines.join('\n'),
     });
     setStatus(res.ok ? { state: 'done', reference: res.reference } : { state: 'error', message: res.message });
   };
@@ -270,7 +275,17 @@ function IntakeForm({ form }) {
           <ChevronLeft className="w-4 h-4" /> All forms
         </Link>
         <h1 className="text-3xl font-black text-white mb-1">{form.title}</h1>
-        <p className="text-blue-100 mb-6">{form.blurb}</p>
+        <p className="text-blue-100 mb-4">{form.blurb}</p>
+        {carrier && (
+          <div className="flex items-center gap-3 rounded-xl bg-white/10 border border-white/20 px-4 py-3 mb-6">
+            <span className="w-9 h-9 rounded-lg bg-white flex items-center justify-center flex-shrink-0 overflow-hidden">
+              {carrierInfo && logoFor(carrierInfo.domain)
+                ? <img src={logoFor(carrierInfo.domain)} alt="" className="w-6 h-6 object-contain" />
+                : <span className="font-black" style={{ color: BLUE }}>{carrier[0]}</span>}
+            </span>
+            <p className="text-sm text-white">Applying with <strong>{carrier}</strong>. Matthew submits your application to the carrier for you.</p>
+          </div>
+        )}
 
         <div className="h-2 rounded-full bg-white/15 mb-2" role="progressbar" aria-valuenow={pct} aria-valuemin={0} aria-valuemax={100}>
           <div className="h-2 rounded-full bg-white transition-all" style={{ width: `${pct}%` }} />
