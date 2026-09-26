@@ -116,6 +116,13 @@ const faqs = [
 // ─── Carrier logos ────────────────────────────────────────────────────────────
 const carriers = ALL_CARRIERS;
 
+const HOW_STEPS = [
+  { title: 'Tell us about you', text: 'One form, about five minutes. No account and no password.' },
+  { title: 'Matthew shops the carriers', text: "He compares the companies we're appointed with for your age, state and budget." },
+  { title: 'You get your answer', text: 'When the carrier decides, we email or text you the result, the monthly cost and what it covers.' },
+  { title: "Sign when you're ready", text: 'Review it, e-sign, done. If you want a person to walk you through it, book a time.' },
+];
+
 // ─── Component ────────────────────────────────────────────────────────────────
 export default function Home() {
   const [showNewsletter, setShowNewsletter] = useState(false);
@@ -232,28 +239,48 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ═══ EVERYTHING ONLINE ═══════════════════════════════════════════════ */}
-      <section className="py-16" style={{ background: '#f8f7f4' }}>
-        <div className="max-w-5xl mx-auto px-4">
-          <p className="text-center text-xs font-bold uppercase tracking-widest mb-3" style={{ color: DARK3 }}>How it works</p>
-          <h2 className="text-3xl md:text-4xl font-black text-center mb-10" style={{ color: DARK1 }}>
-            Everything you need, done online
+      {/* ═══ HOW IT WORKS ═════════════════════════════════════════════════════ */}
+      <section className="py-10 md:py-20" style={{ background: '#f8f7f4' }}>
+        <div className="max-w-5xl mx-auto px-5">
+          <h2 className="text-2xl md:text-4xl font-black leading-tight mb-1.5 md:mb-3 md:text-center" style={{ color: DARK1 }}>
+            Get covered without picking up the phone
           </h2>
-          <div className="grid sm:grid-cols-2 md:grid-cols-4 gap-4">
-            {[
-              { icon: Zap, title: 'Apply online', text: 'Fill out one simple form, no login, no waiting on hold.' },
-              { icon: Sparkles, title: 'Ask our AI assistant', text: 'Get instant answers on coverage, cost and next steps, any time.' },
-              { icon: MessageSquare, title: 'Text or email updates', text: 'Prefer not to talk? We can follow up by text or email instead.' },
-              { icon: Calendar, title: 'Or book a call', text: 'Want to talk it through? Schedule a free call whenever works for you.' },
-            ].map(({ icon: Icon, title, text }) => (
-              <div key={title} className="bg-white rounded-xl p-5 border border-slate-100 shadow-sm">
-                <div className="w-10 h-10 rounded-lg flex items-center justify-center mb-3" style={{ background: `${DARK2}12` }}>
-                  <Icon className="w-5 h-5" style={{ color: DARK2 }} />
+          <p className="text-sm md:text-base text-slate-500 mb-8 md:mb-14 md:text-center">
+            Four steps, and only the first one takes any effort.
+          </p>
+
+          <ol className="md:grid md:grid-cols-4 md:gap-8">
+            {HOW_STEPS.map(({ title, text }, i) => (
+              <li key={title} className="relative flex gap-4 pb-7 last:pb-0 md:block md:pb-0 md:text-center">
+                <span
+                  className="flex-shrink-0 w-8 h-8 md:w-11 md:h-11 md:mx-auto md:mb-4 rounded-full text-sm md:text-base font-bold flex items-center justify-center text-white"
+                  style={{ background: DARK2 }}
+                >
+                  {i + 1}
+                </span>
+                {i < HOW_STEPS.length - 1 && (
+                  <span className="md:hidden absolute left-4 top-9 bottom-1 w-px bg-slate-300" aria-hidden="true" />
+                )}
+                <div>
+                  <h3 className="font-bold text-[17px] leading-snug" style={{ color: DARK1 }}>{title}</h3>
+                  <p className="text-sm text-slate-600 leading-relaxed mt-1">{text}</p>
                 </div>
-                <h3 className="font-bold mb-1" style={{ color: DARK1 }}>{title}</h3>
-                <p className="text-sm text-slate-500">{text}</p>
-              </div>
+              </li>
             ))}
+          </ol>
+
+          <div className="mt-9 md:mt-14 md:text-center">
+            <Link
+              to="/get-started"
+              className="flex md:inline-flex items-center justify-center gap-2 rounded-xl px-7 py-4 font-bold text-white"
+              style={{ background: DARK2 }}
+            >
+              Start step one <ArrowRight className="w-4 h-4" />
+            </Link>
+            <p className="text-sm text-slate-500 mt-3 text-center">
+              Rather talk it through first?{' '}
+              <Link to="/quote" className="font-semibold underline" style={{ color: DARK2 }}>Book a time</Link>
+            </p>
           </div>
         </div>
       </section>
