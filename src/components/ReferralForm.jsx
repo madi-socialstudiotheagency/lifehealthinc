@@ -3,13 +3,14 @@ import { X, UserPlus, CheckCircle2, ChevronRight } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { base44 } from '@/api/base44Client';
 
-const GOLD = '#D4AF37';
-const DARK1 = '#1C1B30';
-const DARK2 = '#2C2B50';
+const GOLD = '#FFFFFF';
+const DARK1 = '#081730';
+const DARK2 = '#1A3586';
 
 export default function ReferralForm({ open, onClose }) {
   const [submitted, setSubmitted] = useState(false);
   const [loading, setLoading] = useState(false);
+  const [error, setError] = useState('');
   const [form, setForm] = useState({
     // Referrer info
     referrerName: '',
@@ -42,6 +43,8 @@ export default function ReferralForm({ open, onClose }) {
 
   const handleSubmit = async () => {
     setLoading(true);
+    setError('');
+    try {
     await base44.entities.Lead.create({
       firstName: form.refFirstName,
       lastName: form.refLastName,
@@ -60,8 +63,13 @@ export default function ReferralForm({ open, onClose }) {
       status: 'new',
       submissionDate: new Date().toISOString(),
     });
-    setLoading(false);
     setSubmitted(true);
+    } catch (err) {
+      console.error('Referral submit failed:', err);
+      setError("We couldn't send that just now. Please try again, or call or text (954) 543-0853.");
+    } finally {
+      setLoading(false);
+    }
   };
 
   const reset = () => {
@@ -98,7 +106,7 @@ export default function ReferralForm({ open, onClose }) {
                 Thank you! A licensed broker will reach out to your referral within 24 hours. We appreciate you helping protect the people you care about.
               </p>
               <Button onClick={() => { onClose(); reset(); }} className="w-full font-bold rounded-xl"
-                style={{ background: `linear-gradient(135deg, ${GOLD}, #f59e0b)`, color: DARK1 }}>
+                style={{ background: `linear-gradient(135deg, ${GOLD}, #C9D8FF)`, color: DARK1 }}>
                 Done
               </Button>
             </div>
@@ -194,8 +202,9 @@ export default function ReferralForm({ open, onClose }) {
 
               <p className="text-xs text-slate-500 leading-relaxed">By submitting, you confirm you have permission to share this person's contact information with a licensed insurance broker.</p>
 
+              {error && <p className="text-sm text-red-300 mb-3 text-center">{error}</p>}
               <Button onClick={handleSubmit} disabled={!canSubmit || loading} className="w-full font-bold rounded-xl py-6 text-base"
-                style={{ background: canSubmit ? `linear-gradient(135deg, ${GOLD}, #f59e0b)` : 'rgba(255,255,255,0.1)', color: canSubmit ? DARK1 : '#64748b' }}>
+                style={{ background: canSubmit ? `linear-gradient(135deg, ${GOLD}, #C9D8FF)` : 'rgba(255,255,255,0.1)', color: canSubmit ? DARK1 : '#64748b' }}>
                 {loading ? 'Submitting…' : 'Submit Referral'} {!loading && <ChevronRight className="w-4 h-4 ml-1" />}
               </Button>
             </div>

@@ -180,7 +180,7 @@ export default function BlogPage() {
                 Ready to Get Personalized Coverage?
               </h3>
               <p className="text-xl text-slate-300 mb-8 max-w-2xl mx-auto">
-                Get a free quote from 50+ top-rated carriers and speak with a licensed professional
+                Get a free quote from top-rated carriers and speak with a licensed professional
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
                 <Button 

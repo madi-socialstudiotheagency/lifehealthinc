@@ -51,7 +51,7 @@ export default function MedicarePage() {
   const [zipCode, setZipCode] = useState('');
 
   const handleGetStarted = () => {
-    window.location.href = `${createPageUrl('Calculator')}?zip=${zipCode}`;
+    window.location.href = '/get-started/medicare' + (zipCode ? '?zip=' + encodeURIComponent(zipCode) : '');
   };
 
   return (

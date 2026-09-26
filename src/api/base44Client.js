@@ -18,12 +18,54 @@ const { appId, serverUrl, token, functionsVersion } = appParams;
 
 // Auth is not required: most of this site is public marketing. The client
 // portal gates itself through ProtectedRoute.
-export const base44 = createClient({
+const rawClient = createClient({
   appId,
   serverUrl,
   token,
   functionsVersion,
   requiresAuth: false,
+});
+
+// Whenever a form creates a Lead or Newsletter record, also email Matthew
+// (netlify/functions/lead-alert.js) so a lead is never only sitting in Base44.
+const ALERT_ENTITIES = new Set(['Lead', 'Newsletter']);
+
+export function sendLeadAlert(kind, data) {
+  try {
+    fetch('/.netlify/functions/lead-alert', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ kind, data, sourceUrl: window.location.href }),
+      keepalive: true,
+    }).catch(() => {});
+  } catch (e) {
+    /* alerting must never break the form */
+  }
+}
+
+const entitiesWithAlerts = new Proxy(rawClient.entities, {
+  get(target, entityName, receiver) {
+    const handler = Reflect.get(target, entityName, receiver);
+    if (!ALERT_ENTITIES.has(entityName) || !handler || typeof handler.create !== 'function') return handler;
+    return new Proxy(handler, {
+      get(t, prop, r) {
+        const value = Reflect.get(t, prop, r);
+        if (typeof value !== 'function') return value;
+        if (prop !== 'create') return value.bind(t);
+        return async (...args) => {
+          const result = await value.apply(t, args);
+          sendLeadAlert(entityName, args[0]);
+          return result;
+        };
+      },
+    });
+  },
+});
+
+export const base44 = new Proxy(rawClient, {
+  get(target, prop, receiver) {
+    return prop === 'entities' ? entitiesWithAlerts : Reflect.get(target, prop, receiver);
+  },
 });
 
 // Google Apps Script client for form submissions — posts form data to a Google

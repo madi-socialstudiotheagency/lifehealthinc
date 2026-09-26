@@ -1,26 +1,24 @@
-import { Button } from '@/components/ui/button';
-import { Calendar } from 'lucide-react';
+import { Link } from 'react-router-dom';
+import { ArrowRight } from 'lucide-react';
+
+const NAVY = '#081730';
+const BLUE = '#1A3586';
 
 export default function BlogCta() {
   return (
-    <div className="text-center bg-gradient-to-r from-slate-800 to-slate-900 text-white rounded-lg p-12 mt-12">
-      <h2 className="text-3xl font-bold mb-4">
-        Ready to Secure Your Future?
-      </h2>
-      <p className="text-xl text-slate-300 mb-8">
-        Get personalized recommendations from a licensed professional.
+    <div className="text-center rounded-2xl p-8 md:p-12 mt-12 text-white" style={{ background: `linear-gradient(135deg, ${NAVY}, ${BLUE})` }}>
+      <h2 className="text-2xl md:text-3xl font-black mb-3">Ready to get covered?</h2>
+      <p className="text-blue-100 mb-6 max-w-xl mx-auto">
+        Apply online in a few minutes. A licensed advisor prepares your application, and you never have to get on a call.
       </p>
-      <div className="flex flex-col sm:flex-row gap-4 justify-center">
-        <Button asChild size="lg" style={{backgroundColor: '#D4AF37', color: '#1C1B30'}}>
-          <a href="https://calendly.com/lifehealthinc/lifehealthinc" target="_blank" rel="noopener noreferrer">
-            <Calendar className="w-5 h-5 mr-2" />
-            Book a Free Consultation
-          </a>
-        </Button>
-      </div>
-      <p className="text-slate-400 text-sm mt-4">
-        ✓ No Obligation ✓ Licensed Professional Guidance
-      </p>
+      <Link
+        to="/get-started"
+        className="inline-flex items-center justify-center gap-2 rounded-xl bg-white px-8 py-4 font-bold"
+        style={{ color: BLUE }}
+      >
+        Start my application <ArrowRight className="w-4 h-4" />
+      </Link>
+      <p className="text-blue-200 text-xs mt-4">Free, no obligation, licensed in all 50 states.</p>
     </div>
   );
 }

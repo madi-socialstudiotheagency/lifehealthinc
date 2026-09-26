@@ -16,7 +16,7 @@ export default function FAQPage() {
         const fetchFaqs = async () => {
             try {
                 const results = await Post.filter({ category: 'faq', status: 'published' }, '-publish_date');
-                setFaqs(results);
+                setFaqs(Array.isArray(results) ? results.filter((r) => r && r.title) : []);
             } catch (error) {
                 console.error("Error fetching FAQs:", error);
             } finally {
@@ -102,7 +102,7 @@ export default function FAQPage() {
                                             strong: ({node, ...props}) => <strong className="font-bold" {...props} />,
                                         }}
                                     >
-                                        {item.content}
+                                        {String(item.content ?? '')}
                                     </ReactMarkdown>
                                 </AccordionContent>
                             </AccordionItem>

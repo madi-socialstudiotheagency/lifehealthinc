@@ -2,8 +2,10 @@
 // Field types: text, email, tel, number, date, select, radio, multi, textarea, yesno.
 // `showIf: { field, equals }` shows a field only when another answer matches.
 //
-// PRIVACY: none of these forms ask for an SSN, bank or card number, or medical
-// history. Those belong in the carrier's secure application, not a website form.
+// PRIVACY: none of these forms ask for an SSN, bank or card number. Those belong
+// in the carrier's secure application, not a website form. Medication names and
+// a short conditions checklist ARE collected on the health-related forms because
+// they change the price and the advisor needs them to prepare the application.
 
 export const STATES = [
   'AL','AK','AZ','AR','CA','CO','CT','DE','DC','FL','GA','HI','ID','IL','IN','IA','KS','KY','LA','ME','MD','MA','MI','MN','MS','MO','MT','NE','NV','NH','NJ','NM','NY','NC','ND','OH','OK','OR','PA','RI','SC','SD','TN','TX','UT','VT','VA','WA','WV','WI','WY',
@@ -34,7 +36,23 @@ const tobaccoHeightWeight = [
   { name: 'tobacco', label: 'Have you used tobacco or nicotine in the last 12 months?', type: 'radio', options: yn, required: true },
   { name: 'height', label: 'Height', type: 'text', placeholder: "5'10\"" },
   { name: 'weight', label: 'Weight (lbs)', type: 'number' },
-  { name: 'healthNotes', label: 'Anything about your health we should know? (optional, general only)', type: 'textarea', help: 'Please do not include diagnoses, medications or ID numbers. Your advisor will cover health questions on a secure call.' },
+  { name: 'takesMedications', label: 'Do you take any prescription medications?', type: 'radio', options: yn, required: true },
+  {
+    name: 'medications',
+    label: 'Names of your medications',
+    type: 'textarea',
+    required: true,
+    showIf: { field: 'takesMedications', equals: 'Yes' },
+    placeholder: 'e.g. Metformin (diabetes), Lisinopril (blood pressure)',
+    help: 'Medications and what each is for can change your price. Put the condition next to each one.',
+  },
+  {
+    name: 'conditions',
+    label: 'In the last 5 years, have you been diagnosed or treated for any of these?',
+    type: 'multi',
+    options: ['Heart disease or heart attack', 'Stroke', 'Cancer', 'Diabetes', 'High blood pressure', 'High cholesterol', 'COPD or other lung disease', 'Kidney or liver disease', 'Depression or anxiety', 'Sleep apnea', 'None of these'],
+  },
+  { name: 'healthNotes', label: 'Anything else about your health that could affect your price? (optional)', type: 'textarea', help: 'Never include Social Security, bank or card numbers.' },
 ];
 
 const businessContact = {
@@ -158,7 +176,16 @@ export const INTAKE_FORMS = [
           { name: 'currentCoverage', label: 'Current coverage', type: 'select', options: ['None', 'Employer plan ending', 'ACA marketplace plan', 'COBRA', 'Medicaid / CHIP ending', 'Other'], required: true },
           { name: 'specialEnrollment', label: 'Did you lose coverage or have a life event in the last 60 days?', type: 'radio', options: ynu, help: 'A life event (job loss, marriage, birth, move) may allow enrollment outside open enrollment.' },
           { name: 'doctors', label: 'Doctors or hospitals you want to keep', type: 'textarea' },
-          { name: 'prescriptions', label: 'Do you take regular prescriptions?', type: 'radio', options: ynu },
+          { name: 'prescriptions', label: 'Do you take regular prescriptions?', type: 'radio', options: ynu, required: true },
+          {
+            name: 'prescriptionNames',
+            label: 'Names of your prescriptions',
+            type: 'textarea',
+            required: true,
+            showIf: { field: 'prescriptions', equals: 'Yes' },
+            placeholder: 'e.g. Eliquis, Metformin, Lisinopril',
+            help: 'Your drugs decide which plans cost you the least, so list each one (and the dose if you know it).',
+          },
           { name: 'priority', label: 'What matters most?', type: 'radio', options: ['Lowest monthly premium', 'Lowest total cost', 'Broad doctor network', 'Prescription coverage'], required: true },
           { name: 'hsa', label: 'Interested in an HSA-eligible plan?', type: 'radio', options: ynu },
         ],
@@ -181,7 +208,16 @@ export const INTAKE_FORMS = [
           { name: 'planPreference', label: 'What are you leaning toward?', type: 'radio', options: ['Medicare Supplement', 'Medicare Advantage', 'Not sure, explain both'], required: true },
           { name: 'partD', label: 'Do you need a Part D drug plan?', type: 'radio', options: ynu },
           { name: 'doctors', label: 'Doctors or hospitals you must keep', type: 'textarea' },
-          { name: 'prescriptions', label: 'Do you take regular prescriptions?', type: 'radio', options: ynu },
+          { name: 'prescriptions', label: 'Do you take regular prescriptions?', type: 'radio', options: ynu, required: true },
+          {
+            name: 'prescriptionNames',
+            label: 'Names of your prescriptions',
+            type: 'textarea',
+            required: true,
+            showIf: { field: 'prescriptions', equals: 'Yes' },
+            placeholder: 'e.g. Eliquis, Metformin, Lisinopril',
+            help: 'Your drugs decide which plans cost you the least, so list each one (and the dose if you know it).',
+          },
           { name: 'medicaidExtraHelp', label: 'Do you get Medicaid or Extra Help (LIS)?', type: 'radio', options: ynu },
           { name: 'effectiveDate', label: 'When does or did your Medicare start?', type: 'date' },
         ],

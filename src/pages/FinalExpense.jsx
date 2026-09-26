@@ -34,7 +34,7 @@ export default function FinalExpensePage() {
   const [zipCode, setZipCode] = useState('');
 
   const handleGetStarted = () => {
-    window.location.href = `${createPageUrl('Calculator')}?zip=${zipCode}`;
+    window.location.href = '/get-started/final-expense' + (zipCode ? '?zip=' + encodeURIComponent(zipCode) : '');
   };
 
   return (
@@ -168,7 +168,7 @@ export default function FinalExpensePage() {
           <p className="text-xl text-slate-200 mb-8">A final expense policy is one of the most loving things you can do for the people you leave behind. Get your free quote today — no medical exam, no pressure.</p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Button asChild size="lg" className="font-bold text-lg px-8" style={{ backgroundColor: '#FFFFFF', color: '#1A3586' }}>
-              <Link to={createPageUrl('Calculator')}>
+              <Link to="/get-started/final-expense">
                 Get My Free Quote <ArrowRight className="w-5 h-5 ml-2" />
               </Link>
             </Button>

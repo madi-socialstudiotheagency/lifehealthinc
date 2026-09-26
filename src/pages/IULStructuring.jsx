@@ -117,7 +117,7 @@ export default function IULStructuringPage() {
   const [zipCode, setZipCode] = useState('');
 
   const handleGetStarted = () => {
-    window.location.href = `${createPageUrl('Calculator')}?zip=${zipCode}`;
+    window.location.href = '/get-started/life-insurance' + (zipCode ? '?zip=' + encodeURIComponent(zipCode) : '');
   };
 
   return (

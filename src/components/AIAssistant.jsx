@@ -13,7 +13,7 @@ const SYSTEM_CONTEXT = `You are the LifeHealthInc website assistant, representin
 ABOUT LIFEHEALTHINC:
 - Licensed independent insurance brokers (Matthew Anderson NPN: 20770864, Payton Ferguson NPN: 21405656)
 - Licensed nationwide in all 50 states
-- Multi-carrier brokerage representing 25+ top-rated carriers
+- Multi-carrier brokerage representing top-rated carriers
 - Specialties: Life Insurance, Mortgage Protection, Final Expense, Medicare, Annuities, Health Insurance, IUL Structuring, Business Planning
 
 PRODUCTS WE OFFER:

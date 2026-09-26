@@ -36,8 +36,17 @@ function render(messages, sourceUrl) {
   return { html, text };
 }
 
+// Only our own pages may call this endpoint (stops outside abuse of the AI
+// quota and Matthew's inbox).
+const okOrigin = (h) => {
+  const o = h.origin || h.referer || '';
+  return /^https:\/\/([a-z0-9-]+\.)?lifehealthinc\.org(\/|$)/.test(o) || /^https:\/\/[a-z0-9-]*lifehealthinc\.netlify\.app(\/|$)/.test(o);
+};
+
 export const handler = async (event) => {
   try {
+    if (event.httpMethod !== 'POST' || !okOrigin(event.headers || {})) return { statusCode: 403, body: 'forbidden' };
+    if ((event.body || '').length > 60000) return { statusCode: 413, body: 'too large' };
     const body = JSON.parse(event.body || '{}');
     const messages = Array.isArray(body.messages) ? body.messages : [];
     // Only the greeting exists, nothing to report.

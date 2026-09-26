@@ -37,7 +37,7 @@ function MortgageProtectionPage() {
   const [zipCode, setZipCode] = useState('');
 
   const handleGetStarted = () => {
-    window.location.href = `${createPageUrl('Calculator')}?zip=${zipCode}`;
+    window.location.href = '/get-started/mortgage-protection' + (zipCode ? '?zip=' + encodeURIComponent(zipCode) : '');
   };
 
   return (
@@ -171,7 +171,7 @@ function MortgageProtectionPage() {
           <p className="text-xl text-slate-200 mb-8">Most policies are approved within days — no medical exam required. Get your free quote now and have peace of mind by the end of the week.</p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Button asChild size="lg" className="font-bold text-lg px-8" style={{ backgroundColor: '#FFFFFF', color: '#1A3586' }}>
-              <Link to={createPageUrl('Calculator')}>
+              <Link to="/get-started/mortgage-protection">
                 Get My Free Quote <ArrowRight className="w-5 h-5 ml-2" />
               </Link>
             </Button>

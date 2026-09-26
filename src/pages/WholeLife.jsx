@@ -232,7 +232,7 @@ export default function WholeLifePage() {
           <div className="grid lg:grid-cols-2 gap-12 items-center">
             <div>
               <img
-                src="https://images.unsplash.com/photo-1554224311-beee4ece8db2?w=800"
+                src="https://images.unsplash.com/photo-1511895426328-dc8714191300?w=800"
                 alt="Family Financial Planning"
                 className="rounded-2xl shadow-xl"
               />

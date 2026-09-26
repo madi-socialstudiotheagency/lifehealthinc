@@ -46,7 +46,7 @@ export default function LifeInsurancePage() {
   const [isCalendlyOpen, setIsCalendlyOpen] = useState(false);
 
   const handleGetStarted = () => {
-    window.location.href = `${createPageUrl('Calculator')}?zip=${zipCode}`;
+    window.location.href = '/get-started/life-insurance' + (zipCode ? '?zip=' + encodeURIComponent(zipCode) : '');
   };
 
   return (
@@ -101,7 +101,7 @@ export default function LifeInsurancePage() {
               <div className="w-16 h-16 rounded-full bg-green-100 flex items-center justify-center mb-3">
                 <Users className="w-8 h-8 text-green-600" />
               </div>
-              <h3 className="font-semibold text-slate-900">50+ Carriers Compared</h3>
+              <h3 className="font-semibold text-slate-900">Top Carriers Compared</h3>
             </div>
             <div className="flex flex-col items-center">
               <div className="w-16 h-16 rounded-full bg-purple-100 flex items-center justify-center mb-3">
@@ -239,7 +239,7 @@ export default function LifeInsurancePage() {
           </div>
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
             {[
-              { icon: Shield, color: 'blue', label: 'Independent', desc: 'We compare 50+ carriers to find you the best rate and coverage.' },
+              { icon: Shield, color: 'blue', label: 'Independent', desc: 'We compare top-rated carriers to find you the best rate and coverage.' },
               { icon: Users, color: 'green', label: 'Licensed Experts', desc: 'Our team is licensed in all 50 states with decades of combined experience.' },
               { icon: Heart, color: 'purple', label: 'Client-Focused', desc: 'We work for you, not insurance companies. Your best interest is our only goal.' },
               { icon: DollarSign, color: 'amber', label: 'No Extra Cost', desc: 'Our services are free — carriers pay us the same commission regardless.' },
