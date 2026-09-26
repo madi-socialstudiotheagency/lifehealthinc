@@ -226,7 +226,7 @@ Reply the way a warm, quick person texting would: one or two SHORT paragraphs se
       {/* Floating Chat Button */}
       <button
         onClick={() => setIsOpen(!isOpen)}
-        className="fixed bottom-24 md:bottom-6 right-4 md:right-6 text-white rounded-full p-4 shadow-2xl focus:outline-none focus:ring-4 focus:ring-blue-500/40 transition-all hover:scale-105 z-50 w-14 h-14 flex items-center justify-center"
+        className="fixed bottom-[5.5rem] md:bottom-6 right-3 md:right-6 text-white rounded-full shadow-2xl focus:outline-none focus:ring-4 focus:ring-blue-500/40 transition-all hover:scale-105 z-50 w-11 h-11 md:w-14 md:h-14 md:p-4 flex items-center justify-center"
         style={{ background: NAVY }}
         aria-label={isOpen ? "Close chat" : "Chat with us"}
       >
@@ -235,7 +235,7 @@ Reply the way a warm, quick person texting would: one or two SHORT paragraphs se
 
       {/* Chat Modal */}
       {isOpen && (
-        <div className="fixed bottom-40 md:bottom-24 right-4 md:right-6 w-[calc(100%-2rem)] sm:w-96 h-[65vh] md:h-[75vh] max-h-[560px] rounded-xl shadow-2xl z-50 border border-slate-200 flex flex-col overflow-hidden bg-white">
+        <div className="fixed bottom-[8.5rem] md:bottom-24 right-3 md:right-6 w-[calc(100%-2rem)] sm:w-96 h-[65vh] md:h-[75vh] max-h-[560px] rounded-xl shadow-2xl z-50 border border-slate-200 flex flex-col overflow-hidden bg-white">
           {/* Header */}
           <div className="flex justify-between items-center p-4 bg-white border-b" style={{ borderColor: '#E2E8F0' }}>
             <div className="flex items-center gap-2">
