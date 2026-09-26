@@ -6,6 +6,7 @@ import { queryClientInstance } from '@/lib/query-client'
 import VisualEditAgent from '@/lib/VisualEditAgent'
 import NavigationTracker from '@/lib/NavigationTracker'
 import { pagesConfig } from './pages.config'
+import ErrorBoundary from '@/components/ErrorBoundary'
 import { BrowserRouter as Router, Route, Routes, Navigate, useLocation } from 'react-router-dom';
 import PageNotFound from './lib/PageNotFound';
 import { AuthProvider, useAuth } from '@/lib/AuthContext';
@@ -36,6 +37,11 @@ const PageFallback = () => <div style={{ minHeight: '70vh' }} aria-busy="true" /
 const LayoutWrapper = ({ children, currentPageName }) => Layout ?
   <Layout currentPageName={currentPageName}><Suspense fallback={<PageFallback />}>{children}</Suspense></Layout>
   : <Suspense fallback={<PageFallback />}>{children}</Suspense>;
+
+const RouteBoundary = ({ children }) => {
+  const location = useLocation();
+  return <ErrorBoundary key={location.pathname}>{children}</ErrorBoundary>;
+};
 
 const SeoTracker = () => {
   const location = useLocation();
@@ -75,7 +81,7 @@ const AuthenticatedApp = () => {
 
   // Render the main app
   return (
-    <Routes>
+    <RouteBoundary><Routes>
       <Route path="/" element={<LayoutWrapper currentPageName="Home"><Home /></LayoutWrapper>} />
       <Route path="/Calculator" element={<CalculatorRedirect />} />
       <Route path="/calculator" element={<CalculatorRedirect />} />
@@ -120,7 +126,7 @@ const AuthenticatedApp = () => {
       <Route path="/privacy-policy" element={<Navigate to="/Privacy" replace />} />
       <Route path="/Article" element={<Navigate to="/Blog" replace />} />
       <Route path="*" element={<PageNotFound />} />
-    </Routes>
+    </Routes></RouteBoundary>
   );
 };
 

@@ -14,7 +14,7 @@ export default function FaqAccordion({ faqs }) {
                         {faq.title}
                     </AccordionTrigger>
                     <AccordionContent className="text-base text-slate-700 leading-relaxed">
-                        <ReactMarkdown>{faq.content}</ReactMarkdown>
+                        <ReactMarkdown>{String(faq.content ?? '')}</ReactMarkdown>
                     </AccordionContent>
                 </AccordionItem>
             ))}
