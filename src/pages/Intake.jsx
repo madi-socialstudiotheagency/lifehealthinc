@@ -1,4 +1,4 @@
-import { useMemo, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import { Link, useParams, useSearchParams } from 'react-router-dom';
 import { ArrowRight, CheckCircle2, ChevronLeft, ChevronRight, Lock, Phone, Zap } from 'lucide-react';
 import { AUDIENCES, CONSENT_TEXT, INTAKE_FORMS, PRIVACY_TEXT, getForm } from '@/data/intakeForms';
@@ -170,6 +170,98 @@ function Field({ field, value, onChange, error }) {
   );
 }
 
+// ── After submit: live wait for Matthew's approval, then the price ───────────
+function WaitingScreen({ reference, statusKey, contactPref }) {
+  const [result, setResult] = useState({ status: 'pending' });
+  const [seconds, setSeconds] = useState(0);
+
+  useEffect(() => {
+    let stop = false;
+    let timer;
+    const tick = async () => {
+      try {
+        const r = await fetch(`/.netlify/functions/app-status?ref=${encodeURIComponent(reference)}&k=${encodeURIComponent(statusKey || '')}`, { cache: 'no-store' });
+        const j = await r.json();
+        if (!stop && j && j.status) setResult(j);
+        if (j && j.status && j.status !== 'pending') return;
+      } catch (e) {
+        /* keep waiting */
+      }
+      if (!stop) timer = setTimeout(tick, 8000);
+    };
+    timer = setTimeout(tick, 3000);
+    const clock = setInterval(() => setSeconds((n) => n + 1), 1000);
+    return () => { stop = true; clearTimeout(timer); clearInterval(clock); };
+  }, [reference, statusKey]);
+
+  const mm = String(Math.floor(seconds / 60)).padStart(1, '0');
+  const ss = String(seconds % 60).padStart(2, '0');
+  const money = result.amount ? `$${Number(result.amount).toFixed(2).replace(/\.00$/, '')}` : '';
+
+  return (
+    <div className="min-h-screen flex items-center justify-center px-4 py-10" style={{ background: `linear-gradient(180deg, ${NAVY}, ${BLUE})` }}>
+      <div className="w-full max-w-lg bg-white rounded-2xl p-7 md:p-9 text-center shadow-2xl">
+        {result.status === 'pending' && (
+          <>
+            <div className="w-14 h-14 mx-auto mb-5 rounded-full border-4 border-slate-200 animate-spin" style={{ borderTopColor: BLUE }} aria-hidden="true" />
+            <h1 className="text-2xl font-black text-slate-900 mb-2">Reviewing your application</h1>
+            <p className="text-slate-600 mb-4">
+              This usually takes 5 to 10 minutes. Keep this page open and your price will appear here. If you would rather leave,
+              we will email{contactPref && /text/i.test(contactPref) ? ' and text' : ''} you the moment it is ready.
+            </p>
+            <p className="text-sm text-slate-400 mb-1">Waiting {mm}:{ss}</p>
+            {seconds > 900 && <p className="text-sm text-slate-500">This is taking longer than usual. You can close this page, we will email you as soon as it is ready.</p>}
+          </>
+        )}
+
+        {result.status === 'approved' && (
+          <>
+            <CheckCircle2 className="w-14 h-14 text-green-600 mx-auto mb-4" />
+            <h1 className="text-2xl font-black text-slate-900 mb-1">You&apos;re approved</h1>
+            {result.plan && <p className="text-slate-600 mb-3">{result.plan}</p>}
+            {money && (
+              <p className="mb-4">
+                <span className="text-5xl font-black" style={{ color: NAVY }}>{money}</span>
+                <span className="text-lg font-bold text-slate-500">/month</span>
+              </p>
+            )}
+            {result.note && <p className="text-sm text-slate-600 mb-4">{result.note}</p>}
+            {result.payLink ? (
+              <a href={result.payLink} className="block rounded-xl px-6 py-4 font-bold text-white mb-3" style={{ background: BLUE }}>
+                Continue to secure payment
+              </a>
+            ) : (
+              <p className="text-slate-600 mb-3">Matthew is sending your secure payment link now. Check your email.</p>
+            )}
+            <p className="text-xs text-slate-500">
+              Payment happens on the carrier&apos;s own secure page. We never ask for card or bank details on this website or by email.
+              Final premium and coverage are set by the carrier and confirmed in your policy documents.
+            </p>
+          </>
+        )}
+
+        {result.status === 'needs_info' && (
+          <>
+            <h1 className="text-2xl font-black text-slate-900 mb-2">We need a little more</h1>
+            <p className="text-slate-600 mb-3">{result.note || 'Matthew will reach out shortly for one more detail.'}</p>
+            <p className="text-sm text-slate-500">You can also call or text <a href="tel:9545430853" className="underline">(954) 543-0853</a>.</p>
+          </>
+        )}
+
+        {result.status === 'declined' && (
+          <>
+            <h1 className="text-2xl font-black text-slate-900 mb-2">An update on your application</h1>
+            <p className="text-slate-600">{result.note || 'This one was not approved as submitted. Matthew will email you other options that may fit.'}</p>
+          </>
+        )}
+
+        <p className="text-xs text-slate-400 mt-6">Reference: {reference}</p>
+        <Link to="/get-started" className="text-blue-700 text-sm font-semibold underline">Back to all forms</Link>
+      </div>
+    </div>
+  );
+}
+
 function IntakeForm({ form }) {
   const [params] = useSearchParams();
   const carrier = (params.get('carrier') || '').slice(0, 80);
@@ -216,6 +308,7 @@ function IntakeForm({ form }) {
     if (honeypot) { setStatus({ state: 'done' }); return; } // bots get a silent success
     setStatus({ state: 'sending' });
     const reference = makeReference();
+    const statusKey = Array.from(crypto.getRandomValues(new Uint8Array(16))).map((b) => b.toString(16).padStart(2, '0')).join('');
     const lines = [];
     form.sections.forEach((s) => {
       const part = s.fields
@@ -238,34 +331,17 @@ function IntakeForm({ form }) {
       sourceUrl: window.location.href,
       consent: 'Agreed: ' + CONSENT_TEXT + ' | Privacy acknowledged: ' + PRIVACY_TEXT,
       'bot-field': honeypot,
+      statusKey,
       carrier: carrier || 'No preference',
       details: (carrier ? 'Preferred carrier: ' + carrier + '\n\n' : '') + lines.join('\n'),
     });
-    setStatus(res.ok ? { state: 'done', reference: res.reference } : { state: 'error', message: res.message });
+    setStatus(res.ok ? { state: 'done', reference: res.reference, key: statusKey } : { state: 'error', message: res.message });
   };
 
   const pct = useMemo(() => Math.round(((step + 1) / total) * 100), [step, total]);
 
   if (status.state === 'done') {
-    return (
-      <div className="min-h-screen flex items-center justify-center px-4" style={{ background: `linear-gradient(180deg, ${NAVY}, ${BLUE})` }}>
-        <div className="max-w-lg bg-white rounded-2xl p-8 text-center shadow-2xl">
-          <CheckCircle2 className="w-14 h-14 text-green-600 mx-auto mb-4" />
-          <h1 className="text-2xl font-black text-slate-900 mb-2">Got it — you're set</h1>
-          <p className="text-slate-600 mb-4">
-            Everything above is what Matthew needs. He is a licensed advisor and will start preparing your
-            application from your answers himself. You do not need to call. If anything is missing, or when it is
-            time to sign or verify identity with the carrier, he will reach out
-            {answers.contactPref ? ` by ${answers.contactPref.toLowerCase()}` : ''}.
-            Once the carrier makes a decision, you will get an email letting you know whether you were approved,
-            along with your actual coverage amount and rate. Submitting this form is not a guarantee of coverage.
-            Approval and pricing are set by the carrier after underwriting.
-          </p>
-          {status.reference && <p className="text-xs text-slate-500 mb-4">Reference: {status.reference}</p>}
-          <Link to="/get-started" className="text-blue-700 font-semibold underline">Back to all forms</Link>
-        </div>
-      </div>
-    );
+    return <WaitingScreen reference={status.reference} statusKey={status.key} contactPref={answers.contactPref} />;
   }
 
   return (
