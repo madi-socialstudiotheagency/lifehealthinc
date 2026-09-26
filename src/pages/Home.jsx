@@ -123,6 +123,16 @@ const HOW_STEPS = [
   { title: "Sign when you're ready", text: 'Review it, e-sign, done. If you want a person to walk you through it, book a time.' },
 ];
 
+const COVERAGE_ROWS = [
+  { title: 'Health insurance', blurb: 'See live prices and enroll online', page: 'HealthInsurance', icon: Activity },
+  { title: 'Life insurance', blurb: 'Term, whole life and IUL', page: 'LifeInsurance', icon: Heart },
+  { title: 'Medicare', blurb: 'Advantage, Supplement and Part D', page: 'Medicare', icon: Stethoscope },
+  { title: 'Health insurance for your business', blurb: 'Group plans for small and large teams', page: 'Employers', icon: Users },
+  { title: 'Mortgage protection', blurb: 'Keep your family in the house', page: 'MortgageProtection', icon: HomeIcon },
+  { title: 'Final expense', blurb: 'Burial coverage, no medical exam', page: 'FinalExpense', icon: Shield },
+  { title: 'Annuities', blurb: 'Guaranteed retirement income', page: 'Annuities', icon: TrendingUp },
+];
+
 // ─── Component ────────────────────────────────────────────────────────────────
 export default function Home() {
   const [showNewsletter, setShowNewsletter] = useState(false);
@@ -316,107 +326,31 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ═══ WHO WE HELP ═════════════════════════════════════════════════════ */}
-      <section className="py-14 md:py-24" style={{ background:'#f8f7f4' }}>
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-14">
-            <SectionLabel>Who We Help</SectionLabel>
-            <h2 className="text-4xl md:text-5xl font-black mb-4" style={{ color:DARK2 }}>
-              Find Your Path to Coverage
-            </h2>
-            <p className="text-slate-500 max-w-2xl mx-auto">
-              Whether you're turning 65, protecting a young family, or planning retirement income — we have a specialist and a strategy for you.
-            </p>
-          </div>
-
-          <div className="grid md:grid-cols-2 gap-6">
-            {audiences.map(({ title, subtitle, description, icon: Icon, page, cta, color }) => (
-              <div
-                key={title}
-                className="group relative rounded-2xl p-8 border transition-all duration-300 hover:-translate-y-1 hover:shadow-xl cursor-pointer bg-white"
-                style={{ borderColor:`${color}30` }}
-              >
-                <div className="absolute top-0 left-0 right-0 h-1 rounded-t-2xl opacity-0 group-hover:opacity-100 transition-opacity"
-                  style={{ background:`linear-gradient(90deg,${color}00,${color},${color}00)` }} />
-                <div className="flex items-start gap-5">
-                  <div className="w-14 h-14 rounded-2xl flex items-center justify-center flex-shrink-0"
-                    style={{ background:`${color}15` }}>
-                    <Icon className="w-7 h-7" style={{ color }} />
-                  </div>
-                  <div className="flex-1">
-                    <p className="text-xs font-bold uppercase tracking-widest mb-1" style={{ color }}>{subtitle}</p>
-                    <h3 className="text-xl font-black mb-2" style={{ color:DARK2 }}>{title}</h3>
-                    <p className="text-slate-500 text-sm leading-relaxed mb-5">{description}</p>
-                    <Link
-                      to={createPageUrl(page)}
-                      className="inline-flex items-center gap-2 text-sm font-bold transition-colors"
-                      style={{ color }}
-                    >
-                      {cta} <ChevronRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
-                    </Link>
-                  </div>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      <GoldDivider />
-
-      {/* ═══ SERVICES GRID ═══════════════════════════════════════════════════ */}
-      <section className="py-14 md:py-24" style={{ background: `linear-gradient(180deg, ${DARK1} 0%, ${DARK2} 100%)` }}>
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-14">
-            <SectionLabel>Our Services</SectionLabel>
-            <h2 className="text-4xl md:text-5xl font-black text-white mb-4">
-              Every Type of Coverage,
-              <br />
-              <span style={{ color:GOLD }}>One Trusted Team</span>
-            </h2>
-            <p className="text-slate-400 max-w-2xl mx-auto">
-              From your first life insurance policy to a full retirement income strategy — we're your one-stop independent brokerage.
-            </p>
-          </div>
-
-          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
-            {services.map(({ id, title, description, icon: Icon, page, cta }) => (
-              <div
-                key={id}
-                className="group relative rounded-2xl p-7 border border-white/10 transition-all duration-300 hover:border-white/40 hover:-translate-y-1"
-                style={{ background:'linear-gradient(160deg,rgba(255,255,255,.07) 0%,rgba(255,255,255,.02) 100%)' }}
-              >
-                <div className="absolute top-0 left-0 right-0 h-0.5 rounded-t-2xl opacity-0 group-hover:opacity-100 transition-opacity"
-                  style={{ background:'linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent)' }} />
-                <div className="w-12 h-12 rounded-xl flex items-center justify-center mb-5"
-                  style={{ background:'rgba(255,255,255,0.15)' }}>
-                  <Icon className="w-6 h-6 text-white" />
-                </div>
-                <h3 className="text-lg font-black text-white mb-2">{title}</h3>
-                <p className="text-sm text-slate-400 leading-relaxed mb-5">{description}</p>
-                <Link
-                  to={createPageUrl(page)}
-                  className="inline-flex items-center gap-1.5 text-sm font-bold text-white"
-                >
-                  {cta} <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+      {/* ═══ WHAT ARE YOU COVERING ═════════════════════════════════════════════ */}
+      <section className="py-10 md:py-20 bg-white">
+        <div className="max-w-4xl mx-auto px-5">
+          <h2 className="text-2xl md:text-4xl font-black leading-tight mb-1.5 md:mb-3 md:text-center" style={{ color: DARK1 }}>
+            What do you want to cover?
+          </h2>
+          <p className="text-sm md:text-base text-slate-500 mb-6 md:mb-10 md:text-center">
+            Pick one and you'll land on the application for it.
+          </p>
+          <ul className="rounded-2xl border border-slate-200 divide-y divide-slate-200 overflow-hidden md:grid md:grid-cols-2 md:divide-y-0 md:gap-px md:bg-slate-200">
+            {COVERAGE_ROWS.map(({ title, blurb, page, icon: Icon }) => (
+              <li key={title} className="bg-white">
+                <Link to={createPageUrl(page)} className="flex items-center gap-4 px-4 py-4 md:py-5 active:bg-slate-50 hover:bg-slate-50 transition-colors">
+                  <span className="flex-shrink-0 w-10 h-10 rounded-lg flex items-center justify-center" style={{ background: `${DARK2}12` }}>
+                    <Icon className="w-5 h-5" style={{ color: DARK2 }} />
+                  </span>
+                  <span className="min-w-0 flex-1">
+                    <span className="block font-bold text-[16px] leading-snug" style={{ color: DARK1 }}>{title}</span>
+                    <span className="block text-[13px] text-slate-500 leading-snug mt-0.5">{blurb}</span>
+                  </span>
+                  <ChevronRight className="w-5 h-5 flex-shrink-0 text-slate-300" />
                 </Link>
-              </div>
+              </li>
             ))}
-          </div>
-
-          <div className="text-center mt-10">
-            <Button
-              asChild
-              size="lg"
-              className="font-bold px-8 py-6 rounded-xl"
-              style={{ background:'linear-gradient(135deg, #1A3586, #3D6B9E)', color:'#FFFFFF' }}
-            >
-              <Link to="/quote">
-                <Calendar className="w-5 h-5 mr-2" />
-                Book a Free Consultation
-              </Link>
-            </Button>
-          </div>
+          </ul>
         </div>
       </section>
 
