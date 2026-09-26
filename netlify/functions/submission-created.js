@@ -5,6 +5,10 @@
 //
 // Needs RESEND_API_KEY (secret Netlify env var). Never hard-code the key here.
 
+import { connectLambda, getStore } from '@netlify/blobs';
+import { createHmac } from 'node:crypto';
+
+const SITE = 'https://www.lifehealthinc.org';
 const FROM = 'LifeHealthInc <info@lifehealthinc.org>';
 const REPLY_TO = 'matthew@lifehealthinc.org';
 const PHONE = '(954) 543-0853';
@@ -15,6 +19,51 @@ const esc = (s) =>
     .replace(/</g, '&lt;')
     .replace(/>/g, '&gt;')
     .replace(/"/g, '&quot;');
+
+const approvalToken = (ref) => createHmac('sha256', process.env.APPROVAL_SECRET || '').update(ref).digest('hex');
+
+// Remember the application so the applicant's waiting screen can show the result.
+async function trackApplication(event, d) {
+  if (!d.reference || !d.statusKey) return;
+  try {
+    connectLambda(event);
+    await getStore('applications').setJSON(String(d.reference), {
+      ref: String(d.reference),
+      statusKey: String(d.statusKey),
+      status: 'pending',
+      name: d.name || '',
+      email: d.email || '',
+      phone: d.phone || '',
+      formTitle: d.formTitle || '',
+      carrier: d.carrier || '',
+      createdAt: new Date().toISOString(),
+    });
+  } catch (err) {
+    console.error('trackApplication failed', err);
+  }
+}
+
+// One-tap "send this applicant their price" email to Matthew.
+async function notifyMatthew(d) {
+  if (!process.env.APPROVAL_SECRET || !process.env.RESEND_API_KEY || !d.reference) return;
+  try {
+    const link = SITE + '/.netlify/functions/approve?ref=' + encodeURIComponent(d.reference) + '&t=' + approvalToken(String(d.reference));
+    const html =
+      '<div style="font-family:-apple-system,BlinkMacSystemFont,\'Segoe UI\',Helvetica,Arial,sans-serif;max-width:520px;margin:0 auto;padding:16px">' +
+      '<p style="font-size:16px"><strong>' + esc(d.name || 'An applicant') + '</strong> is waiting on their screen for a price.</p>' +
+      '<p style="color:#5b6b85;font-size:14px">' + esc(d.formTitle || '') + (d.carrier && d.carrier !== 'No preference' ? ' &middot; ' + esc(d.carrier) : '') + '<br>Ref ' + esc(d.reference) + '</p>' +
+      '<p style="margin:22px 0"><a href="' + link + '" style="display:inline-block;background:#1A3586;color:#fff;text-decoration:none;font-weight:700;padding:15px 28px;border-radius:10px">Review and send price</a></p>' +
+      '<p style="color:#5b6b85;font-size:12px">Enter the monthly amount and paste the carrier\'s secure payment link. They see it on their screen and get it by email.</p></div>';
+    const res = await fetch('https://api.resend.com/emails', {
+      method: 'POST',
+      headers: { Authorization: 'Bearer ' + process.env.RESEND_API_KEY, 'Content-Type': 'application/json' },
+      body: JSON.stringify({ from: FROM, to: [REPLY_TO], subject: 'Send price: ' + (d.name || 'applicant') + ' (' + d.reference + ')', html }),
+    });
+    if (!res.ok) console.error('notifyMatthew failed', res.status, await res.text());
+  } catch (err) {
+    console.error('notifyMatthew error', err);
+  }
+}
 
 function render(d) {
   const first = String(d.name || '').split(' ')[0] || 'there';
@@ -55,6 +104,8 @@ export const handler = async (event) => {
     const payload = JSON.parse(event.body || '{}').payload || {};
     if (payload.form_name !== 'lhi-intake') return { statusCode: 200, body: 'skipped' };
     const d = payload.data || {};
+    await trackApplication(event, d);
+    await notifyMatthew(d);
     const to = String(d.email || '').trim();
     if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(to)) return { statusCode: 200, body: 'no applicant email' };
     if (!process.env.RESEND_API_KEY) {
