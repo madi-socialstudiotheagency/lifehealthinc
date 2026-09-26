@@ -118,7 +118,7 @@ export const handler = async (event) => {
     let mailed = false;
     if (rec.email) {
       const m = applicantEmail(rec, { outcome, plan: done.plan, amount, payLink, note: done.note });
-      mailed = await sendResend({ from: FROM, to: [rec.email], reply_to: REPLY_TO, subject: m.subject, html: m.html });
+      mailed = await sendResend({ from: FROM, to: [rec.email], bcc: [REPLY_TO], reply_to: REPLY_TO, subject: m.subject, html: m.html });
     }
     return page('<h2 style="margin:0 0 8px">Sent</h2><p>' + esc(rec.name || 'The applicant') + ' now sees <strong>' + esc(outcome) + '</strong> on their screen' + (mailed ? ' and was emailed.' : '. Email could not be sent, so tell them directly.') + '</p>');
   } catch (err) {
