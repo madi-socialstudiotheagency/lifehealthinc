@@ -1,19 +1,10 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
+
+const MATTHEW_SCHEDULE_URL =
+  "https://calendar.google.com/calendar/appointments/schedules/AcZssZ3HIQfT_n-IUvWsq-YGM6Ye1vljt7UGNqADlat84Pe75ILLNMjH1jVU2gy0oFG05tATaVTAwN67?gv=true";
 
 export default function SchedulerChat() {
   const [loaded, setLoaded] = useState(false);
-
-  useEffect(() => {
-    const script = document.createElement("script");
-    script.src = "https://link.msgsndr.com/js/form_embed.js";
-    script.async = true;
-    document.body.appendChild(script);
-    return () => {
-      if (document.body.contains(script)) {
-        document.body.removeChild(script);
-      }
-    };
-  }, []);
 
   return (
     <div
@@ -36,29 +27,16 @@ export default function SchedulerChat() {
         {!loaded && (
           <div
             className="absolute inset-0 flex flex-col items-center justify-center z-10 rounded-xl"
-            style={{ background: "rgba(8,23,48,0.7)", minHeight: "400px" }}
+            style={{ background: "rgba(8,23,48,0.7)", minHeight: "600px" }}
           >
             <div className="w-10 h-10 border-4 border-blue-400 border-t-transparent rounded-full animate-spin mb-4" />
-            <p className="text-blue-200 text-sm">Loading form...</p>
+            <p className="text-blue-200 text-sm">Loading calendar...</p>
           </div>
         )}
         <iframe
-          src="https://api.leadconnectorhq.com/widget/form/ucTFwCvAS95I2jq8F3KD"
-          style={{ width: "100%", border: "none", borderRadius: "8px", minHeight: "800px", display: "block" }}
-          id="popup-ucTFwCvAS95I2jq8F3KD"
-          data-layout="{'id':'POPUP'}"
-          data-trigger-type="alwaysShow"
-          data-trigger-value=""
-          data-activation-type="alwaysActivated"
-          data-activation-value=""
-          data-deactivation-type="neverDeactivate"
-          data-deactivation-value=""
-          data-form-name="Request Free Quotes"
-          data-height="704"
-          data-layout-iframe-id="popup-ucTFwCvAS95I2jq8F3KD"
-          data-form-id="ucTFwCvAS95I2jq8F3KD"
-          title="Request Free Quotes"
-          data-modal-height="498"
+          src={MATTHEW_SCHEDULE_URL}
+          style={{ width: "100%", border: "none", borderRadius: "8px", minHeight: "600px", display: "block" }}
+          title="Book a call with Matthew Anderson"
           onLoad={() => setLoaded(true)}
         />
       </div>
