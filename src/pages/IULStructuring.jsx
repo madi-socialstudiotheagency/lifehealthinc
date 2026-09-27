@@ -262,7 +262,7 @@ export default function IULStructuringPage() {
                 </div>
                 <Button asChild className="mt-6 w-full font-bold rounded-xl py-6 hover:scale-105 transition-all duration-300"
                   style={{ background: 'linear-gradient(135deg, #1A3586, #3D6B9E)', color: '#FFFFFF' }}>
-                  <a href="https://calendly.com/lifehealthinc/lifehealthinc" target="_blank" rel="noopener noreferrer">
+                  <a href="https://calendar.app.google/4MY9jEzUPVwT17t27" target="_blank" rel="noopener noreferrer">
                     Get Real Numbers <ChevronRight className="w-4 h-4 ml-1" />
                   </a>
                 </Button>
@@ -371,7 +371,7 @@ export default function IULStructuringPage() {
                           ))}
                           <Button asChild size="lg" className="w-full mt-2 font-bold rounded-xl py-6 hover:scale-105 transition-all duration-300"
                             style={{ background: 'linear-gradient(135deg, #1A3586, #3D6B9E)', color: '#FFFFFF' }}>
-                            <a href="https://calendly.com/lifehealthinc/lifehealthinc" target="_blank" rel="noopener noreferrer">
+                            <a href="https://calendar.app.google/4MY9jEzUPVwT17t27" target="_blank" rel="noopener noreferrer">
                               Schedule My Free Risk Assessment
                             </a>
                           </Button>
@@ -627,7 +627,7 @@ export default function IULStructuringPage() {
                 ))}
                 <Button asChild size="lg" className="w-full font-bold rounded-xl py-6 hover:scale-105 transition-all duration-300 mt-2"
                   style={{ background: 'linear-gradient(135deg, #1A3586, #3D6B9E)', color: '#FFFFFF' }}>
-                  <a href="https://calendly.com/lifehealthinc/lifehealthinc" target="_blank" rel="noopener noreferrer">
+                  <a href="https://calendar.app.google/4MY9jEzUPVwT17t27" target="_blank" rel="noopener noreferrer">
                     See If You Qualify Today <ChevronRight className="w-5 h-5 ml-1" />
                   </a>
                 </Button>
@@ -741,7 +741,7 @@ export default function IULStructuringPage() {
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Button asChild size="lg" className="text-lg px-12 py-7 font-black rounded-full shadow-2xl hover:scale-105 transition-all duration-300"
                 style={{ background: 'linear-gradient(135deg, #1A3586, #3D6B9E)', color: '#FFFFFF' }}>
-                <a href="https://calendly.com/lifehealthinc/lifehealthinc" target="_blank" rel="noopener noreferrer">
+                <a href="https://calendar.app.google/4MY9jEzUPVwT17t27" target="_blank" rel="noopener noreferrer">
                   <Calculator className="w-5 h-5 mr-2" /> Get a Carrier Illustration
                 </a>
               </Button>

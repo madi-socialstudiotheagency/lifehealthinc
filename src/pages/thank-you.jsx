@@ -290,10 +290,10 @@ export default function ThankYouPage() {
                       target="_blank"
                       rel="noopener noreferrer"
                     >
-                      {config.primaryCTA.href.includes('calendly') && <Calendar className="w-5 h-5 mr-2" />}
+                      {(config.primaryCTA.href.includes('calendly') || config.primaryCTA.href.includes('calendar.google.com') || config.primaryCTA.href.includes('calendar.app.google')) && <Calendar className="w-5 h-5 mr-2" />}
                       {config.primaryCTA.href.includes('tel:') && <Phone className="w-5 h-5 mr-2" />}
                       {config.primaryCTA.href.includes('linkedin') && <ExternalLink className="w-5 h-5 mr-2" />}
-                      {!config.primaryCTA.href.includes('calendly') && !config.primaryCTA.href.includes('tel:') && !config.primaryCTA.href.includes('linkedin') && <ExternalLink className="w-5 h-5 mr-2" />}
+                      {!config.primaryCTA.href.includes('calendly') && !config.primaryCTA.href.includes('calendar.google.com') && !config.primaryCTA.href.includes('calendar.app.google') && !config.primaryCTA.href.includes('tel:') && !config.primaryCTA.href.includes('linkedin') && <ExternalLink className="w-5 h-5 mr-2" />}
                       {config.primaryCTA.text}
                     </a>
                   ) : (
