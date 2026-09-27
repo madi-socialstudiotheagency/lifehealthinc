@@ -210,6 +210,30 @@ export default function IULStructuringPage() {
 
         <Divider />
 
+        {/* HOW INDEX CREDITING WORKS (National Life Group) */}
+        <section className="py-16">
+          <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <SectionLabel>How It Works</SectionLabel>
+            <h2 className="text-3xl md:text-4xl font-black text-white mb-6">How Index Crediting Works</h2>
+            <div className="rounded-2xl overflow-hidden shadow-2xl inline-block max-w-full">
+              <iframe
+                src="https://www.facebook.com/plugins/video.php?height=314&href=https%3A%2F%2Fwww.facebook.com%2FNationalLife%2Fvideos%2F417186738824211%2F&show_text=false&width=560&t=0"
+                width="560"
+                height="314"
+                style={{ border: 'none', overflow: 'hidden', maxWidth: '100%' }}
+                scrolling="no"
+                frameBorder="0"
+                allowFullScreen
+                allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"
+                title="How Index Crediting Works, National Life Group"
+              />
+            </div>
+            <p className="text-slate-500 text-xs mt-4">Video courtesy of National Life Group, one of the carriers we shop for IUL policies.</p>
+          </div>
+        </section>
+
+        <Divider />
+
         {/* CASH VALUE PROJECTION */}
         <section className="py-24">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
