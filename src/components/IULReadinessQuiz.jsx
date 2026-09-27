@@ -283,7 +283,7 @@ function ResultView({ result, score, maxScore, onReset }) {
       <div className="flex flex-col sm:flex-row gap-3">
         <Button asChild size="lg" className="flex-1 font-bold rounded-xl py-6 hover:scale-105 transition-all duration-300"
           style={{ background: 'linear-gradient(135deg, #1A3586, #3D6B9E)', color: '#FFFFFF' }}>
-          <a href="https://calendly.com/lifehealthinc/lifehealthinc" target="_blank" rel="noopener noreferrer">
+          <a href="https://calendar.app.google/4MY9jEzUPVwT17t27" target="_blank" rel="noopener noreferrer">
             {result.cta} <ArrowRight className="w-4 h-4 ml-2" />
           </a>
         </Button>

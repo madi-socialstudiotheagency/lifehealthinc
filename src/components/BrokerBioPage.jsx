@@ -162,7 +162,7 @@ export default function BrokerBioPage({ broker }) {
             </p>
           </div>
 
-          {/* Calendly embed — dynamic URL */}
+          {/* Booking embed — dynamic URL per broker (Google Calendar or Calendly) */}
           <div className="rounded-2xl overflow-hidden shadow-lg border border-slate-200">
             {loadingCalendly ? (
               <div className="flex items-center justify-center h-48 bg-slate-50">
@@ -170,7 +170,7 @@ export default function BrokerBioPage({ broker }) {
               </div>
             ) : calendlyUrl ? (
               <iframe
-                src={`${calendlyUrl}?embed_type=Inline&hide_landing_page_details=1&hide_gdpr_banner=1`}
+                src={calendlyUrl}
                 width="100%"
                 height="700"
                 frameBorder="0"

@@ -266,7 +266,7 @@ export default function IULComparisonTool() {
         </div>
         <Button asChild className="flex-shrink-0 font-bold rounded-xl px-6 py-5 hover:scale-105 transition-all"
           style={{ background: 'linear-gradient(135deg, #1A3586, #3D6B9E)', color: '#FFFFFF' }}>
-          <a href="https://calendly.com/lifehealthinc/lifehealthinc" target="_blank" rel="noopener noreferrer">
+          <a href="https://calendar.app.google/4MY9jEzUPVwT17t27" target="_blank" rel="noopener noreferrer">
             Get My Illustration <ChevronRight className="w-4 h-4 ml-1" />
           </a>
         </Button>

@@ -50,10 +50,10 @@ export default function QuotePage() {
                 </p>
           </div>
 
-          {/* Calendly booking CTA */}
+          {/* Booking CTA */}
           <div className="text-center mb-6">
             <a
-              href="https://calendly.com/lifehealthinc/meeting-with-matthew-anderson"
+              href="https://calendar.app.google/4MY9jEzUPVwT17t27"
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center gap-2 rounded-full px-5 py-2.5 text-sm font-bold border transition-colors hover:bg-white/5"

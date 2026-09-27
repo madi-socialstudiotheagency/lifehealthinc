@@ -14,7 +14,7 @@ export const BROKERS = [
     bioExtended: "As an independent broker licensed in all 50 states, Matthew shops top-rated carriers to find you the best plan at the best price. He specializes in life insurance strategies — from straightforward term coverage to complex IUL structures designed to build tax-free retirement income. When you work with Matthew, you work with someone whose only goal is getting you protected.",
     specialties: ['Life Insurance', 'Mortgage Protection', 'Annuities', 'IUL Structuring'],
     quote: '"My job isn\'t to sell you a policy. It\'s to make sure your family is protected no matter what happens."',
-    calendlyUrl: 'https://calendly.com/lifehealthinc/meeting-with-matthew-anderson',
+    calendlyUrl: 'https://calendar.google.com/calendar/appointments/schedules/AcZssZ3HIQfT_n-IUvWsq-YGM6Ye1vljt7UGNqADlat84Pe75ILLNMjH1jVU2gy0oFG05tATaVTAwN67?gv=true',
     linkedin: 'https://www.linkedin.com/in/matthew-anderson-797939296/',
   },
 ];
