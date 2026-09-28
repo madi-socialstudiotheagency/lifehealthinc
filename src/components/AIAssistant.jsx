@@ -101,7 +101,7 @@ export default function AIAssistant() {
   const [messages, setMessages] = useState([
     {
       role: 'assistant',
-      content: "Hi, I'm the LifeHealthInc assistant. Tell me what you're looking to cover, life, health, Medicare, or something else, and I'll point you to the fastest way to see real pricing.",
+      content: "Hi, I'm the LifeHealthInc assistant. Tell me what you're looking to cover, Life, Health, Medicare, or something else, and I'll point you to the fastest way to see real pricing.",
       time: nowLabel()
     }
   ]);
