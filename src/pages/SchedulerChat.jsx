@@ -1,77 +1,54 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
+
+const MATTHEW_SCHEDULE_URL =
+  "https://calendar.google.com/calendar/appointments/schedules/AcZssZ3HIQfT_n-IUvWsq-YGM6Ye1vljt7UGNqADlat84Pe75ILLNMjH1jVU2gy0oFG05tATaVTAwN67?gv=true";
 
 export default function SchedulerChat() {
   const [loaded, setLoaded] = useState(false);
 
-  useEffect(() => {
-    const script = document.createElement("script");
-    script.src = "https://link.msgsndr.com/js/form_embed.js";
-    script.async = true;
-    document.body.appendChild(script);
-    return () => {
-      if (document.body.contains(script)) {
-        document.body.removeChild(script);
-      }
-    };
-  }, []);
-
   return (
     <div
-      className="min-h-screen py-16 px-4"
+      className="min-h-screen py-12 px-4"
       style={{ background: "linear-gradient(135deg, #081730 0%, #1A3586 100%)" }}
     >
-      <div className="max-w-2xl mx-auto text-center mb-8">
-        <p className="text-blue-300 text-sm font-semibold uppercase tracking-widest mb-2">
-          Free Consultation &mdash; No Pressure
-        </p>
-        <h1 className="text-3xl md:text-4xl font-bold text-white mb-3">
-          Book a Free Call
-        </h1>
-        <p className="text-blue-200 text-base">
-          Pick a time and a licensed advisor will walk you through your options. Rather skip the call? You can apply online in a few minutes instead.
-        </p>
-      </div>
+      <div className="max-w-3xl mx-auto rounded-2xl overflow-hidden bg-white shadow-2xl">
+        <div className="text-center px-6 pt-10 pb-6">
+          <p className="text-xs font-semibold uppercase tracking-widest mb-2" style={{ color: "#1A3586" }}>
+            Free Consultation &mdash; No Pressure
+          </p>
+          <h1 className="text-3xl md:text-4xl font-black mb-3" style={{ color: "#081730" }}>
+            Book a Free Call
+          </h1>
+          <p className="text-slate-600 text-base max-w-xl mx-auto">
+            Pick a time below and a licensed advisor will walk you through your options. Rather skip the call?{" "}
+            <a href="/get-started" className="font-bold underline" style={{ color: "#1A3586" }}>Apply online instead</a>.
+          </p>
+        </div>
 
-      <div className="max-w-3xl mx-auto relative">
-        {!loaded && (
-          <div
-            className="absolute inset-0 flex flex-col items-center justify-center z-10 rounded-xl"
-            style={{ background: "rgba(8,23,48,0.7)", minHeight: "400px" }}
-          >
-            <div className="w-10 h-10 border-4 border-blue-400 border-t-transparent rounded-full animate-spin mb-4" />
-            <p className="text-blue-200 text-sm">Loading form...</p>
-          </div>
-        )}
-        <iframe
-          src="https://api.leadconnectorhq.com/widget/form/ucTFwCvAS95I2jq8F3KD"
-          style={{ width: "100%", border: "none", borderRadius: "8px", minHeight: "800px", display: "block" }}
-          id="popup-ucTFwCvAS95I2jq8F3KD"
-          data-layout="{'id':'POPUP'}"
-          data-trigger-type="alwaysShow"
-          data-trigger-value=""
-          data-activation-type="alwaysActivated"
-          data-activation-value=""
-          data-deactivation-type="neverDeactivate"
-          data-deactivation-value=""
-          data-form-name="Request Free Quotes"
-          data-height="704"
-          data-layout-iframe-id="popup-ucTFwCvAS95I2jq8F3KD"
-          data-form-id="ucTFwCvAS95I2jq8F3KD"
-          title="Request Free Quotes"
-          data-modal-height="498"
-          onLoad={() => setLoaded(true)}
-        />
-      </div>
+        <div className="relative border-t border-slate-100">
+          {!loaded && (
+            <div
+              className="absolute inset-0 flex flex-col items-center justify-center z-10 bg-white"
+              style={{ minHeight: "600px" }}
+            >
+              <div className="w-10 h-10 border-4 border-slate-200 border-t-transparent rounded-full animate-spin mb-4" style={{ borderTopColor: "#1A3586" }} />
+              <p className="text-slate-400 text-sm">Loading calendar...</p>
+            </div>
+          )}
+          <iframe
+            src={MATTHEW_SCHEDULE_URL}
+            style={{ width: "100%", border: "none", minHeight: "600px", display: "block" }}
+            title="Book a call with Matthew Anderson"
+            onLoad={() => setLoaded(true)}
+          />
+        </div>
 
-      <p className="text-center mt-6">
-        <a href="/get-started" className="inline-block rounded-lg bg-white px-6 py-3 font-bold" style={{ color: "#1A3586" }}>Apply online instead</a>
-      </p>
-
-      <div className="max-w-2xl mx-auto mt-6 flex flex-wrap justify-center gap-6 text-blue-300 text-xs">
-        <span>&#x1F4C5; Pick Any Available Time Slot</span>
-        <span>&#x23F1; 30-Minute Focused Review</span>
-        <span>&#x1F512; Secure &amp; Confidential</span>
-        <span>&#x1F4DE; Licensed Advisor on Every Call</span>
+        <div className="flex flex-wrap justify-center gap-x-6 gap-y-2 px-6 py-5 text-xs text-slate-500 border-t border-slate-100">
+          <span>&#x1F4C5; Pick any available time slot</span>
+          <span>&#x23F1; 30-minute focused review</span>
+          <span>&#x1F512; Secure and confidential</span>
+          <span>&#x1F4DE; Licensed advisor on every call</span>
+        </div>
       </div>
     </div>
   );

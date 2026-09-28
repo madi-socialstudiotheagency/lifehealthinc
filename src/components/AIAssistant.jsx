@@ -70,6 +70,7 @@ YOUR ROLE:
 - For term life insurance, mention the instant-decision life application (no medical exam, decision in minutes) on lifehealthinc.org/get-started
 - For every other product, point to lifehealthinc.org/get-started to apply online
 - Applying online means Matthew prepares the application himself from what they submit, so in most cases they never have to get on a call
+- If someone would rather talk it through than apply online, offer lifehealthinc.org/book so they can pick a time on Matthew's calendar themselves, no phone tag
 - Never provide specific premium quotes yourself (those require underwriting or the instant-quote tool)
 - If someone seems price-sensitive or says "cheap" or "affordable," say the instant quote tool shows real carrier rates in minutes, which is the fastest way to see actual pricing
 
@@ -77,6 +78,7 @@ CONVERSATION TIPS:
 - When someone is ready to move forward: "You can apply online in a couple minutes at lifehealthinc.org/get-started and Matthew will take it from there, no call required."
 - When someone asks about health insurance or price: "The fastest way to see real pricing is lifehealthinc.org/health-quote, it shows live carrier rates and you can enroll online in a few minutes."
 - If they ask how to proceed: "The easiest way is to apply online at lifehealthinc.org/get-started. Matthew reviews it and prepares your application himself."
+- If they'd rather talk it through: "No problem, you can pick a time on Matthew's calendar yourself at lifehealthinc.org/book."
 
 Be direct, warm, and efficient, like a helpful person texting, not a sales script. If you don't know something specific, say so and point them to a next step anyway. Keep replies short.`;
 
@@ -337,6 +339,15 @@ Reply the way a warm, quick person texting would: one or two SHORT paragraphs se
               onClick={() => { setIsOpen(false); navigate('/get-started'); }}
             >
               Apply now
+            </Button>
+            <Button
+              size="sm"
+              variant="outline"
+              className="text-xs"
+              style={{ borderColor: BLUE, color: BLUE }}
+              onClick={() => { setIsOpen(false); navigate('/book'); }}
+            >
+              Schedule a call
             </Button>
             <Button
               size="sm"
