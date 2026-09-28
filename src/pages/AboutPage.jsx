@@ -35,6 +35,10 @@ const TEAM = [
   },
 ];
 
+const AGENTS = [
+  { name: 'Demarco Carter', title: 'Licensed Insurance Agent', image: '/team/demarco-carter.jpg' },
+];
+
 const VALUES = [
   { icon: Shield, title: 'Independent', desc: 'We represent you, not any insurance company. Zero quotas, zero carrier bias — ever.' },
   { icon: Award, title: 'Licensed in 50 States', desc: 'Active licenses nationwide means we can serve any client, anywhere in the country.' },
@@ -176,6 +180,22 @@ export default function AboutPage() {
                 </div>
               </div>
             ))}
+          </div>
+
+          <div className="mt-24 text-center">
+            <SectionLabel>Our Agents</SectionLabel>
+            <h2 className="text-3xl font-black mb-10" style={{ color: DARK1 }}>Licensed Agents on Your Side</h2>
+            <div className="flex flex-wrap justify-center gap-8">
+              {AGENTS.map(({ name, title, image }) => (
+                <div key={name} className="w-56">
+                  <div className="rounded-2xl overflow-hidden shadow-xl aspect-[4/5]" style={{ background: '#e8edf5' }}>
+                    <img src={image} alt={name} className="w-full h-full object-cover object-top" loading="lazy" />
+                  </div>
+                  <p className="mt-4 font-black text-lg" style={{ color: DARK1 }}>{name}</p>
+                  <p className="text-xs font-bold uppercase tracking-widest" style={{ color: DARK3 }}>{title}</p>
+                </div>
+              ))}
+            </div>
           </div>
         </div>
       </section>
