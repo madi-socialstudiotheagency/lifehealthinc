@@ -154,7 +154,7 @@ export default function NewsletterSignup({ variant, onSuccess }) {
           />
         </div>
 
-        <div className="space-y-3 bg-gray-50 rounded-lg p-3">
+        <div className={`space-y-3 rounded-lg p-3 ${variant === 'footer' ? 'bg-white/10 border border-white/15' : 'bg-gray-50'}`}>
           <div className="flex items-start gap-3">
             <Checkbox
               id="consent"
@@ -167,7 +167,7 @@ export default function NewsletterSignup({ variant, onSuccess }) {
               className="text-xs leading-relaxed cursor-pointer"
               style={{ color: variant === 'footer' ? '#F4F6FA' : '#334155' }}
             >
-              I agree to receive emails from LifeHealthInc with insurance tips, updates, and exclusive offers. Consent is not a condition of service. See our <a href="/terms" className="text-blue-600 underline hover:text-blue-800">Terms</a>{'  '}and{'  '}<a href="/privacy" className="text-blue-600 underline hover:text-blue-800">Privacy Policy</a>.
+              I agree to receive emails from LifeHealthInc with insurance tips, updates, and exclusive offers. Consent is not a condition of service. See our <a href="/terms" className={variant === 'footer' ? 'text-blue-200 underline' : 'text-blue-600 underline hover:text-blue-800'}>Terms</a>{'  '}and{'  '}<a href="/privacy" className={variant === 'footer' ? 'text-blue-200 underline' : 'text-blue-600 underline hover:text-blue-800'}>Privacy Policy</a>.
             </Label>
           </div>
         </div>

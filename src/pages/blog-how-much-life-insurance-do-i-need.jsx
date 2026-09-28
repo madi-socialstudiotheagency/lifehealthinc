@@ -437,7 +437,7 @@ Remember: Life insurance isn't about you—**it's about protecting the people wh
 
 ## Ready to Get Covered?
 
-Get personalized quotes from top-rated carriers in minutes. Our independent brokers will find you the best coverage at the best price—guaranteed.
+Get personalized quotes from top-rated carriers in minutes. Our independent brokers will find you the best coverage at the best price.
 `;
 
   return (
