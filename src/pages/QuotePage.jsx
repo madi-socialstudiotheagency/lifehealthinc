@@ -25,13 +25,13 @@ export default function QuotePage() {
           <div className="text-center mb-10">
             <div className="inline-block rounded-full px-4 py-1.5 text-xs font-bold uppercase tracking-widest mb-4"
               style={{ background: 'rgba(255,255,255,0.15)', color: GOLD, border: `1px solid ${GOLD}40` }}>
-              Trusted by Thousands of Families Nationwide
+              Independent Brokerage · Licensed in All 50 States
             </div>
             <h1 className="text-4xl md:text-5xl font-black text-white mb-4 leading-tight">
               How Much Are You <span style={{ color: GOLD }}>Overpaying</span> for Insurance?
             </h1>
             <p className="text-slate-300 max-w-2xl mx-auto text-lg leading-relaxed">
-              Most Americans pay <strong className="text-white">20–40% more than they should</strong> because they bought from one carrier.
+              The same coverage can cost <strong className="text-white">very different amounts</strong> from one carrier to the next.
               Our independent brokers shop top-rated carriers in seconds — and the comparison is 100% free.
             </p>
 
@@ -46,7 +46,7 @@ export default function QuotePage() {
             </div>
             <p className="text-xs text-slate-400 mt-4 flex items-center justify-center gap-1">
               {[...Array(5)].map((_, i) => <Star key={i} className="w-3 h-3 fill-white text-white" />)}
-                5-Star Client Reviews · 1,000+ Families Protected
+                5-Star Google Reviews
                 </p>
           </div>
 

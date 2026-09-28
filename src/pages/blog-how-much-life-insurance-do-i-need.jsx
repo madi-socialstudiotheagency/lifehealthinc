@@ -305,7 +305,7 @@ Use the DIME method or income multiplier to determine coverage amount.
 - **30 years:** Long-term protection, through retirement
 
 ### Step 3: Compare Multiple Carriers
-Different insurance companies price risk differently. You could save 20-40% by comparing carriers.
+Different insurance companies price risk differently. Comparing several carriers is the simplest way to find a lower rate for the same coverage.
 
 ### Step 4: Work With an Independent Broker
 Unlike captive agents (who only sell one company), independent brokers compare top-rated carriers to find your best rate.
@@ -457,13 +457,13 @@ Get personalized quotes from top-rated carriers in minutes. Our independent brok
         
         <div dangerouslySetInnerHTML={{ __html: content.split('\n').map(line => {
           if (line.startsWith('# ')) {
-            return `<h1 class="text-4xl font-bold mt-12 mb-6" style="color: #1C1B30;">${line.substring(2)}</h1>`;
+            return `<h1 class="text-4xl font-bold mt-12 mb-6" style="color: #081730;">${line.substring(2)}</h1>`;
           } else if (line.startsWith('## ')) {
-            return `<h2 class="text-3xl font-bold mt-10 mb-4" style="color: #1C1B30;">${line.substring(3)}</h2>`;
+            return `<h2 class="text-3xl font-bold mt-10 mb-4" style="color: #081730;">${line.substring(3)}</h2>`;
           } else if (line.startsWith('### ')) {
-            return `<h3 class="text-2xl font-semibold mt-8 mb-3" style="color: #2C2B50;">${line.substring(4)}</h3>`;
+            return `<h3 class="text-2xl font-semibold mt-8 mb-3" style="color: #1A3586;">${line.substring(4)}</h3>`;
           } else if (line.startsWith('- **') || line.startsWith('- ')) {
-            return `<li class="ml-6 mb-2">${line.substring(2)}</li>`;
+            return `<li class="ml-6 mb-2">${line.substring(2).replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')}</li>`;
           } else if (line.includes('**') && line.trim()) {
             return `<p class="mb-4">${line.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')}</p>`;
           } else if (line.trim()) {
