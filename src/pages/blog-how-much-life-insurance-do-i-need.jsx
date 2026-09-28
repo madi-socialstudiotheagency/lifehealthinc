@@ -305,7 +305,7 @@ Use the DIME method or income multiplier to determine coverage amount.
 - **30 years:** Long-term protection, through retirement
 
 ### Step 3: Compare Multiple Carriers
-Different insurance companies price risk differently. You could save 20-40% by comparing carriers.
+Different insurance companies price risk differently. Comparing several carriers is the simplest way to find a lower rate for the same coverage.
 
 ### Step 4: Work With an Independent Broker
 Unlike captive agents (who only sell one company), independent brokers compare top-rated carriers to find your best rate.
@@ -437,7 +437,7 @@ Remember: Life insurance isn't about you—**it's about protecting the people wh
 
 ## Ready to Get Covered?
 
-Get personalized quotes from top-rated carriers in minutes. Our independent brokers will find you the best coverage at the best price—guaranteed.
+Get personalized quotes from top-rated carriers in minutes. Our independent brokers will find you the best coverage at the best price.
 `;
 
   return (
@@ -457,13 +457,13 @@ Get personalized quotes from top-rated carriers in minutes. Our independent brok
         
         <div dangerouslySetInnerHTML={{ __html: content.split('\n').map(line => {
           if (line.startsWith('# ')) {
-            return `<h1 class="text-4xl font-bold mt-12 mb-6" style="color: #1C1B30;">${line.substring(2)}</h1>`;
+            return `<h1 class="text-4xl font-bold mt-12 mb-6" style="color: #081730;">${line.substring(2)}</h1>`;
           } else if (line.startsWith('## ')) {
-            return `<h2 class="text-3xl font-bold mt-10 mb-4" style="color: #1C1B30;">${line.substring(3)}</h2>`;
+            return `<h2 class="text-3xl font-bold mt-10 mb-4" style="color: #081730;">${line.substring(3)}</h2>`;
           } else if (line.startsWith('### ')) {
-            return `<h3 class="text-2xl font-semibold mt-8 mb-3" style="color: #2C2B50;">${line.substring(4)}</h3>`;
+            return `<h3 class="text-2xl font-semibold mt-8 mb-3" style="color: #1A3586;">${line.substring(4)}</h3>`;
           } else if (line.startsWith('- **') || line.startsWith('- ')) {
-            return `<li class="ml-6 mb-2">${line.substring(2)}</li>`;
+            return `<li class="ml-6 mb-2">${line.substring(2).replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')}</li>`;
           } else if (line.includes('**') && line.trim()) {
             return `<p class="mb-4">${line.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')}</p>`;
           } else if (line.trim()) {
@@ -473,10 +473,10 @@ Get personalized quotes from top-rated carriers in minutes. Our independent brok
         }).join('') }} />
 
         {/* Interactive Calculator CTA */}
-        <Card className="my-12 bg-gradient-to-br from-yellow-50 to-amber-50 border-2 border-yellow-400">
+        <Card className="my-12 bg-gradient-to-br from-blue-50 to-blue-50 border-2 border-blue-400">
           <CardContent className="p-8">
             <div className="flex items-start gap-4">
-              <div className="w-16 h-16 rounded-full bg-gradient-to-br from-yellow-400 to-amber-500 flex items-center justify-center flex-shrink-0">
+              <div className="w-16 h-16 rounded-full bg-gradient-to-br from-blue-400 to-blue-500 flex items-center justify-center flex-shrink-0">
                 <Calculator className="w-8 h-8 text-white" />
               </div>
               <div className="flex-grow">
@@ -491,7 +491,7 @@ Get personalized quotes from top-rated carriers in minutes. Our independent brok
                     asChild 
                     size="lg"
                     className="font-semibold shadow-lg hover:shadow-xl transition-all"
-                    style={{ backgroundColor: '#D4AF37', color: '#1C1B30' }}
+                    style={{ backgroundColor: '#1A3586', color: '#FFFFFF' }}
                   >
                     <Link to={createPageUrl("Calculator")}>
                       <Calculator className="w-5 h-5 mr-2" />
@@ -503,7 +503,7 @@ Get personalized quotes from top-rated carriers in minutes. Our independent brok
                     size="lg"
                     variant="outline"
                     className="border-2 font-semibold hover:bg-slate-50"
-                    style={{ borderColor: '#D4AF37', color: '#1C1B30' }}
+                    style={{ borderColor: '#1A3586', color: '#1A3586' }}
                   >
                     <Link to={createPageUrl("Book")}>
                       Speak to an Expert
@@ -520,7 +520,7 @@ Get personalized quotes from top-rated carriers in minutes. Our independent brok
         <Card className="my-12 bg-slate-50 border-2 border-slate-200">
           <CardContent className="p-8">
             <h3 className="text-2xl font-bold mb-6 flex items-center gap-3" style={{ color: '#1C1B30' }}>
-              <Shield className="w-8 h-8" style={{ color: '#D4AF37' }} />
+              <Shield className="w-8 h-8" style={{ color: '#3B82F6' }} />
               Key Takeaways
             </h3>
             <ul className="space-y-3">
@@ -623,7 +623,7 @@ Get personalized quotes from top-rated carriers in minutes. Our independent brok
               asChild 
               size="lg"
               className="text-lg px-8 py-6 font-bold shadow-2xl hover:shadow-3xl transition-all"
-              style={{ backgroundColor: '#D4AF37', color: '#1C1B30' }}
+              style={{ backgroundColor: '#1A3586', color: '#FFFFFF' }}
             >
               <Link to={createPageUrl("Calculator")}>
                 <Calculator className="w-6 h-6 mr-2" />
@@ -635,7 +635,7 @@ Get personalized quotes from top-rated carriers in minutes. Our independent brok
               size="lg"
               variant="outline"
               className="text-lg px-8 py-6 font-bold border-2 hover:bg-white/10 transition-all"
-              style={{ borderColor: '#D4AF37', color: 'white' }}
+              style={{ borderColor: '#3B82F6', color: 'white' }}
             >
               <a href="tel:9545430853">
                 📞 Call (954) 543-0853

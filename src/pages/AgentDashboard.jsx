@@ -105,7 +105,7 @@ export default function AgentDashboard() {
             label="Pending Policies"
             value={pendingPolicies}
             icon={Clock}
-            color="amber"
+            color="blue"
           />
         </div>
 
@@ -113,7 +113,7 @@ export default function AgentDashboard() {
         {(renewalAlerts.length > 0 || lapsedAlerts.length > 0) && (
         <div className="mb-8">
         <div className="flex items-center gap-2 mb-3">
-        <AlertTriangle className="w-5 h-5 text-amber-500" />
+        <AlertTriangle className="w-5 h-5 text-blue-500" />
         <h2 className="text-lg font-bold text-slate-900">Retention & Renewal Alerts</h2>
         </div>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -132,7 +132,7 @@ export default function AgentDashboard() {
             <span className="text-sm text-slate-800">
             {p._client ? `${p._client.firstName} ${p._client.lastName}` : 'Unknown client'} — {p.carrierName || 'Carrier'} ({p.policyType})
             </span>
-            <span className="text-xs font-semibold text-amber-600 whitespace-nowrap">{p._daysLeft}d left</span>
+            <span className="text-xs font-semibold text-blue-600 whitespace-nowrap">{p._daysLeft}d left</span>
             </button>
           ))}
           </div>

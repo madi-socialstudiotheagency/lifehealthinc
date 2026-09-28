@@ -402,9 +402,10 @@ export default function Layout({ children, currentPageName }) {
             {/* Brand */}
             <div className="col-span-2 md:col-span-1">
               <img
-                src="https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/68c1ca7c80a1472f1eb4424c/f8b8be74c_lfhi1.png"
+                src="https://media.base44.com/images/public/68c1ca7c80a1472f1eb4424c/6bb5a4d12_Untitleddesign.png"
                 alt="LifeHealthInc"
                 className="h-10 mb-3"
+                style={{ mixBlendMode: 'lighten' }}
               />
               <p className="text-xs text-slate-400 leading-relaxed">
                 Licensed insurance brokerage serving clients nationwide. We shop top-rated carriers to find the best coverage at the best price.

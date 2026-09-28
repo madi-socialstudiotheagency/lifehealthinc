@@ -90,7 +90,7 @@ export default function OwnBank() {
       <section className="max-w-4xl mx-auto px-4 pb-12">
         <div className="rounded-2xl bg-white p-6 md:p-8">
           <h2 className="text-2xl font-black text-slate-900 mb-4 flex items-center gap-2">
-            <AlertTriangle className="w-6 h-6 text-amber-600" /> What you need to know first
+            <AlertTriangle className="w-6 h-6 text-blue-600" /> What you need to know first
           </h2>
           <ul className="space-y-2 text-sm text-slate-700 leading-relaxed list-disc pl-5">
             <li>A life insurance policy is not a bank account and is not FDIC insured.</li>

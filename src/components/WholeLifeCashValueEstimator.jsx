@@ -93,7 +93,7 @@ export default function WholeLifeCashValueEstimator() {
       <Card>
         <CardHeader>
           <CardTitle className="flex items-center gap-2">
-            <Calculator className="w-5 h-5" style={{ color: '#D4AF37' }} />
+            <Calculator className="w-5 h-5" style={{ color: '#3B82F6' }} />
             Cash Value Projection Calculator
           </CardTitle>
         </CardHeader>
@@ -399,9 +399,9 @@ export default function WholeLifeCashValueEstimator() {
       </Card>
 
       {/* Disclaimer */}
-      <Card className="bg-amber-50 border-amber-200">
+      <Card className="bg-blue-50 border-blue-200">
         <CardContent className="p-4">
-          <p className="text-sm text-amber-900">
+          <p className="text-sm text-blue-900">
             <strong>Important Disclosure:</strong> This illustration is for educational purposes only and does not represent an actual insurance policy or guarantee of returns. Actual cash values may vary based on the specific policy, carrier, dividends (if applicable), policy loans, withdrawals, and other factors. Consult with a licensed insurance agent for personalized quotes and illustrations. Assumes level premiums paid consistently with no loans or withdrawals.
           </p>
         </CardContent>

@@ -13,7 +13,7 @@ import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/comp
 import { handleLeadSubmission, submitLeadToGHL } from './lead-submission-handler';
 import LiveQuoteEstimator from './LiveQuoteEstimator';
 
-const GOLD = '#D4AF37';
+const GOLD = '#3B82F6';
 const DARK = '#1C1B30';
 
 export default function HomepageLeadForm() {
@@ -321,7 +321,7 @@ Household Size: ${formData.householdSize || 'Not specified'}`;
             ← Back
           </button>
           <div className="flex items-center gap-2">
-            <ProductIcon className="w-5 h-5" style={{ color: '#D4AF37' }} />
+            <ProductIcon className="w-5 h-5" style={{ color: '#3B82F6' }} />
             <span className="font-bold text-slate-800">{productOptions.find(p => p.value === formData.productType)?.label}</span>
           </div>
         </div>

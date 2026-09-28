@@ -78,7 +78,7 @@ function SettingRow({ settingDef, initialValue, onSave }) {
             </p>
           )}
           {!value && !isDirty && (
-            <p className="mt-2 text-xs text-amber-500 flex items-center gap-1.5">
+            <p className="mt-2 text-xs text-blue-500 flex items-center gap-1.5">
               <AlertCircle className="w-3.5 h-3.5" /> No URL set — webhook is inactive.
             </p>
           )}

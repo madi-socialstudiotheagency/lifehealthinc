@@ -125,7 +125,7 @@ export default function RetirementCalculator() {
       <div className="max-w-7xl mx-auto">
         {/* Header */}
         <div className="text-center mb-8">
-          <h1 className="text-4xl font-bold mb-2" style={{ color: '#D4AF37' }}>Retirement Calculator</h1>
+          <h1 className="text-4xl font-bold mb-2" style={{ color: '#3B82F6' }}>Retirement Calculator</h1>
           <p className="text-slate-300 text-lg">
             Do you know what it takes to work towards a secure retirement? Use this calculator to help you create your retirement plan.
           </p>
@@ -137,8 +137,8 @@ export default function RetirementCalculator() {
             <Card className="bg-white/10 border-white/20 text-white">
               <CardHeader>
                 <div className="flex justify-between items-center">
-                  <CardTitle style={{ color: '#D4AF37' }}>Retirement Plan Inputs</CardTitle>
-                  <Button onClick={handleReset} variant="outline" size="sm" style={{ borderColor: '#D4AF37', color: '#D4AF37' }}>
+                  <CardTitle style={{ color: '#3B82F6' }}>Retirement Plan Inputs</CardTitle>
+                  <Button onClick={handleReset} variant="outline" size="sm" style={{ borderColor: '#3B82F6', color: '#3B82F6' }}>
                     Reset
                   </Button>
                 </div>
@@ -147,7 +147,7 @@ export default function RetirementCalculator() {
                 {/* Current Age */}
                 <div className="space-y-2">
                   <Label className="text-white">Current Age</Label>
-                  <div className="text-2xl font-bold" style={{ color: '#D4AF37' }}>{currentAge}</div>
+                  <div className="text-2xl font-bold" style={{ color: '#3B82F6' }}>{currentAge}</div>
                   <Slider
                     value={[currentAge]}
                     onValueChange={(val) => setCurrentAge(val[0])}
@@ -165,7 +165,7 @@ export default function RetirementCalculator() {
                 {/* Age at Retirement */}
                 <div className="space-y-2">
                   <Label className="text-white">Age at Retirement</Label>
-                  <div className="text-2xl font-bold" style={{ color: '#D4AF37' }}>{retirementAge}</div>
+                  <div className="text-2xl font-bold" style={{ color: '#3B82F6' }}>{retirementAge}</div>
                   <Slider
                     value={[retirementAge]}
                     onValueChange={(val) => setRetirementAge(val[0])}
@@ -183,7 +183,7 @@ export default function RetirementCalculator() {
                 {/* Annual Household Income */}
                 <div className="space-y-2">
                   <Label className="text-white">Annual Household Income</Label>
-                  <div className="text-2xl font-bold" style={{ color: '#D4AF37' }}>{formatCurrency(annualIncome)}</div>
+                  <div className="text-2xl font-bold" style={{ color: '#3B82F6' }}>{formatCurrency(annualIncome)}</div>
                   <Slider
                     value={[annualIncome]}
                     onValueChange={(val) => setAnnualIncome(val[0])}
@@ -201,7 +201,7 @@ export default function RetirementCalculator() {
                 {/* Percent of Income to Save */}
                 <div className="space-y-2">
                   <Label className="text-white">Percent of Income to Save</Label>
-                  <div className="text-2xl font-bold" style={{ color: '#D4AF37' }}>{percentToSave}%</div>
+                  <div className="text-2xl font-bold" style={{ color: '#3B82F6' }}>{percentToSave}%</div>
                   <Slider
                     value={[percentToSave]}
                     onValueChange={(val) => setPercentToSave(val[0])}
@@ -219,7 +219,7 @@ export default function RetirementCalculator() {
                 {/* Current Retirement Savings */}
                 <div className="space-y-2">
                   <Label className="text-white">Current Retirement Savings</Label>
-                  <div className="text-2xl font-bold" style={{ color: '#D4AF37' }}>{formatCurrency(currentSavings)}</div>
+                  <div className="text-2xl font-bold" style={{ color: '#3B82F6' }}>{formatCurrency(currentSavings)}</div>
                   <Slider
                     value={[currentSavings]}
                     onValueChange={(val) => setCurrentSavings(val[0])}
@@ -237,7 +237,7 @@ export default function RetirementCalculator() {
                 {/* Expected Income Increase */}
                 <div className="space-y-2">
                   <Label className="text-white">Expected Income Increase</Label>
-                  <div className="text-2xl font-bold" style={{ color: '#D4AF37' }}>{expectedIncomeIncrease}%</div>
+                  <div className="text-2xl font-bold" style={{ color: '#3B82F6' }}>{expectedIncomeIncrease}%</div>
                   <Slider
                     value={[expectedIncomeIncrease]}
                     onValueChange={(val) => setExpectedIncomeIncrease(val[0])}
@@ -255,7 +255,7 @@ export default function RetirementCalculator() {
                 {/* Pre-retirement Income Desired */}
                 <div className="space-y-2">
                   <Label className="text-white">Pre-retirement Income Desired</Label>
-                  <div className="text-2xl font-bold" style={{ color: '#D4AF37' }}>{preRetirementIncomeDesired}%</div>
+                  <div className="text-2xl font-bold" style={{ color: '#3B82F6' }}>{preRetirementIncomeDesired}%</div>
                   <Slider
                     value={[preRetirementIncomeDesired]}
                     onValueChange={(val) => setPreRetirementIncomeDesired(val[0])}
@@ -273,7 +273,7 @@ export default function RetirementCalculator() {
                 {/* Years of Retirement Income */}
                 <div className="space-y-2">
                   <Label className="text-white">Years of Retirement Income</Label>
-                  <div className="text-2xl font-bold" style={{ color: '#D4AF37' }}>{yearsOfRetirement}</div>
+                  <div className="text-2xl font-bold" style={{ color: '#3B82F6' }}>{yearsOfRetirement}</div>
                   <Slider
                     value={[yearsOfRetirement]}
                     onValueChange={(val) => setYearsOfRetirement(val[0])}
@@ -332,7 +332,7 @@ export default function RetirementCalculator() {
                   <div className="flex items-start justify-between">
                     <div>
                       <p className="text-slate-400 text-sm mb-1">Savings at Retirement</p>
-                      <p className="text-3xl font-bold" style={{ color: '#D4AF37' }}>{formatCurrency(results.savingsAtRetirement)}</p>
+                      <p className="text-3xl font-bold" style={{ color: '#3B82F6' }}>{formatCurrency(results.savingsAtRetirement)}</p>
                     </div>
                     <DollarSign className="w-8 h-8 text-green-400" />
                   </div>
@@ -344,7 +344,7 @@ export default function RetirementCalculator() {
                   <div className="flex items-start justify-between">
                     <div>
                       <p className="text-slate-400 text-sm mb-1">Annual Retirement Need</p>
-                      <p className="text-3xl font-bold" style={{ color: '#D4AF37' }}>{formatCurrency(results.annualRetirementNeed)}</p>
+                      <p className="text-3xl font-bold" style={{ color: '#3B82F6' }}>{formatCurrency(results.annualRetirementNeed)}</p>
                     </div>
                     <TrendingUp className="w-8 h-8 text-blue-400" />
                   </div>
@@ -370,9 +370,9 @@ export default function RetirementCalculator() {
                   <div className="flex items-start justify-between">
                     <div>
                       <p className="text-slate-400 text-sm mb-1">Total Contributions</p>
-                      <p className="text-3xl font-bold" style={{ color: '#D4AF37' }}>{formatCurrency(results.totalContributions)}</p>
+                      <p className="text-3xl font-bold" style={{ color: '#3B82F6' }}>{formatCurrency(results.totalContributions)}</p>
                     </div>
-                    <DollarSign className="w-8 h-8 text-amber-400" />
+                    <DollarSign className="w-8 h-8 text-blue-400" />
                   </div>
                 </CardContent>
               </Card>
@@ -381,7 +381,7 @@ export default function RetirementCalculator() {
             {/* Chart */}
             <Card className="bg-white/10 border-white/20">
               <CardHeader>
-                <CardTitle style={{ color: '#D4AF37' }}>Projected Savings Over Time</CardTitle>
+                <CardTitle style={{ color: '#3B82F6' }}>Projected Savings Over Time</CardTitle>
               </CardHeader>
               <CardContent>
                 <ResponsiveContainer width="100%" height={400}>
@@ -398,20 +398,20 @@ export default function RetirementCalculator() {
                       tickFormatter={formatShortCurrency}
                     />
                     <Tooltip 
-                      contentStyle={{ backgroundColor: '#1C1B30', border: '1px solid #D4AF37' }}
-                      labelStyle={{ color: '#D4AF37' }}
+                      contentStyle={{ backgroundColor: '#1C1B30', border: '1px solid #3B82F6' }}
+                      labelStyle={{ color: '#3B82F6' }}
                       formatter={(value) => formatCurrency(value)}
                     />
                     <ReferenceLine 
                       x={retirementAge} 
-                      stroke="#D4AF37" 
+                      stroke="#3B82F6" 
                       strokeDasharray="3 3"
-                      label={{ value: 'Retirement', position: 'top', fill: '#D4AF37' }}
+                      label={{ value: 'Retirement', position: 'top', fill: '#3B82F6' }}
                     />
                     <Line 
                       type="monotone" 
                       dataKey="balance" 
-                      stroke="#D4AF37" 
+                      stroke="#3B82F6" 
                       strokeWidth={2}
                       dot={false}
                     />

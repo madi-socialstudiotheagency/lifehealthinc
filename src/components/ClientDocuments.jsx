@@ -5,7 +5,7 @@ import { Loader2, Download, Upload, Trash2, FileText, AlertCircle } from 'lucide
 import { Button } from '@/components/ui/button';
 import { toast } from 'sonner';
 
-const GOLD = '#D4AF37';
+const GOLD = '#3B82F6';
 
 export default function ClientDocuments({ documents, loading, onRefresh }) {
   const { user } = useAuth();
@@ -82,7 +82,7 @@ export default function ClientDocuments({ documents, loading, onRefresh }) {
         />
         <Button
           disabled={uploading}
-          style={{ backgroundColor: GOLD, color: '#081730' }}
+          style={{ backgroundColor: '#1A3586', color: '#FFFFFF' }}
           className="font-bold"
         >
           {uploading ? (

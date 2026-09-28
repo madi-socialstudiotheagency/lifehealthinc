@@ -41,23 +41,23 @@ export default function CalculatorPage() {
         {/* Social Proof Bar */}
         <div style={{ display: "flex", justifyContent: "center", gap: "40px", flexWrap: "wrap", marginBottom: "56px" }}>
           <div style={{ textAlign: "center" }}>
-            <div style={{ fontSize: "1.8rem", fontWeight: 800, color: "#facc15" }}>1,000+</div>
-            <div style={{ fontSize: "0.8rem", color: "#94a3b8", marginTop: "4px" }}>Families Protected</div>
+            <div style={{ fontSize: "1.8rem", fontWeight: 800, color: "#93C5FD" }}>$0</div>
+            <div style={{ fontSize: "0.8rem", color: "#94a3b8", marginTop: "4px" }}>Cost to Compare</div>
           </div>
           <div style={{ width: "1px", background: "#1e3a5f" }} />
           <div style={{ textAlign: "center" }}>
-            <div style={{ fontSize: "1.8rem", fontWeight: 800, color: "#facc15" }}>30+</div>
+            <div style={{ fontSize: "1.8rem", fontWeight: 800, color: "#93C5FD" }}>All 50</div>
             <div style={{ fontSize: "0.8rem", color: "#94a3b8", marginTop: "4px" }}>States Licensed</div>
           </div>
           <div style={{ width: "1px", background: "#1e3a5f" }} />
           <div style={{ textAlign: "center" }}>
-            <div style={{ fontSize: "1.8rem", fontWeight: 800, color: "#facc15" }}>5-Star</div>
-            <div style={{ fontSize: "0.8rem", color: "#94a3b8", marginTop: "4px" }}>Client Reviews</div>
+            <div style={{ fontSize: "1.8rem", fontWeight: 800, color: "#93C5FD" }}>5-Star</div>
+            <div style={{ fontSize: "0.8rem", color: "#94a3b8", marginTop: "4px" }}>Google Reviews</div>
           </div>
           <div style={{ width: "1px", background: "#1e3a5f" }} />
           <div style={{ textAlign: "center" }}>
-            <div style={{ fontSize: "1.8rem", fontWeight: 800, color: "#facc15" }}>50+</div>
-            <div style={{ fontSize: "0.8rem", color: "#94a3b8", marginTop: "4px" }}>Top-Rated Carriers</div>
+            <div style={{ fontSize: "1.8rem", fontWeight: 800, color: "#93C5FD" }}>Online</div>
+            <div style={{ fontSize: "0.8rem", color: "#94a3b8", marginTop: "4px" }}>Apply, No Call Needed</div>
           </div>
         </div>
 
@@ -90,7 +90,7 @@ export default function CalculatorPage() {
               </ul>
 
               {/* Savings Callout */}
-              <div style={{ marginTop: "24px", background: "linear-gradient(135deg, #f59e0b, #facc15)", borderRadius: "10px", padding: "14px 18px", textAlign: "center" }}>
+              <div style={{ marginTop: "24px", background: "linear-gradient(135deg, #1A3586, #3D6B9E)", borderRadius: "10px", padding: "14px 18px", textAlign: "center" }}>
                 <p style={{ margin: 0, fontWeight: 800, fontSize: "1rem", color: "#1a1a1a" }}>
                   Most clients save $300&ndash;$900/year after switching
                 </p>
@@ -176,7 +176,7 @@ export default function CalculatorPage() {
 
       {/* Mobile CTA */}
       <div className="sm:hidden" style={{ position: "fixed", bottom: 0, left: 0, right: 0, background: "#1A3586", padding: "14px 20px", textAlign: "center", zIndex: 50, boxShadow: "0 -4px 20px rgba(0,0,0,0.4)" }}>
-        <a href="tel:9545430853" style={{ color: "#facc15", fontWeight: 700, fontSize: "1rem", textDecoration: "none" }}>
+        <a href="tel:9545430853" style={{ color: "#93C5FD", fontWeight: 700, fontSize: "1rem", textDecoration: "none" }}>
           📞 Call Now: (954) 543-0853
         </a>
       </div>

@@ -21,7 +21,7 @@ export default function SiteNavBar() {
       {/* Alert bar */}
       <div className="bg-blue-900 text-white text-xs px-4 py-2 flex items-center justify-between">
         <span>🔒 Licensed Independent Brokerage — We work for YOU, not the carrier.</span>
-        <a href="tel:3057249840" className="font-semibold hover:text-yellow-300 transition-colors whitespace-nowrap ml-4">(305) 724-9840</a>
+        <a href="tel:3057249840" className="font-semibold hover:text-blue-300 transition-colors whitespace-nowrap ml-4">(305) 724-9840</a>
       </div>
 
       {/* Navbar */}

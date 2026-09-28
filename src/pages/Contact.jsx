@@ -65,7 +65,7 @@ export default function ContactPage() {
         {/* ─── CONTACT CARDS ─── */}
         <div className="grid lg:grid-cols-3 gap-6 mb-16">
           {contactItems.map(({ icon: Icon, title, content }, i) => (
-            <div key={i} className="rounded-2xl p-8 border border-white/10 text-center hover:border-yellow-500/30 transition-all duration-300 group relative overflow-hidden"
+            <div key={i} className="rounded-2xl p-8 border border-white/10 text-center hover:border-blue-500/30 transition-all duration-300 group relative overflow-hidden"
               style={{ background: 'linear-gradient(160deg, rgba(255,255,255,0.07), rgba(255,255,255,0.02))' }}>
               <div className="absolute top-0 left-0 right-0 h-0.5 rounded-t-2xl opacity-0 group-hover:opacity-100 transition-opacity" style={{ background: `linear-gradient(90deg, ${GOLD}00, ${GOLD}, ${GOLD}00)` }} />
               <div className="w-14 h-14 rounded-2xl flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform"

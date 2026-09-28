@@ -26,30 +26,30 @@ export default function MortgageProtectionGuidePage() {
           <h1>{pageContent.title}</h1>
 
           <p className="lead">
-            When you buy a home, you also take on a significant financial responsibility. Protecting your family from that debt is crucial. Two popular solutions are **Mortgage Protection Insurance (MPI)** and **Term Life Insurance**. While they both offer peace of mind, they work in fundamentally different ways. Understanding these differences is key to choosing the right protection for your loved ones.
+            When you buy a home, you also take on a significant financial responsibility. Protecting your family from that debt is crucial. Two popular solutions are <strong>Mortgage Protection Insurance (MPI)</strong> and <strong>Term Life Insurance</strong>. While they both offer peace of mind, they work in fundamentally different ways. Understanding these differences is key to choosing the right protection for your loved ones.
           </p>
           
-          <hr className="my-8 border-t-2" style={{borderColor: '#D4AF37'}} />
+          <hr className="my-8 border-t-2" style={{borderColor: '#3B82F6'}} />
 
           <h2 id="what-is-mpi">What is Mortgage Protection Insurance (MPI)?</h2>
           <p>
-            **Mortgage Protection Insurance** is a specialized life insurance policy designed with one specific goal: to pay off your remaining mortgage balance if you pass away. It is often marketed directly by your lender or affiliated companies during the home-buying process.
+            <strong>Mortgage Protection Insurance</strong> is a specialized life insurance policy designed with one specific goal: to pay off your remaining mortgage balance if you pass away. It is often marketed directly by your lender or affiliated companies during the home-buying process.
           </p>
           <p>
-            The key feature of MPI is that the **beneficiary is typically the lender**, not your family. If you die, the insurance company pays the lender directly, wiping out the mortgage debt. This ensures your family can keep the home without worrying about monthly payments. The coverage amount usually decreases over time, mirroring your mortgage balance as you pay it down.
+            The key feature of MPI is that the <strong>beneficiary is typically the lender</strong>, not your family. If you die, the insurance company pays the lender directly, wiping out the mortgage debt. This ensures your family can keep the home without worrying about monthly payments. The coverage amount usually decreases over time, mirroring your mortgage balance as you pay it down.
           </p>
           
           <img src="https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?w=1200&q=80" alt="Simple house keys on table" className="rounded-lg my-6" />
 
           <h2 id="what-is-term-life">What is Level Term Life Insurance?</h2>
           <p>
-            **Level Term Life Insurance** provides a **fixed, tax-free death benefit** to your chosen beneficiaries for a specific period (the "term"), such as 10, 20, or 30 years. Unlike MPI, the payout amount does **not** decrease over time. If you pass away during the term, your family receives the full cash benefit.
+            <strong>Level Term Life Insurance</strong> provides a <strong>fixed, tax-free death benefit</strong> to your chosen beneficiaries for a specific period (the "term"), such as 10, 20, or 30 years. Unlike MPI, the payout amount does <strong>not</strong> decrease over time. If you pass away during the term, your family receives the full cash benefit.
           </p>
           <p>
             This money can be used for any purpose they see fit—not just the mortgage. Beneficiaries can use it to cover funeral costs, replace lost income, fund education, or pay off any debts, including the mortgage. This flexibility is a major advantage, as it empowers your family to address their most pressing financial needs.
           </p>
           
-          <hr className="my-8 border-t-2" style={{borderColor: '#D4AF37'}} />
+          <hr className="my-8 border-t-2" style={{borderColor: '#3B82F6'}} />
 
           <h2 id="key-differences">Key Differences at a Glance</h2>
           
@@ -96,41 +96,41 @@ export default function MortgageProtectionGuidePage() {
           
           <h3>Pros:</h3>
           <ul>
-            <li>**Easy to qualify** - Often requires minimal or no medical exam</li>
-            <li>**Simple purpose** - Specifically designed to pay off your mortgage</li>
-            <li>**Peace of mind** - Your family won't lose the house due to unpaid mortgage</li>
+            <li><strong>Easy to qualify</strong> - Often requires minimal or no medical exam</li>
+            <li><strong>Simple purpose</strong> - Specifically designed to pay off your mortgage</li>
+            <li><strong>Peace of mind</strong> - Your family won't lose the house due to unpaid mortgage</li>
           </ul>
 
           <h3>Cons:</h3>
           <ul>
-            <li>**Less flexibility** - Payout goes directly to lender, not your family</li>
-            <li>**Decreasing coverage** - As you pay down your mortgage, coverage amount drops</li>
-            <li>**Higher cost** - Often more expensive than comparable term life insurance</li>
-            <li>**No portability** - Policy is tied to your specific mortgage and lender</li>
+            <li><strong>Less flexibility</strong> - Payout goes directly to lender, not your family</li>
+            <li><strong>Decreasing coverage</strong> - As you pay down your mortgage, coverage amount drops</li>
+            <li><strong>Higher cost</strong> - Often more expensive than comparable term life insurance</li>
+            <li><strong>No portability</strong> - Policy is tied to your specific mortgage and lender</li>
           </ul>
 
           <h2 id="pros-cons-term">Pros and Cons of Term Life Insurance</h2>
 
           <h3>Pros:</h3>
           <ul>
-            <li>**Flexibility** - Your family can use the money however they need</li>
-            <li>**Level coverage** - Death benefit stays the same throughout the term</li>
-            <li>**Better value** - Usually costs less than MPI for the same coverage</li>
-            <li>**Portable** - Not tied to a specific lender or property</li>
-            <li>**Can cover more** - One policy can cover mortgage PLUS other expenses</li>
+            <li><strong>Flexibility</strong> - Your family can use the money however they need</li>
+            <li><strong>Level coverage</strong> - Death benefit stays the same throughout the term</li>
+            <li><strong>Better value</strong> - Usually costs less than MPI for the same coverage</li>
+            <li><strong>Portable</strong> - Not tied to a specific lender or property</li>
+            <li><strong>Can cover more</strong> - One policy can cover mortgage PLUS other expenses</li>
           </ul>
 
           <h3>Cons:</h3>
           <ul>
-            <li>**Medical underwriting** - May require health exam and medical history</li>
-            <li>**Requires active decision** - Beneficiaries must decide how to use funds</li>
-            <li>**Term length** - Coverage expires at end of term unless renewed</li>
+            <li><strong>Medical underwriting</strong> - May require health exam and medical history</li>
+            <li><strong>Requires active decision</strong> - Beneficiaries must decide how to use funds</li>
+            <li><strong>Term length</strong> - Coverage expires at end of term unless renewed</li>
           </ul>
 
           <h2 id="which-should-you-choose">Which Should You Choose?</h2>
           
           <p>
-            **For most families, Level Term Life Insurance is the better choice.** Here's why:
+            <strong>For most families, Level Term Life Insurance is the better choice.</strong> Here's why:
           </p>
 
           <ul>
@@ -141,7 +141,7 @@ export default function MortgageProtectionGuidePage() {
           </ul>
 
           <p>
-            **However, MPI might make sense if:**
+            <strong>However, MPI might make sense if:</strong>
           </p>
           <ul>
             <li>You have serious health issues that prevent you from qualifying for traditional life insurance</li>
@@ -154,7 +154,7 @@ export default function MortgageProtectionGuidePage() {
           <h2 id="real-world-example">Real-World Example</h2>
           
           <p>
-            **Meet Sarah, age 35, non-smoker, with a $300,000 mortgage:**
+            <strong>Meet Sarah, age 35, non-smoker, with a $300,000 mortgage:</strong>
           </p>
 
           <p>
@@ -180,18 +180,18 @@ export default function MortgageProtectionGuidePage() {
           <h2 id="how-to-get-started">How to Get Started</h2>
           
           <ol>
-            <li>**Calculate how much coverage you need** - Include your mortgage balance plus other debts and expenses</li>
-            <li>**Get quotes from multiple carriers** - Compare rates from different insurance companies</li>
-            <li>**Work with an independent broker** - They can shop multiple carriers for you at no cost</li>
-            <li>**Choose the right term length** - Match it to when you expect to pay off your mortgage or when dependents become independent</li>
-            <li>**Apply and get covered** - Complete the application and medical exam if required</li>
+            <li><strong>Calculate how much coverage you need</strong> - Include your mortgage balance plus other debts and expenses</li>
+            <li><strong>Get quotes from multiple carriers</strong> - Compare rates from different insurance companies</li>
+            <li><strong>Work with an independent broker</strong> - They can shop multiple carriers for you at no cost</li>
+            <li><strong>Choose the right term length</strong> - Match it to when you expect to pay off your mortgage or when dependents become independent</li>
+            <li><strong>Apply and get covered</strong> - Complete the application and medical exam if required</li>
           </ol>
 
-          <hr className="my-8 border-t-2" style={{borderColor: '#D4AF37'}} />
+          <hr className="my-8 border-t-2" style={{borderColor: '#3B82F6'}} />
 
           <h2 id="conclusion">Conclusion: Which One Should You Choose?</h2>
           <p>
-            For most families, **Level Term Life Insurance offers superior value and flexibility**. It provides a stable, predictable benefit that empowers your loved ones to make the best financial decisions for their situation. A term policy can easily be purchased to cover the mortgage amount and more, often at a lower cost than a comparable MPI policy.
+            For most families, <strong>Level Term Life Insurance offers superior value and flexibility</strong>. It provides a stable, predictable benefit that empowers your loved ones to make the best financial decisions for their situation. A term policy can easily be purchased to cover the mortgage amount and more, often at a lower cost than a comparable MPI policy.
           </p>
           <p>
             However, MPI can be a viable option for individuals who may not qualify for traditional life insurance due to health reasons, as its underwriting standards are often more lenient. If your primary and only goal is to ensure the mortgage is paid off and nothing more, MPI provides a straightforward solution.

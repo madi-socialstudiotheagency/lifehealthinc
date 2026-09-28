@@ -332,7 +332,7 @@ export default function IllustrationPage() {
             </div>
           </section>
 
-          <footer className="mt-6 text-xs text-slate-600 bg-amber-50 border border-amber-200 rounded-lg p-4">
+          <footer className="mt-6 text-xs text-slate-600 bg-blue-50 border border-blue-200 rounded-lg p-4">
             <p>
               <strong>Disclosures:</strong> This page provides an educational projection only and is not an official carrier illustration. 
               Actual values depend on underwriting, carrier charges, index credits, caps/spreads, participation rates, policy loans, and rider costs. 
@@ -385,7 +385,7 @@ Cap: ${(illustrationParams.cap*100).toFixed(1)}% | Floor: ${(illustrationParams.
   };
 
   return (
-    <div className="mt-6 p-6 rounded-2xl border-2 border-yellow-400 bg-white shadow-sm">
+    <div className="mt-6 p-6 rounded-2xl border-2 border-blue-400 bg-white shadow-sm">
       <div className="flex items-center gap-3 mb-4">
         <FileText className="w-6 h-6" style={{ color: 'var(--brand-primary)' }} />
         <div>
@@ -407,7 +407,7 @@ Cap: ${(illustrationParams.cap*100).toFixed(1)}% | Floor: ${(illustrationParams.
               type="text"
               value={form.firstName}
               onChange={(e) => setForm({ ...form, firstName: e.target.value })}
-              className="w-full rounded-lg border border-slate-300 px-3 py-2 text-slate-900 focus:ring-2 focus:ring-yellow-400 focus:border-yellow-400"
+              className="w-full rounded-lg border border-slate-300 px-3 py-2 text-slate-900 focus:ring-2 focus:ring-blue-400 focus:border-blue-400"
               placeholder="John"
             />
           </div>
@@ -417,7 +417,7 @@ Cap: ${(illustrationParams.cap*100).toFixed(1)}% | Floor: ${(illustrationParams.
               type="text"
               value={form.lastName}
               onChange={(e) => setForm({ ...form, lastName: e.target.value })}
-              className="w-full rounded-lg border border-slate-300 px-3 py-2 text-slate-900 focus:ring-2 focus:ring-yellow-400 focus:border-yellow-400"
+              className="w-full rounded-lg border border-slate-300 px-3 py-2 text-slate-900 focus:ring-2 focus:ring-blue-400 focus:border-blue-400"
               placeholder="Smith"
             />
           </div>
@@ -427,7 +427,7 @@ Cap: ${(illustrationParams.cap*100).toFixed(1)}% | Floor: ${(illustrationParams.
               type="email"
               value={form.email}
               onChange={(e) => setForm({ ...form, email: e.target.value })}
-              className="w-full rounded-lg border border-slate-300 px-3 py-2 text-slate-900 focus:ring-2 focus:ring-yellow-400 focus:border-yellow-400"
+              className="w-full rounded-lg border border-slate-300 px-3 py-2 text-slate-900 focus:ring-2 focus:ring-blue-400 focus:border-blue-400"
               placeholder="john@example.com"
             />
           </div>
@@ -437,7 +437,7 @@ Cap: ${(illustrationParams.cap*100).toFixed(1)}% | Floor: ${(illustrationParams.
               type="tel"
               value={form.phone}
               onChange={(e) => setForm({ ...form, phone: e.target.value })}
-              className="w-full rounded-lg border border-slate-300 px-3 py-2 text-slate-900 focus:ring-2 focus:ring-yellow-400 focus:border-yellow-400"
+              className="w-full rounded-lg border border-slate-300 px-3 py-2 text-slate-900 focus:ring-2 focus:ring-blue-400 focus:border-blue-400"
               placeholder="(555) 123-4567"
             />
           </div>
@@ -447,7 +447,7 @@ Cap: ${(illustrationParams.cap*100).toFixed(1)}% | Floor: ${(illustrationParams.
               type="submit"
               disabled={submitting}
               className="w-full sm:w-auto px-8 py-3 rounded-lg font-semibold text-sm flex items-center gap-2 justify-center disabled:opacity-60"
-              style={{ backgroundColor: '#D4AF37', color: '#1C1B30' }}
+              style={{ backgroundColor: '#1A3586', color: '#FFFFFF' }}
             >
               {submitting ? <><Loader2 className="w-4 h-4 animate-spin" /> Submitting...</> : <><FileText className="w-4 h-4" /> Request Carrier Illustration</>}
             </button>

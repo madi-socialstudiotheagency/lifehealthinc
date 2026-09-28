@@ -3,7 +3,7 @@ import { Stethoscope, X, ChevronRight, ChevronLeft, CheckCircle2 } from 'lucide-
 import { Button } from '@/components/ui/button';
 import { base44 } from '@/api/base44Client';
 
-const GOLD = '#D4AF37';
+const GOLD = '#3B82F6';
 const DARK1 = '#1C1B30';
 const DARK2 = '#2C2B50';
 
@@ -86,7 +86,7 @@ export default function HealthQuoteWidget() {
                   <CheckCircle2 className="w-14 h-14 mx-auto mb-4" style={{ color: '#10b981' }} />
                   <h3 className="text-xl font-black text-white mb-2">You're All Set!</h3>
                   <p className="text-slate-400 text-sm mb-6">A licensed broker will reach out within 24 hours with your personalized health insurance options.</p>
-                  <Button onClick={() => { setOpen(false); reset(); }} className="w-full font-bold rounded-xl" style={{ background: `linear-gradient(135deg, ${GOLD}, #f59e0b)`, color: DARK1 }}>
+                  <Button onClick={() => { setOpen(false); reset(); }} className="w-full font-bold rounded-xl" style={{ background: `linear-gradient(135deg, #1A3586, #3D6B9E)`, color: '#FFFFFF' }}>
                     Close
                   </Button>
                 </div>
