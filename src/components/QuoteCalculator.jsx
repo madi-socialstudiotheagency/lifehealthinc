@@ -144,7 +144,6 @@ export default function QuoteCalculator() {
         >
           Continue my application
         </a>
-        <p className="text-xs text-slate-400 mt-4">Questions? Call or text <a href="tel:9545430853" className="underline">(954) 543-0853</a></p>
       </div>
     );
   }

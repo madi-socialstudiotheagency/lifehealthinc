@@ -24,6 +24,6 @@ export async function submitIntake(fields) {
     return { ok: true, reference: fields.reference };
   } catch (err) {
     console.error('Intake submit failed:', err);
-    return { ok: false, message: 'We could not send your request. Please try again or call (954) 543-0853.' };
+    return { ok: false, message: 'We could not send your application. Please check your connection and press Submit again.' };
   }
 }
