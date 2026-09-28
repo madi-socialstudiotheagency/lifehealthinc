@@ -6,6 +6,7 @@ import { makeReference, submitIntake } from '@/api/intakeClient';
 import { ALL_CARRIERS, logoFor } from '@/data/carriers';
 import TestimonialSlider from '@/components/TestimonialSlider';
 import GroupCostPanel from '@/components/GroupCostPanel';
+import { estimateMedigap } from '@/data/medigapEstimate';
 
 const NAVY = '#081730';
 const BLUE = '#1A3586';
@@ -175,7 +176,26 @@ function Field({ field, value, onChange, error }) {
 // ── After submit: live wait for Matthew's approval, then the price ───────────
 const GROUP_FORMS = ['small-group-health', 'corporate-group-health'];
 
-function WaitingScreen({ reference, statusKey, formId }) {
+function EstimatePanel({ estimate }) {
+  return (
+    <div className="mt-6 rounded-xl border border-slate-200 bg-slate-50 p-5 text-left">
+      <p className="text-xs font-bold uppercase tracking-wider text-slate-500 mb-1">Instant estimate</p>
+      <p className="text-slate-700 mb-1">Medicare Supplement {estimate.plan}, based on your answers</p>
+      <p className="mb-2">
+        <span className="text-3xl font-black" style={{ color: NAVY }}>${estimate.low} to ${estimate.high}</span>
+        <span className="font-bold text-slate-500"> /month</span>
+      </p>
+      <p className="text-xs text-slate-500">
+        This is an estimate only, not a quote or an offer of coverage. Your exact price depends on the carrier and your county,
+        and Matthew will confirm it with you. We do not offer every plan available in your area. Any information we provide is
+        limited to those plans we do offer. Please contact Medicare.gov, 1-800-MEDICARE, or your local State Health Insurance
+        Program to get information on all of your options.
+      </p>
+    </div>
+  );
+}
+
+function WaitingScreen({ reference, statusKey, formId, estimate }) {
   const [result, setResult] = useState({ status: 'pending' });
   const [seconds, setSeconds] = useState(0);
 
@@ -260,6 +280,7 @@ function WaitingScreen({ reference, statusKey, formId }) {
         )}
 
         {result.status === 'pending' && GROUP_FORMS.includes(formId) && <div className="mt-6"><GroupCostPanel compact /></div>}
+        {result.status === 'pending' && estimate && <EstimatePanel estimate={estimate} />}
 
         <p className="text-xs text-slate-400 mt-6">Reference: {reference}</p>
         <Link to="/get-started" className="text-blue-700 text-sm font-semibold underline">Back to all forms</Link>
@@ -363,6 +384,8 @@ function IntakeForm({ form }) {
       if (part.length) lines.push('== ' + s.title + ' ==', ...part, '');
     });
     const name = ((answers.firstName || '') + ' ' + (answers.lastName || '')).trim() || answers.companyName || '';
+    const estimate = form.id === 'medicare' ? estimateMedigap(answers) : null;
+    if (estimate) lines.push('== Estimate shown to client ==', 'Medicare Supplement ' + estimate.plan + ': $' + estimate.low + ' to $' + estimate.high + '/month (national-average estimate, not a quote)', '');
     const res = await submitIntake({
       reference,
       formId: form.id,
@@ -381,13 +404,13 @@ function IntakeForm({ form }) {
       details: (carrier ? 'Preferred carrier: ' + carrier + '\n\n' : '') + lines.join('\n'),
     });
     if (res.ok) { try { localStorage.removeItem(saveKey); } catch { /* ignore */ } }
-    setStatus(res.ok ? { state: 'done', reference: res.reference, key: statusKey } : { state: 'error', message: res.message });
+    setStatus(res.ok ? { state: 'done', reference: res.reference, key: statusKey, estimate } : { state: 'error', message: res.message });
   };
 
   const pct = useMemo(() => Math.round(((step + 1) / total) * 100), [step, total]);
 
   if (status.state === 'done') {
-    return <WaitingScreen reference={status.reference} statusKey={status.key} formId={form.id} />;
+    return <WaitingScreen reference={status.reference} statusKey={status.key} formId={form.id} estimate={status.estimate} />;
   }
 
   return (
