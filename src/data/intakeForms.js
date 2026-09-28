@@ -10,6 +10,7 @@
 import { STATES } from './states';
 import { lifeApplication } from './lifeApplication';
 import { annuityApplication } from './annuityApplication';
+import { medicareSections } from './medicareApplication';
 
 export { STATES };
 
@@ -198,34 +199,7 @@ export const INTAKE_FORMS = [
   {
     id: 'medicare', audience: 'Individuals & Families', title: 'Medicare',
     blurb: 'Advantage, Supplement (Medigap) and Part D help for people turning 65 or on Medicare.',
-    sections: [
-      personContact,
-      {
-        title: 'Your Medicare situation',
-        fields: [
-          { name: 'medicareStatus', label: 'Where are you?', type: 'radio', options: ['Turning 65 soon', 'On Medicare now, want to compare', 'Under 65 on disability', 'Retiring from an employer plan'], required: true },
-          { name: 'partAB', label: 'Do you have Medicare Parts A and B?', type: 'radio', options: ynu, required: true },
-          { name: 'currentPlan', label: 'Current plan', type: 'select', options: ['Original Medicare only', 'Medicare Supplement (Medigap)', 'Medicare Advantage', 'Employer / retiree plan', 'None'] },
-          { name: 'currentCarrier', label: 'Current carrier and plan name', type: 'text' },
-          { name: 'planPreference', label: 'What are you leaning toward?', type: 'radio', options: ['Medicare Supplement', 'Medicare Advantage', 'Not sure, explain both'], required: true },
-          { name: 'partD', label: 'Do you need a Part D drug plan?', type: 'radio', options: ynu },
-          { name: 'doctors', label: 'Doctors or hospitals you must keep', type: 'textarea' },
-          { name: 'prescriptions', label: 'Do you take regular prescriptions?', type: 'radio', options: ynu, required: true },
-          {
-            name: 'prescriptionNames',
-            label: 'Names of your prescriptions',
-            type: 'textarea',
-            required: true,
-            showIf: { field: 'prescriptions', equals: 'Yes' },
-            placeholder: 'e.g. Eliquis, Metformin, Lisinopril',
-            help: 'Your drugs decide which plans cost you the least, so list each one (and the dose if you know it).',
-          },
-          { name: 'medicaidExtraHelp', label: 'Do you get Medicaid or Extra Help (LIS)?', type: 'radio', options: ynu },
-          { name: 'effectiveDate', label: 'When does or did your Medicare start?', type: 'date' },
-        ],
-      },
-      timeline(),
-    ],
+    sections: [personContact, ...medicareSections()],
   },
   {
     id: 'annuity-retirement', audience: 'Individuals & Families', title: 'Annuities & Retirement Income',

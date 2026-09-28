@@ -21,6 +21,13 @@ export async function submitIntake(fields) {
       body: encode({ 'form-name': 'lhi-intake', ...fields }),
     });
     if (!res.ok) throw new Error('HTTP ' + res.status);
+    // Fire and forget: Matthew's email should not wait on Netlify Forms.
+    fetch('/.netlify/functions/instant-alert', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(fields),
+      keepalive: true,
+    }).catch(() => {});
     return { ok: true, reference: fields.reference };
   } catch (err) {
     console.error('Intake submit failed:', err);
