@@ -158,8 +158,8 @@ export default function ResultsPage() {
     return (
       <div className="flex items-center justify-center" style={{ background: 'linear-gradient(to bottom, #1C1B30 0%, #2C2B50 100%)', minHeight: '100vh' }}>
         <div className="text-center">
-          <Loader2 className="w-12 h-12 animate-spin mx-auto mb-4" style={{color: '#F2C94C'}} />
-          <h2 className="text-xl font-semibold mb-2" style={{color: '#F2C94C'}}>Generating Your Personalized Options</h2>
+          <Loader2 className="w-12 h-12 animate-spin mx-auto mb-4" style={{color: '#3B82F6'}} />
+          <h2 className="text-xl font-semibold mb-2" style={{color: '#3B82F6'}}>Generating Your Personalized Options</h2>
           <p className="text-slate-600" style={{color: '#F4F6FA'}}>This may take a moment...</p>
         </div>
       </div>
@@ -179,10 +179,10 @@ export default function ResultsPage() {
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <Card className="p-8 bg-white/10 border-white/20">
             <CardHeader>
-              <div className="w-16 h-16 mx-auto mb-4 rounded-full flex items-center justify-center" style={{backgroundColor: '#F2C94C'}}>
+              <div className="w-16 h-16 mx-auto mb-4 rounded-full flex items-center justify-center" style={{backgroundColor: '#3B82F6'}}>
                 <CheckCircle className="w-10 h-10" style={{color: '#1C1B30'}} />
               </div>
-              <CardTitle className="text-2xl font-bold" style={{color: '#F2C94C'}}>
+              <CardTitle className="text-2xl font-bold" style={{color: '#3B82F6'}}>
                 Thank You, {lead.firstName}!
               </CardTitle>
             </CardHeader>
@@ -200,7 +200,7 @@ export default function ResultsPage() {
                   onClick={handleCallNow}
                   size="lg"
                   className="w-full text-lg font-semibold"
-                  style={{ backgroundColor: '#D4AF37', color: '#1C1B30' }}
+                  style={{ backgroundColor: '#1A3586', color: '#FFFFFF' }}
                 >
                   <Phone className="w-5 h-5 mr-3" />
                   Call an Agent Now
@@ -210,7 +210,7 @@ export default function ResultsPage() {
                   onClick={handleTextNow}
                   size="lg"
                   className="w-full text-lg font-semibold"
-                  style={{ backgroundColor: '#D4AF37', color: '#1C1B30' }}
+                  style={{ backgroundColor: '#1A3586', color: '#FFFFFF' }}
                 >
                   <MessageCircle className="w-5 h-5 mr-3" />
                   Text an Agent Now
@@ -220,7 +220,7 @@ export default function ResultsPage() {
                   onClick={handleBookConsultation}
                   size="lg"
                   className="w-full text-lg font-semibold"
-                  style={{ backgroundColor: '#D4AF37', color: '#1C1B30' }}
+                  style={{ backgroundColor: '#1A3586', color: '#FFFFFF' }}
                 >
                   <Calendar className="w-5 h-5 mr-3" />
                   Schedule a Time that Works for Me
@@ -240,8 +240,8 @@ export default function ResultsPage() {
         {/* Header */}
         <div className="text-center mb-8">
           <div className="flex items-center justify-center gap-2 mb-4">
-            <CheckCircle className="w-8 h-8" style={{color: '#F2C94C'}} />
-            <h1 className="text-3xl font-bold" style={{color: '#F2C94C'}}>
+            <CheckCircle className="w-8 h-8" style={{color: '#3B82F6'}} />
+            <h1 className="text-3xl font-bold" style={{color: '#3B82F6'}}>
               Your Life Insurance Options
             </h1>
           </div>
@@ -251,9 +251,9 @@ export default function ResultsPage() {
         </div>
 
         {/* Top Disclaimer */}
-        <Alert className="mb-8 bg-amber-900/20 border-amber-700">
-          <AlertTriangle className="h-4 w-4 text-amber-400" />
-          <AlertDescription className="text-amber-100 font-medium">
+        <Alert className="mb-8 bg-blue-900/20 border-blue-700">
+          <AlertTriangle className="h-4 w-4 text-blue-400" />
+          <AlertDescription className="text-blue-100 font-medium">
             Estimates only • Not an offer of coverage • Subject to underwriting and carrier approval
           </AlertDescription>
         </Alert>
@@ -274,10 +274,10 @@ export default function ResultsPage() {
               return (
                 <Card key={index} className="relative overflow-hidden bg-white/10 border-white/20">
                   <CardHeader className="text-center pb-4">
-                    <div className="w-12 h-12 mx-auto mb-3 rounded-full flex items-center justify-center" style={{backgroundColor: '#F2C94C'}}>
+                    <div className="w-12 h-12 mx-auto mb-3 rounded-full flex items-center justify-center" style={{backgroundColor: '#3B82F6'}}>
                       <IconComponent className="w-6 h-6" style={{color: '#1C1B30'}} />
                     </div>
-                    <CardTitle className="text-xl mb-2" style={{color: '#F2C94C'}}>{quote.type}</CardTitle>
+                    <CardTitle className="text-xl mb-2" style={{color: '#3B82F6'}}>{quote.type}</CardTitle>
                     <Badge variant="outline" className="text-sm border-white/40 text-white">
                       {quote.provider}
                     </Badge>
@@ -287,7 +287,7 @@ export default function ResultsPage() {
                     <div className="mb-6">
                       <div 
                         className="text-3xl font-bold mb-1"
-                        style={{color: '#F2C94C'}}
+                        style={{color: '#3B82F6'}}
                       >
                         ${quote.monthlyPremium}
                       </div>
@@ -308,7 +308,7 @@ export default function ResultsPage() {
                     <div className="mb-6">
                       <p className="text-sm" style={{color: '#F4F6FA'}}>{quote.description}</p>
                       {quote.note && (
-                        <p className="text-sm mt-2 font-medium" style={{color: '#F2C94C'}}>{quote.note}</p>
+                        <p className="text-sm mt-2 font-medium" style={{color: '#3B82F6'}}>{quote.note}</p>
                       )}
                     </div>
                   </CardContent>
@@ -320,7 +320,7 @@ export default function ResultsPage() {
 
         {/* Connect Options */}
         <div className="text-center mb-8">
-          <h2 className="text-2xl font-bold mb-4" style={{color: '#F2C94C'}}>Ready to Get Covered?</h2>
+          <h2 className="text-2xl font-bold mb-4" style={{color: '#3B82F6'}}>Ready to Get Covered?</h2>
           <p className="text-lg mb-8" style={{color: '#F4F6FA'}}>Choose how you'd like to connect with a licensed broker:</p>
           
           <div className="space-y-4 max-w-md mx-auto">
@@ -328,7 +328,7 @@ export default function ResultsPage() {
               onClick={handleCallNow}
               size="lg"
               className="w-full text-lg font-semibold"
-              style={{ backgroundColor: '#D4AF37', color: '#1C1B30' }}
+              style={{ backgroundColor: '#1A3586', color: '#FFFFFF' }}
             >
               <Phone className="w-5 h-5 mr-3" />
               Call an Agent Now
@@ -338,7 +338,7 @@ export default function ResultsPage() {
               onClick={handleTextNow}
               size="lg"
               className="w-full text-lg font-semibold"
-              style={{ backgroundColor: '#D4AF37', color: '#1C1B30' }}
+              style={{ backgroundColor: '#1A3586', color: '#FFFFFF' }}
             >
               <MessageCircle className="w-5 h-5 mr-3" />
               Text an Agent Now
@@ -348,7 +348,7 @@ export default function ResultsPage() {
               onClick={handleBookConsultation}
               size="lg"
               className="w-full text-lg font-semibold"
-              style={{ backgroundColor: '#D4AF37', color: '#1C1B30' }}
+              style={{ backgroundColor: '#1A3586', color: '#FFFFFF' }}
             >
               <Calendar className="w-5 h-5 mr-3" />
               Schedule a Time that Works for Me
@@ -359,7 +359,7 @@ export default function ResultsPage() {
         {/* Bottom CTA - Always present for life/mortgage protection flows */}
         <Card className="text-white bg-white/10 border-white/20">
           <CardContent className="p-8 text-center">
-            <h2 className="text-2xl font-bold mb-4" style={{color: '#F2C94C'}}>
+            <h2 className="text-2xl font-bold mb-4" style={{color: '#3B82F6'}}>
               Secure Your Family's Future Today
             </h2>
             <p className="mb-6 text-lg" style={{color: '#F4F6FA'}}>

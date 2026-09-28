@@ -1,7 +1,7 @@
 import { Loader2, AlertCircle, CheckCircle, FileText } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 
-const GOLD = '#D4AF37';
+const GOLD = '#3B82F6';
 
 export default function ClientPolicies({ policies, loading, onRefresh }) {
   if (loading) {
@@ -18,7 +18,7 @@ export default function ClientPolicies({ policies, loading, onRefresh }) {
         <AlertCircle className="w-12 h-12 mx-auto mb-3" style={{ color: GOLD }} />
         <h3 className="text-lg font-semibold text-white mb-2">No Active Policies</h3>
         <p className="text-slate-400 text-sm mb-6">You don't have any approved policies yet.</p>
-        <Button size="sm" style={{ backgroundColor: GOLD, color: '#081730' }} className="font-bold">
+        <Button size="sm" style={{ backgroundColor: '#1A3586', color: '#FFFFFF' }} className="font-bold">
           Get a Quote
         </Button>
       </div>

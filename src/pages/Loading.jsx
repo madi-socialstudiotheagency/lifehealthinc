@@ -93,7 +93,7 @@ export default function LoadingPage() {
             <span className="text-sm">Agent Assigned</span>
           </div>
           <div className="flex items-center gap-2">
-            <div className="w-3 h-3 bg-yellow-400 rounded-full animate-pulse"></div>
+            <div className="w-3 h-3 bg-blue-400 rounded-full animate-pulse"></div>
             <span className="text-sm">Scheduling Available</span>
           </div>
         </div>

@@ -473,10 +473,10 @@ Get personalized quotes from top-rated carriers in minutes. Our independent brok
         }).join('') }} />
 
         {/* Interactive Calculator CTA */}
-        <Card className="my-12 bg-gradient-to-br from-yellow-50 to-amber-50 border-2 border-yellow-400">
+        <Card className="my-12 bg-gradient-to-br from-blue-50 to-blue-50 border-2 border-blue-400">
           <CardContent className="p-8">
             <div className="flex items-start gap-4">
-              <div className="w-16 h-16 rounded-full bg-gradient-to-br from-yellow-400 to-amber-500 flex items-center justify-center flex-shrink-0">
+              <div className="w-16 h-16 rounded-full bg-gradient-to-br from-blue-400 to-blue-500 flex items-center justify-center flex-shrink-0">
                 <Calculator className="w-8 h-8 text-white" />
               </div>
               <div className="flex-grow">
@@ -491,7 +491,7 @@ Get personalized quotes from top-rated carriers in minutes. Our independent brok
                     asChild 
                     size="lg"
                     className="font-semibold shadow-lg hover:shadow-xl transition-all"
-                    style={{ backgroundColor: '#D4AF37', color: '#1C1B30' }}
+                    style={{ backgroundColor: '#1A3586', color: '#FFFFFF' }}
                   >
                     <Link to={createPageUrl("Calculator")}>
                       <Calculator className="w-5 h-5 mr-2" />
@@ -503,7 +503,7 @@ Get personalized quotes from top-rated carriers in minutes. Our independent brok
                     size="lg"
                     variant="outline"
                     className="border-2 font-semibold hover:bg-slate-50"
-                    style={{ borderColor: '#D4AF37', color: '#1C1B30' }}
+                    style={{ borderColor: '#1A3586', color: '#1A3586' }}
                   >
                     <Link to={createPageUrl("Book")}>
                       Speak to an Expert
@@ -520,7 +520,7 @@ Get personalized quotes from top-rated carriers in minutes. Our independent brok
         <Card className="my-12 bg-slate-50 border-2 border-slate-200">
           <CardContent className="p-8">
             <h3 className="text-2xl font-bold mb-6 flex items-center gap-3" style={{ color: '#1C1B30' }}>
-              <Shield className="w-8 h-8" style={{ color: '#D4AF37' }} />
+              <Shield className="w-8 h-8" style={{ color: '#3B82F6' }} />
               Key Takeaways
             </h3>
             <ul className="space-y-3">
@@ -623,7 +623,7 @@ Get personalized quotes from top-rated carriers in minutes. Our independent brok
               asChild 
               size="lg"
               className="text-lg px-8 py-6 font-bold shadow-2xl hover:shadow-3xl transition-all"
-              style={{ backgroundColor: '#D4AF37', color: '#1C1B30' }}
+              style={{ backgroundColor: '#1A3586', color: '#FFFFFF' }}
             >
               <Link to={createPageUrl("Calculator")}>
                 <Calculator className="w-6 h-6 mr-2" />
@@ -635,7 +635,7 @@ Get personalized quotes from top-rated carriers in minutes. Our independent brok
               size="lg"
               variant="outline"
               className="text-lg px-8 py-6 font-bold border-2 hover:bg-white/10 transition-all"
-              style={{ borderColor: '#D4AF37', color: 'white' }}
+              style={{ borderColor: '#3B82F6', color: 'white' }}
             >
               <a href="tel:9545430853">
                 📞 Call (954) 543-0853

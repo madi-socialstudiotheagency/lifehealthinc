@@ -3,7 +3,7 @@ import React from 'react';
 const colorMap = {
   blue:  { bg: 'bg-blue-50',  icon: 'bg-blue-100 text-blue-600',  value: 'text-blue-700' },
   green: { bg: 'bg-green-50', icon: 'bg-green-100 text-green-600', value: 'text-green-700' },
-  amber: { bg: 'bg-amber-50', icon: 'bg-amber-100 text-amber-600', value: 'text-amber-700' },
+  amber: { bg: 'bg-blue-50', icon: 'bg-blue-100 text-blue-600', value: 'text-blue-700' },
 };
 
 export default function MetricCard({ label, value, icon: Icon, color = 'blue' }) {

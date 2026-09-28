@@ -29,7 +29,7 @@ export default function MortgageProtectionGuidePage() {
             When you buy a home, you also take on a significant financial responsibility. Protecting your family from that debt is crucial. Two popular solutions are **Mortgage Protection Insurance (MPI)** and **Term Life Insurance**. While they both offer peace of mind, they work in fundamentally different ways. Understanding these differences is key to choosing the right protection for your loved ones.
           </p>
           
-          <hr className="my-8 border-t-2" style={{borderColor: '#D4AF37'}} />
+          <hr className="my-8 border-t-2" style={{borderColor: '#3B82F6'}} />
 
           <h2 id="what-is-mpi">What is Mortgage Protection Insurance (MPI)?</h2>
           <p>
@@ -49,7 +49,7 @@ export default function MortgageProtectionGuidePage() {
             This money can be used for any purpose they see fit—not just the mortgage. Beneficiaries can use it to cover funeral costs, replace lost income, fund education, or pay off any debts, including the mortgage. This flexibility is a major advantage, as it empowers your family to address their most pressing financial needs.
           </p>
           
-          <hr className="my-8 border-t-2" style={{borderColor: '#D4AF37'}} />
+          <hr className="my-8 border-t-2" style={{borderColor: '#3B82F6'}} />
 
           <h2 id="key-differences">Key Differences at a Glance</h2>
           
@@ -187,7 +187,7 @@ export default function MortgageProtectionGuidePage() {
             <li>**Apply and get covered** - Complete the application and medical exam if required</li>
           </ol>
 
-          <hr className="my-8 border-t-2" style={{borderColor: '#D4AF37'}} />
+          <hr className="my-8 border-t-2" style={{borderColor: '#3B82F6'}} />
 
           <h2 id="conclusion">Conclusion: Which One Should You Choose?</h2>
           <p>

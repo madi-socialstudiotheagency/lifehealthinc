@@ -98,7 +98,7 @@ const formTypeConfig = {
     title: "Welcome to Our Newsletter!",
     subtitle: "You're now subscribed to weekly financial insights from LifeHealthInc.",
     icon: Mail,
-    iconColor: "#F59E0B",
+    iconColor: "#3B82F6",
     nextSteps: [
       "Check your email for a confirmation message",
       "You'll receive your first newsletter within a week",

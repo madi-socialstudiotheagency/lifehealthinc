@@ -126,7 +126,7 @@ export default function TermVsWholeLifeSlider() {
       </Tabs>
 
       {/* Quick Comparison Summary */}
-      <Card className="mt-8 border-2" style={{ borderColor: '#D4AF37' }}>
+      <Card className="mt-8 border-2" style={{ borderColor: '#3B82F6' }}>
         <CardContent className="p-6">
           <h3 className="text-xl font-bold text-slate-900 mb-4 text-center">
             Which One is Right for You?

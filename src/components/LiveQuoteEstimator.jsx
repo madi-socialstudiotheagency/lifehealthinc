@@ -1,7 +1,7 @@
 import { useState, useMemo, useEffect } from 'react';
 import { DollarSign, TrendingUp, Calendar } from 'lucide-react';
 
-const GOLD = '#D4AF37';
+const GOLD = '#3B82F6';
 const DARK = '#1C1B30';
 
 // Simplified rate tables for live estimates (per $1000 coverage)

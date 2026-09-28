@@ -6,7 +6,7 @@ export default function SiteCTABand({ headline, subtext }) {
         <p className="text-blue-100 text-sm mb-6">{subtext || 'Apply online in minutes, or talk with Matthew and our team. Free, no pressure, no jargon.'}</p>
         <a
           href="tel:3057249840"
-          className="inline-flex items-center gap-2 bg-yellow-400 text-gray-900 font-bold text-sm px-7 py-3 rounded-lg hover:bg-yellow-300 transition-colors"
+          className="inline-flex items-center gap-2 bg-blue-400 text-gray-900 font-bold text-sm px-7 py-3 rounded-lg hover:bg-blue-300 transition-colors"
         >
           📞 Call Now — (305) 724-9840
         </a>

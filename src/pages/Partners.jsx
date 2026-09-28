@@ -82,7 +82,7 @@ export default function PartnersPage() {
             {/* Icon Grid */}
             <div className="grid grid-cols-2 gap-5">
               {professionals.map(({ title, icon: Icon }, i) => (
-                <div key={title} className="rounded-2xl p-6 border border-white/10 text-center hover:border-yellow-500/30 transition-all duration-300 hover:-translate-y-1 group"
+                <div key={title} className="rounded-2xl p-6 border border-white/10 text-center hover:border-blue-500/30 transition-all duration-300 hover:-translate-y-1 group"
                   style={{ background: 'linear-gradient(160deg, rgba(255,255,255,0.07), rgba(255,255,255,0.02))' }}>
                   <Icon className="w-10 h-10 mx-auto mb-3 group-hover:scale-110 transition-transform text-white" />
                   <h4 className="font-bold text-sm text-white">{title}</h4>

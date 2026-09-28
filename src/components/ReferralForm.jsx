@@ -118,14 +118,14 @@ export default function ReferralForm({ open, onClose }) {
                 <h4 className="text-xs font-bold uppercase tracking-widest mb-3" style={{ color: GOLD }}>Your Information</h4>
                 <div className="space-y-3">
                   <input placeholder="Your Full Name *" value={form.referrerName} onChange={e => set('referrerName', e.target.value)}
-                    className="w-full px-4 py-3 rounded-xl text-white placeholder-slate-500 outline-none border border-white/10 focus:border-yellow-500 transition-colors text-sm"
+                    className="w-full px-4 py-3 rounded-xl text-white placeholder-slate-500 outline-none border border-white/10 focus:border-blue-500 transition-colors text-sm"
                     style={{ background: 'rgba(255,255,255,0.06)' }} />
                   <div className="grid grid-cols-2 gap-3">
                     <input placeholder="Your Email *" type="email" value={form.referrerEmail} onChange={e => set('referrerEmail', e.target.value)}
-                      className="w-full px-4 py-3 rounded-xl text-white placeholder-slate-500 outline-none border border-white/10 focus:border-yellow-500 transition-colors text-sm"
+                      className="w-full px-4 py-3 rounded-xl text-white placeholder-slate-500 outline-none border border-white/10 focus:border-blue-500 transition-colors text-sm"
                       style={{ background: 'rgba(255,255,255,0.06)' }} />
                     <input placeholder="Your Phone" type="tel" value={form.referrerPhone} onChange={e => set('referrerPhone', e.target.value)}
-                      className="w-full px-4 py-3 rounded-xl text-white placeholder-slate-500 outline-none border border-white/10 focus:border-yellow-500 transition-colors text-sm"
+                      className="w-full px-4 py-3 rounded-xl text-white placeholder-slate-500 outline-none border border-white/10 focus:border-blue-500 transition-colors text-sm"
                       style={{ background: 'rgba(255,255,255,0.06)' }} />
                   </div>
                 </div>
@@ -140,18 +140,18 @@ export default function ReferralForm({ open, onClose }) {
                 <div className="space-y-3">
                   <div className="grid grid-cols-2 gap-3">
                     <input placeholder="First Name *" value={form.refFirstName} onChange={e => set('refFirstName', e.target.value)}
-                      className="w-full px-4 py-3 rounded-xl text-white placeholder-slate-500 outline-none border border-white/10 focus:border-yellow-500 transition-colors text-sm"
+                      className="w-full px-4 py-3 rounded-xl text-white placeholder-slate-500 outline-none border border-white/10 focus:border-blue-500 transition-colors text-sm"
                       style={{ background: 'rgba(255,255,255,0.06)' }} />
                     <input placeholder="Last Name" value={form.refLastName} onChange={e => set('refLastName', e.target.value)}
-                      className="w-full px-4 py-3 rounded-xl text-white placeholder-slate-500 outline-none border border-white/10 focus:border-yellow-500 transition-colors text-sm"
+                      className="w-full px-4 py-3 rounded-xl text-white placeholder-slate-500 outline-none border border-white/10 focus:border-blue-500 transition-colors text-sm"
                       style={{ background: 'rgba(255,255,255,0.06)' }} />
                   </div>
                   <div className="grid grid-cols-2 gap-3">
                     <input placeholder="Their Phone *" type="tel" value={form.refPhone} onChange={e => set('refPhone', e.target.value)}
-                      className="w-full px-4 py-3 rounded-xl text-white placeholder-slate-500 outline-none border border-white/10 focus:border-yellow-500 transition-colors text-sm"
+                      className="w-full px-4 py-3 rounded-xl text-white placeholder-slate-500 outline-none border border-white/10 focus:border-blue-500 transition-colors text-sm"
                       style={{ background: 'rgba(255,255,255,0.06)' }} />
                     <input placeholder="Their Email (optional)" type="email" value={form.refEmail} onChange={e => set('refEmail', e.target.value)}
-                      className="w-full px-4 py-3 rounded-xl text-white placeholder-slate-500 outline-none border border-white/10 focus:border-yellow-500 transition-colors text-sm"
+                      className="w-full px-4 py-3 rounded-xl text-white placeholder-slate-500 outline-none border border-white/10 focus:border-blue-500 transition-colors text-sm"
                       style={{ background: 'rgba(255,255,255,0.06)' }} />
                   </div>
 
@@ -174,7 +174,7 @@ export default function ReferralForm({ open, onClose }) {
                   </div>
 
                   <textarea placeholder="Any additional notes (optional)" rows={2} value={form.notes} onChange={e => set('notes', e.target.value)}
-                    className="w-full px-4 py-3 rounded-xl text-white placeholder-slate-500 outline-none border border-white/10 focus:border-yellow-500 transition-colors text-sm resize-none"
+                    className="w-full px-4 py-3 rounded-xl text-white placeholder-slate-500 outline-none border border-white/10 focus:border-blue-500 transition-colors text-sm resize-none"
                     style={{ background: 'rgba(255,255,255,0.06)' }} />
                 </div>
               </div>

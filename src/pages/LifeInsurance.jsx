@@ -240,13 +240,13 @@ export default function LifeInsurancePage() {
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
             {[
               { icon: Shield, color: 'blue', label: 'Independent', desc: 'We compare top-rated carriers to find you the best rate and coverage.' },
-              { icon: Users, color: 'green', label: 'Licensed Experts', desc: 'Our team is licensed in all 50 states with decades of combined experience.' },
+              { icon: Users, color: 'green', label: 'Licensed Experts', desc: 'Licensed advisors who can write coverage in all 50 states.' },
               { icon: Heart, color: 'purple', label: 'Client-Focused', desc: 'We work for you, not insurance companies. Your best interest is our only goal.' },
-              { icon: DollarSign, color: 'amber', label: 'No Extra Cost', desc: 'Our services are free — carriers pay us the same commission regardless.' },
-            ].map(({ icon: Icon, color, label, desc }, i) => (
+              { icon: DollarSign, color: 'blue', label: 'No Extra Cost', desc: 'Our services are free — carriers pay us the same commission regardless.' },
+            ].map(({ icon: Icon, label, desc }, i) => (
               <div key={i} className="text-center">
-                <div className={`w-16 h-16 rounded-full bg-${color}-100 flex items-center justify-center mx-auto mb-4`}>
-                  <Icon className={`w-8 h-8 text-${color}-600`} />
+                <div className={`w-16 h-16 rounded-full bg-blue-100 flex items-center justify-center mx-auto mb-4`}>
+                  <Icon className="w-8 h-8 text-blue-700" />
                 </div>
                 <h3 className="font-semibold text-slate-900 mb-2">{label}</h3>
                 <p className="text-slate-600 text-sm">{desc}</p>

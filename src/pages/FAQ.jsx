@@ -74,10 +74,10 @@ export default function FAQPage() {
                 </div>
                 
                 {/* Disclaimer */}
-                <Alert variant="default" className="mb-8 bg-amber-50 border-amber-200">
-                    <AlertTriangle className="h-4 w-4 text-amber-600" />
-                    <AlertTitle className="text-amber-800 font-semibold">General Info Only — Not Legal or Tax Advice</AlertTitle>
-                    <AlertDescription className="text-amber-700">
+                <Alert variant="default" className="mb-8 bg-blue-50 border-blue-200">
+                    <AlertTriangle className="h-4 w-4 text-blue-600" />
+                    <AlertTitle className="text-blue-800 font-semibold">General Info Only — Not Legal or Tax Advice</AlertTitle>
+                    <AlertDescription className="text-blue-700">
                         The information provided below is for general informational purposes only and does not constitute legal, tax, or financial advice. Please consult with a qualified professional for advice tailored to your specific situation.
                     </AlertDescription>
                 </Alert>
