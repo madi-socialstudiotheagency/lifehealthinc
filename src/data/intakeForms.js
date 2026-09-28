@@ -2,13 +2,14 @@
 // Field types: text, email, tel, number, date, select, radio, multi, textarea, yesno.
 // `showIf: { field, equals }` shows a field only when another answer matches.
 //
-// The life products (life, final expense, mortgage protection) are full
-// applications (src/data/lifeApplication.js). Their SSN, driver's license and
+// The life products (life, final expense, mortgage protection) and annuities
+// are full applications (src/data/lifeApplication.js, annuityApplication.js). Their SSN, driver's license and
 // bank fields are `secure: true`: encrypted server side, never emailed, shown
 // only on Matthew's private approval page. Other forms never ask for them.
 
 import { STATES } from './states';
 import { lifeApplication } from './lifeApplication';
+import { annuityApplication } from './annuityApplication';
 
 export { STATES };
 
@@ -228,23 +229,8 @@ export const INTAKE_FORMS = [
   },
   {
     id: 'annuity-retirement', audience: 'Individuals & Families', title: 'Annuities & Retirement Income',
-    blurb: 'Guaranteed income and tax-deferred growth. Not a bank deposit.',
-    sections: [
-      personContact,
-      {
-        title: 'Your retirement picture',
-        fields: [
-          { name: 'retirementAge', label: 'Age you plan to retire or did retire', type: 'number', required: true },
-          { name: 'goal', label: 'Main goal', type: 'radio', options: ['Guaranteed income for life', 'Grow safely with protection from loss', 'Move an old 401(k)/IRA', 'Leave money to heirs'], required: true },
-          { name: 'fundsAmount', label: 'Approximate amount to place', type: 'select', options: ['Under $50,000', '$50,000 to $100,000', '$100,000 to $250,000', '$250,000 to $500,000', 'Over $500,000'], required: true },
-          { name: 'fundsSource', label: 'Where would the money come from?', type: 'multi', options: ['Savings / CDs', '401(k) or 403(b)', 'Traditional IRA', 'Roth IRA', 'Existing annuity', 'Sale of a home or business'] },
-          { name: 'incomeStart', label: 'When would you need income to start?', type: 'select', options: ['Now', '1 to 5 years', '5 to 10 years', 'Over 10 years'] },
-          { name: 'existingAnnuity', label: 'Do you already own an annuity?', type: 'radio', options: yn },
-          { name: 'riskComfort', label: 'Comfort with market risk', type: 'radio', options: ['Very low', 'Moderate', 'Comfortable'] },
-        ],
-      },
-      timeline(),
-    ],
+    blurb: 'Full annuity application: fixed rate (MYGA), indexed (FIA) and lifetime income. Not a bank deposit.',
+    sections: annuityApplication(),
   },
   {
     id: 'policy-review', audience: 'Individuals & Families', title: 'Free Policy Review',

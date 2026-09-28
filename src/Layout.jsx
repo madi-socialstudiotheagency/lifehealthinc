@@ -10,6 +10,7 @@ import {
 import NewsletterSignup from "./components/NewsletterSignup";
 import AIAssistant from "./components/AIAssistant";
 import MobileApplyBar from "./components/MobileApplyBar";
+import BrandLogo from "./components/BrandLogo";
 import { Button } from "@/components/ui/button";
 
 import HealthQuoteWidget from "./components/HealthQuoteWidget";
@@ -130,7 +131,7 @@ export default function Layout({ children, currentPageName }) {
   return (
     <div className="min-h-screen flex flex-col" style={{ background: '#f8f7f4' }}>
       {/* Favicon */}
-      <link rel="icon" href="https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/68c1ca7c80a1472f1eb4424c/f8b8be74c_lfhi1.png" type="image/png" />
+      <link rel="icon" href="/brand/lhi-shield-64.png" type="image/png" />
 
       <script src="https://link.msgsndr.com/js/form_embed.js" type="text/javascript" async defer />
       <script dangerouslySetInnerHTML={{ __html: `window.GHL_WEBHOOK_URL="https://services.leadconnectorhq.com/hooks/lJmzDmY0fD9lzFZWj5Lw/webhook-trigger/9d701892-b155-4cca-bd54-b9b58fe42879";` }} />
@@ -156,13 +157,13 @@ export default function Layout({ children, currentPageName }) {
         className="w-full text-center py-1 px-4 text-xs font-semibold tracking-wide"
         style={{ background: `linear-gradient(90deg, ${DARK1}, ${DARK2})`, color: GOLD }}
       >
-        <span className="sm:hidden">📞 (954) 543-0853 · Apply online, no call needed</span>
-        <span className="hidden sm:inline">📞 Licensed in All 50 States · (954) 543-0853 · No Cost Consultations Available</span>
+        <span className="sm:hidden">Licensed in all 50 states · Apply online, no call needed</span>
+        <span className="hidden sm:inline">Independent brokerage · Licensed in all 50 states · Apply online, no call needed · (954) 543-0853</span>
       </div>
 
       {/* ─── Sticky Header ────────────────────────────────────────────────── */}
       <header
-        className="sticky top-0 z-50 w-full py-2 text-white shadow-lg"
+        className="sticky top-0 z-50 w-full py-2.5 text-white shadow-lg backdrop-blur"
         style={{ background: `linear-gradient(135deg, ${DARK1} 0%, ${DARK2} 100%)` }}
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -170,17 +171,11 @@ export default function Layout({ children, currentPageName }) {
 
             {/* Logo */}
             <Link to={createPageUrl("Home")} className="flex items-center gap-2 flex-shrink-0">
-              <img
-                src="https://media.base44.com/images/public/68c1ca7c80a1472f1eb4424c/6bb5a4d12_Untitleddesign.png"
-                alt="LifeHealthInc Logo"
-                className="header-logo"
-                style={{ mixBlendMode: 'lighten', filter: 'brightness(1.1)' }}
-              />
-              <span className="text-lg font-bold hidden sm:block whitespace-nowrap" style={{ color: GOLD }}>LifeHealthInc</span>
+              <BrandLogo size={40} />
             </Link>
 
             {/* Desktop Nav */}
-            <nav className="hidden md:flex items-center space-x-1">
+            <nav className="hidden lg:flex items-center gap-0.5" aria-label="Main">
               <Link to={createPageUrl("Home")} className={`header-link ${currentPageName === 'Home' ? 'active' : ''}`}>Home</Link>
 
               {/* Services dropdown */}
@@ -207,11 +202,11 @@ export default function Layout({ children, currentPageName }) {
             </nav>
 
             {/* Right — CTA + Social */}
-            <div className="hidden md:flex items-center gap-3">
+            <div className="hidden lg:flex items-center gap-2.5">
               <Button
                 asChild
                 size="sm"
-                className="font-bold rounded-lg"
+                className="hidden xl:inline-flex font-semibold rounded-lg"
                 style={{ backgroundColor: 'transparent', color: '#FFFFFF', border: '1px solid rgba(255,255,255,0.35)' }}
               >
                 <Link to={createPageUrl("Clients")}>
@@ -222,8 +217,8 @@ export default function Layout({ children, currentPageName }) {
               <Button
                 asChild
                 size="sm"
-                className="font-bold rounded-lg"
-                style={{ backgroundColor: GOLD, color: DARK1 }}
+                className="font-bold rounded-lg shadow-md"
+                style={{ backgroundColor: '#FFFFFF', color: DARK1 }}
               >
                 <Link to="/get-started">
                   <Sparkles className="w-4 h-4 mr-1.5" />
@@ -248,7 +243,7 @@ export default function Layout({ children, currentPageName }) {
             {/* Mobile hamburger */}
             <button
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              className="md:hidden p-2 rounded-lg hover:bg-white/10 transition-colors"
+              className="lg:hidden p-2 rounded-lg hover:bg-white/10 transition-colors"
               aria-label="Toggle menu"
             >
               {mobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
@@ -257,7 +252,7 @@ export default function Layout({ children, currentPageName }) {
 
           {/* ─── Mobile Menu ───────────────────────────────────────────────── */}
           {mobileMenuOpen && (
-            <div className="md:hidden mt-4 pb-4" style={{ borderTop: '1px solid rgba(255,255,255,0.15)' }}>
+            <div className="lg:hidden mt-4 pb-4" style={{ borderTop: '1px solid rgba(255,255,255,0.15)' }}>
               <nav className="flex flex-col space-y-1 mt-4">
                 <Link
                   to="/get-started"
@@ -401,12 +396,7 @@ export default function Layout({ children, currentPageName }) {
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8 mb-8">
             {/* Brand */}
             <div className="col-span-2 md:col-span-1">
-              <img
-                src="https://media.base44.com/images/public/68c1ca7c80a1472f1eb4424c/6bb5a4d12_Untitleddesign.png"
-                alt="LifeHealthInc"
-                className="h-10 mb-3"
-                style={{ mixBlendMode: 'lighten' }}
-              />
+              <BrandLogo size={44} className="mb-4" />
               <p className="text-xs text-slate-400 leading-relaxed">
                 Licensed insurance brokerage serving clients nationwide. We shop top-rated carriers to find the best coverage at the best price.
               </p>
