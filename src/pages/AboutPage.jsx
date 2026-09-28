@@ -38,6 +38,7 @@ const TEAM = [
 const AGENTS = [
   { name: 'Demarco Carter', title: 'Licensed Insurance Agent', image: '/team/demarco-carter.jpg' },
   { name: 'Adam Phillips', title: 'Licensed Insurance Agent', image: '/team/adam-phillips.jpg' },
+  { name: 'Luis Sierra', title: 'Licensed Insurance Agent', image: '/team/luis-sierra.jpg' },
 ];
 
 const VALUES = [
