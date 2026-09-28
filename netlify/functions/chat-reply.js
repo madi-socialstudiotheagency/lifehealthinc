@@ -51,14 +51,29 @@ export const handler = async (event) => {
           {
             method: 'POST',
             headers: { 'content-type': 'application/json' },
-            body: JSON.stringify({ contents: [{ parts: [{ text: prompt }] }], generationConfig: { maxOutputTokens: 500 } }),
+            body: JSON.stringify({
+              contents: [{ parts: [{ text: prompt }] }],
+              // Newer Gemini models spend part of maxOutputTokens on internal
+              // reasoning before the visible reply, which was truncating or
+              // garbling answers to anything nontrivial. Disable that reasoning
+              // for this short-reply use case and give the real answer enough
+              // room, since the system prompt alone runs ~5k tokens.
+              generationConfig: { maxOutputTokens: 1200, thinkingConfig: { thinkingBudget: 0 } },
+            }),
           }
         );
         if (!res.ok) { lastErr = model + ' ' + res.status; continue; }
         const j = await res.json();
+        const finishReason = j.candidates?.[0]?.finishReason;
         const text = (j.candidates?.[0]?.content?.parts || []).map((p) => p.text || '').join('').trim();
-        if (text) return { statusCode: 200, body: JSON.stringify({ reply: text, model }) };
-        lastErr = model + ' empty';
+        // Reject fragments: clearly cut off mid-word/mid-sentence, or a stray
+        // formatting artifact rather than real prose.
+        const cutOff = finishReason === 'MAX_TOKENS' && !/[.!?]["')]?$/.test(text);
+        const isArtifact = /^[\/#*`_>-]/.test(text) || /^\s*(link|links?|point to)\s*:/i.test(text);
+        if (text && !cutOff && !isArtifact && text.length >= 15) {
+          return { statusCode: 200, body: JSON.stringify({ reply: text, model }) };
+        }
+        lastErr = model + (text ? ' rejected (' + (cutOff ? 'cut off' : 'artifact') + ')' : ' empty');
       }
       throw new Error('all Gemini models failed: ' + lastErr);
     }
