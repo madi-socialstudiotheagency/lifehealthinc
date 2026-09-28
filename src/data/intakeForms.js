@@ -2,14 +2,15 @@
 // Field types: text, email, tel, number, date, select, radio, multi, textarea, yesno.
 // `showIf: { field, equals }` shows a field only when another answer matches.
 //
-// PRIVACY: none of these forms ask for an SSN, bank or card number. Those belong
-// in the carrier's secure application, not a website form. Medication names and
-// a short conditions checklist ARE collected on the health-related forms because
-// they change the price and the advisor needs them to prepare the application.
+// The life products (life, final expense, mortgage protection) are full
+// applications (src/data/lifeApplication.js). Their SSN, driver's license and
+// bank fields are `secure: true`: encrypted server side, never emailed, shown
+// only on Matthew's private approval page. Other forms never ask for them.
 
-export const STATES = [
-  'AL','AK','AZ','AR','CA','CO','CT','DE','DC','FL','GA','HI','ID','IL','IN','IA','KS','KY','LA','ME','MD','MA','MI','MN','MS','MO','MT','NE','NV','NH','NJ','NM','NY','NC','ND','OH','OK','OR','PA','RI','SC','SD','TN','TX','UT','VT','VA','WA','WV','WI','WY',
-];
+import { STATES } from './states';
+import { lifeApplication } from './lifeApplication';
+
+export { STATES };
 
 const yn = ['Yes', 'No'];
 const ynu = ['Yes', 'No', 'Not sure'];
@@ -26,8 +27,6 @@ const personContact = {
     { name: 'state', label: 'State you live in', type: 'select', options: STATES, required: true },
     { name: 'zip', label: 'ZIP code', type: 'text', required: true },
     { name: 'dob', label: 'Date of birth', type: 'date', required: true, help: 'Used only to price your options.' },
-    { name: 'contactPref', label: 'Best way to reach you', type: 'radio', options: ['Call', 'Text', 'Email'], required: true },
-    { name: 'bestTime', label: 'Best time to reach you', type: 'select', options: ['Morning', 'Afternoon', 'Evening', 'Anytime'] },
   ],
 };
 
@@ -52,7 +51,7 @@ const tobaccoHeightWeight = [
     type: 'multi',
     options: ['Heart disease or heart attack', 'Stroke', 'Cancer', 'Diabetes', 'High blood pressure', 'High cholesterol', 'COPD or other lung disease', 'Kidney or liver disease', 'Depression or anxiety', 'Sleep apnea', 'None of these'],
   },
-  { name: 'healthNotes', label: 'Anything else about your health that could affect your price? (optional)', type: 'textarea', help: 'Never include Social Security, bank or card numbers.' },
+  { name: 'healthNotes', label: 'Anything else about your health that could affect your price? (optional)', type: 'textarea', },
 ];
 
 const businessContact = {
@@ -80,8 +79,6 @@ const businessPerson = {
     { name: 'phone', label: 'Phone', type: 'tel', required: true },
     { name: 'isDecisionMaker', label: 'Are you the final decision maker?', type: 'radio', options: yn, required: true },
     { name: 'otherDecisionMakers', label: 'Who else is involved in the decision (name and title)?', type: 'text', showIf: { field: 'isDecisionMaker', equals: 'No' } },
-    { name: 'contactPref', label: 'Best way to reach you', type: 'radio', options: ['Call', 'Text', 'Email'], required: true },
-    { name: 'bestTime', label: 'Best time to reach you', type: 'select', options: ['Morning', 'Afternoon', 'Evening', 'Anytime'] },
   ],
 };
 
@@ -122,65 +119,48 @@ export const INTAKE_FORMS = [
   {
     id: 'life-insurance', audience: 'Individuals & Families', title: 'Life Insurance',
     blurb: 'Term, whole life, universal life and IUL for you and your family.',
-    sections: [
-      personContact,
-      {
-        title: 'Your coverage',
-        fields: [
-          { name: 'productInterest', label: 'What are you interested in?', type: 'multi', options: ['Term life', 'Whole life', 'Universal life', 'Indexed universal life (IUL)', 'Not sure, advise me'], required: true },
-          { name: 'goal', label: 'Main reason for coverage', type: 'multi', options: ['Replace income', 'Pay off debts / mortgage', 'Children\'s future / college', 'Final expenses', 'Leave a legacy', 'Tax-advantaged savings', 'Business needs'], required: true },
-          { name: 'coverageAmount', label: 'Coverage amount you have in mind', type: 'select', options: ['Under $100,000', '$100,000 to $250,000', '$250,000 to $500,000', '$500,000 to $1 million', '$1 million to $2 million', 'Over $2 million', 'Not sure'], required: true },
-          { name: 'termLength', label: 'If term, how long?', type: 'select', options: ['10 years', '15 years', '20 years', '25 years', '30 years', 'Not sure'] },
-          { name: 'monthlyBudget', label: 'Comfortable monthly budget', type: 'select', options: ['Under $50', '$50 to $100', '$100 to $250', '$250 to $500', '$500 to $1,000', 'Over $1,000'], required: true },
-          { name: 'annualIncome', label: 'Approximate annual household income', type: 'select', options: ['Under $50,000', '$50,000 to $100,000', '$100,000 to $250,000', '$250,000 to $500,000', 'Over $500,000'] },
-          { name: 'dependents', label: 'Number of dependents', type: 'number' },
-          { name: 'maritalStatus', label: 'Marital status', type: 'select', options: ['Single', 'Married', 'Domestic partner', 'Divorced', 'Widowed'] },
-          { name: 'existingCoverage', label: 'Do you have life insurance now?', type: 'radio', options: yn, required: true },
-          { name: 'existingDetails', label: 'Carrier and amount of current coverage', type: 'text', showIf: { field: 'existingCoverage', equals: 'Yes' } },
-        ],
-      },
-      { title: 'A few health basics', fields: tobaccoHeightWeight },
-      timeline(),
-    ],
+    sections: lifeApplication({
+      title: 'Your coverage',
+      fields: [
+        { name: 'productInterest', label: 'Which plan are you applying for?', type: 'radio', options: ['Term life', 'Whole life', 'Universal life', 'Indexed universal life (IUL)', 'Not sure, recommend the best fit'], required: true },
+        { name: 'coverageAmount', label: 'Face amount (how much coverage)', type: 'select', options: ['Under $100,000', '$100,000 to $250,000', '$250,000 to $500,000', '$500,000 to $1 million', '$1 million to $2 million', 'Over $2 million', 'Not sure, recommend an amount'], required: true },
+        { name: 'termLength', label: 'Term length', type: 'select', options: ['10 years', '15 years', '20 years', '25 years', '30 years', 'Not sure'], required: true, showIf: { field: 'productInterest', equals: 'Term life' } },
+        { name: 'goal', label: 'Main reason for coverage', type: 'multi', options: ['Replace income', 'Pay off debts / mortgage', 'Children\'s future / college', 'Final expenses', 'Leave a legacy', 'Tax-advantaged savings', 'Business needs'], required: true },
+        { name: 'monthlyBudget', label: 'Comfortable monthly budget', type: 'select', options: ['Under $50', '$50 to $100', '$100 to $250', '$250 to $500', '$500 to $1,000', 'Over $1,000'], required: true },
+        { name: 'dependents', label: 'Number of dependents', type: 'number' },
+        { name: 'timeline', label: 'When should coverage start?', type: 'select', options: ['As soon as approved', 'A specific date (add it in the notes at the end)'], required: true },
+      ],
+    }),
   },
   {
     id: 'final-expense', audience: 'Individuals & Families', title: 'Final Expense',
     blurb: 'Simple, permanent coverage for funeral and end-of-life costs.',
-    sections: [
-      personContact,
-      {
-        title: 'Coverage',
-        fields: [
-          { name: 'coverageAmount', label: 'Amount you want to leave', type: 'select', options: ['$5,000', '$10,000', '$15,000', '$20,000', '$25,000', '$30,000 or more', 'Not sure'], required: true },
-          { name: 'monthlyBudget', label: 'Comfortable monthly budget', type: 'select', options: ['Under $30', '$30 to $60', '$60 to $100', 'Over $100'], required: true },
-          { name: 'beneficiaryRelation', label: 'Who would receive the benefit?', type: 'select', options: ['Spouse', 'Child', 'Other family', 'Funeral home', 'Other'] },
-          { name: 'existingCoverage', label: 'Do you already have burial or life insurance?', type: 'radio', options: yn, required: true },
-        ],
-      },
-      { title: 'A few health basics', fields: tobaccoHeightWeight },
-      timeline(),
-    ],
+    sections: lifeApplication({
+      title: 'Your coverage',
+      fields: [
+        { name: 'coverageAmount', label: 'Face amount (what you want to leave)', type: 'select', options: ['$5,000', '$10,000', '$15,000', '$20,000', '$25,000', '$30,000 or more', 'Not sure, recommend an amount'], required: true },
+        { name: 'monthlyBudget', label: 'Comfortable monthly budget', type: 'select', options: ['Under $30', '$30 to $60', '$60 to $100', 'Over $100'], required: true },
+        { name: 'timeline', label: 'When should coverage start?', type: 'select', options: ['As soon as approved', 'A specific date (add it in the notes at the end)'], required: true },
+      ],
+    }),
   },
   {
     id: 'mortgage-protection', audience: 'Individuals & Families', title: 'Mortgage Protection',
     blurb: 'Keep the home in your family if you die, or become ill or disabled.',
-    sections: [
-      personContact,
-      {
-        title: 'Your mortgage',
-        fields: [
-          { name: 'mortgageBalance', label: 'Approximate mortgage balance', type: 'select', options: ['Under $100,000', '$100,000 to $250,000', '$250,000 to $400,000', '$400,000 to $600,000', 'Over $600,000'], required: true },
-          { name: 'monthlyPayment', label: 'Monthly mortgage payment', type: 'number', required: true },
-          { name: 'yearsRemaining', label: 'Years remaining on the loan', type: 'number', required: true },
-          { name: 'homeownerSince', label: 'Year you bought the home', type: 'number' },
-          { name: 'coverageStyle', label: 'What should it do?', type: 'radio', options: ['Pay off the balance', 'Cover payments for a period', 'Both, advise me'], required: true },
-          { name: 'livingBenefits', label: 'Interested in living benefits (illness or disability)?', type: 'radio', options: ynu },
-          { name: 'coBorrower', label: 'Is there a co-borrower who should also be covered?', type: 'radio', options: yn },
-        ],
-      },
-      { title: 'A few health basics', fields: tobaccoHeightWeight },
-      timeline(),
-    ],
+    sections: lifeApplication({
+      title: 'Your mortgage and coverage',
+      fields: [
+        { name: 'lender', label: 'Mortgage lender', type: 'text' },
+        { name: 'mortgageBalance', label: 'Approximate mortgage balance', type: 'select', options: ['Under $100,000', '$100,000 to $250,000', '$250,000 to $400,000', '$400,000 to $600,000', 'Over $600,000'], required: true },
+        { name: 'monthlyPayment', label: 'Monthly mortgage payment', type: 'number', required: true },
+        { name: 'yearsRemaining', label: 'Years remaining on the loan', type: 'number', required: true },
+        { name: 'homeownerSince', label: 'Year you bought the home', type: 'number' },
+        { name: 'coverageStyle', label: 'What should it do?', type: 'radio', options: ['Pay off the balance', 'Cover payments for a period', 'Both, recommend the best fit'], required: true },
+        { name: 'livingBenefits', label: 'Include living benefits (pays out early for serious illness or disability)?', type: 'radio', options: ynu, required: true },
+        { name: 'coBorrower', label: 'Is there a co-borrower who should also be covered? (They apply separately.)', type: 'radio', options: yn },
+        { name: 'timeline', label: 'When should coverage start?', type: 'select', options: ['As soon as approved', 'A specific date (add it in the notes at the end)'], required: true },
+      ],
+    }),
   },
   {
     id: 'individual-health', audience: 'Individuals & Families', title: 'Individual & Family Health',

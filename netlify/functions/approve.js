@@ -3,10 +3,15 @@
 // be guessed. GET shows a small form; POST records the outcome, updates the
 // applicant's waiting screen (via app-status.js) and emails them the result.
 //
-// Needs APPROVAL_SECRET and RESEND_API_KEY (secret Netlify env vars).
+// It also shows Matthew the full application and, for life applications, the
+// encrypted SSN / license / bank details from secure-submit.js, decrypted here
+// only.
+//
+// Needs APPROVAL_SECRET and RESEND_API_KEY; SECURE_DATA_KEY is optional (see
+// secure-submit.js for the key fallback). All are secret Netlify env vars.
 
 import { connectLambda, getStore } from '@netlify/blobs';
-import { createHmac, timingSafeEqual } from 'node:crypto';
+import { createDecipheriv, createHash, createHmac, hkdfSync, timingSafeEqual } from 'node:crypto';
 
 const SITE = 'https://www.lifehealthinc.org';
 const FROM = 'LifeHealthInc <info@lifehealthinc.org>';
@@ -30,14 +35,36 @@ const validToken = (ref, t) => {
   }
 };
 
+// Decrypts the secure-submit.js record. Returns [] when there is none, and
+// ignores a record whose statusKey does not match this application.
+async function secureFields(ref, statusKey) {
+  try {
+    const rec = await getStore('secure').get(ref, { type: 'json' });
+    if (!rec || rec.statusKey !== statusKey) return [];
+    const key =
+      rec.kid === 'sdk'
+        ? process.env.SECURE_DATA_KEY && createHash('sha256').update(process.env.SECURE_DATA_KEY).digest()
+        : Buffer.from(hkdfSync('sha256', process.env.APPROVAL_SECRET || '', 'lhi-secure-data', 'lhi-secure-data-v1', 32));
+    if (!key) throw new Error('key ' + rec.kid + ' not configured');
+    const d = createDecipheriv('aes-256-gcm', key, Buffer.from(rec.iv, 'base64'));
+    d.setAuthTag(Buffer.from(rec.tag, 'base64'));
+    const plain = Buffer.concat([d.update(Buffer.from(rec.data, 'base64')), d.final()]).toString('utf8');
+    return JSON.parse(plain);
+  } catch (err) {
+    console.error('secure decrypt failed', err);
+    return [{ label: 'Secure details', value: 'could not be decrypted' }];
+  }
+}
+
 const page = (body, status = 200) => ({
   statusCode: status,
   headers: { 'Content-Type': 'text/html; charset=utf-8', 'Cache-Control': 'no-store', 'X-Robots-Tag': 'noindex' },
   body:
     '<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex"><title>LifeHealthInc approval</title>' +
     '<style>body{margin:0;background:#f3f5f9;font-family:-apple-system,BlinkMacSystemFont,Segoe UI,Helvetica,Arial,sans-serif;color:#0b1a33}' +
-    '.card{max-width:520px;margin:24px auto;background:#fff;border-radius:14px;overflow:hidden}.hd{background:#081730;color:#fff;padding:18px 22px;font-weight:800}' +
+    '.card{max-width:720px;margin:24px auto;background:#fff;border-radius:14px;overflow:hidden}.hd{background:#081730;color:#fff;padding:18px 22px;font-weight:800}' +
     '.bd{padding:22px}label{display:block;font-size:13px;font-weight:600;margin:14px 0 4px}input,select,textarea{width:100%;box-sizing:border-box;padding:12px;border:1px solid #cbd5e1;border-radius:10px;font-size:16px}' +
+    'pre{white-space:pre-wrap;font-family:inherit;font-size:14px;line-height:1.55;background:#f3f5f9;border-radius:10px;padding:14px;margin:8px 0 0}.sec{background:#fff7e6;border:1px solid #f5c26b;border-radius:10px;padding:12px 14px;margin:16px 0}.sec td{padding:4px 8px;font-size:15px}details{margin-top:18px}summary{font-weight:700;cursor:pointer}' +
     'button{width:100%;margin-top:20px;padding:15px;border:0;border-radius:12px;background:#1A3586;color:#fff;font-size:16px;font-weight:700}.m{color:#5b6b85;font-size:13px}</style></head><body><div class="card"><div class="hd">LifeHealthInc</div><div class="bd">' +
     body +
     '</div></div></body></html>',
@@ -64,7 +91,7 @@ function applicantEmail(rec, o) {
     '<tr><td style="background:#f3f5f9;padding:16px 28px;color:#6b7a94;font-size:11px;line-height:1.5">LifeHealthInc, 18245 Paulson Dr Ste VP-2 #508, Port Charlotte, FL 33954. Reference ' + esc(rec.ref) + '. Final premium and coverage are set by the carrier and confirmed in your policy documents.</td></tr></table></div>';
   if (o.outcome === 'approved') {
     const btn = o.payLink
-      ? '<p style="margin:20px 0"><a href="' + esc(o.payLink) + '" style="display:inline-block;background:#1A3586;color:#fff;text-decoration:none;font-weight:700;padding:14px 26px;border-radius:10px">Continue to secure payment</a></p><p style="font-size:13px;color:#5b6b85">This opens the carrier\'s own secure page. We never ask for card or bank details by email or on our website.</p>'
+      ? '<p style="margin:20px 0"><a href="' + esc(o.payLink) + '" style="display:inline-block;background:#1A3586;color:#fff;text-decoration:none;font-weight:700;padding:14px 26px;border-radius:10px">Continue to secure payment</a></p><p style="font-size:13px;color:#5b6b85">This opens the carrier\'s own secure page. We will never ask for card or bank details by email.</p>'
       : '<p>Matthew will send your secure payment link shortly.</p>';
     return {
       subject: "You're approved" + (money ? ': ' + money : '') + ' (' + rec.ref + ')',
@@ -74,7 +101,7 @@ function applicantEmail(rec, o) {
   if (o.outcome === 'needs_info') {
     return {
       subject: 'One more thing we need (' + rec.ref + ')',
-      html: shell('We need a little more, ' + esc(first), '<p style="font-size:15px;line-height:1.6">' + (o.note ? esc(o.note) : 'Matthew will reach out shortly for one more detail.') + '</p><p style="font-size:13px;color:#5b6b85">Reply to this email or text (954) 543-0853.</p>'),
+      html: shell('We need a little more, ' + esc(first), '<p style="font-size:15px;line-height:1.6">' + (o.note ? esc(o.note) : 'Matthew will reach out shortly for one more detail.') + '</p><p style="font-size:13px;color:#5b6b85">Just reply to this email with the answer. No call needed.</p>'),
     };
   }
   return {
@@ -97,6 +124,12 @@ export const handler = async (event) => {
     if (!rec) return page('<p>Application not found.</p>', 404);
 
     if (!isPost) {
+      const secure = await secureFields(ref, rec.statusKey);
+      const secureHtml = secure.length
+        ? '<div class="sec"><strong>Secure details</strong> <span class="m">(encrypted at rest, shown only on this page; do not forward)</span><table>' +
+          secure.map((f) => '<tr><td class="m">' + esc(f.label) + '</td><td><strong>' + esc(f.value) + '</strong></td></tr>').join('') + '</table></div>'
+        : '';
+      const appHtml = rec.details ? '<details open><summary>Full application</summary><pre>' + esc(rec.details) + '</pre></details>' : '';
       return page(
         '<h2 style="margin:0 0 4px">' + esc(rec.name || 'Applicant') + '</h2><p class="m">' + esc(rec.formTitle || '') + (rec.carrier && rec.carrier !== 'No preference' ? ' &middot; ' + esc(rec.carrier) : '') + '<br>' + esc(rec.email || '') + ' &middot; ' + esc(rec.phone || '') + '<br>Ref ' + esc(rec.ref) + ' &middot; now: <strong>' + esc(rec.status) + '</strong></p>' +
           '<form method="POST"><input type="hidden" name="ref" value="' + esc(ref) + '"><input type="hidden" name="t" value="' + esc(params.t) + '">' +
@@ -105,7 +138,9 @@ export const handler = async (event) => {
           '<label>Monthly amount (numbers only)</label><input name="amount" inputmode="decimal" placeholder="e.g. 52.32">' +
           '<label>Secure payment or e-sign link from the carrier</label><input name="payLink" type="url" placeholder="https://...">' +
           '<label>Note to the applicant (optional)</label><textarea name="note" rows="3"></textarea>' +
-          '<button type="submit">Send to applicant</button></form>'
+          '<button type="submit">Send to applicant</button></form>' +
+          secureHtml +
+          appHtml
       );
     }
 

@@ -11,7 +11,6 @@ import { createHmac } from 'node:crypto';
 const SITE = 'https://www.lifehealthinc.org';
 const FROM = 'LifeHealthInc <info@lifehealthinc.org>';
 const REPLY_TO = 'matthew@lifehealthinc.org';
-const PHONE = '(954) 543-0853';
 
 const esc = (s) =>
   String(s == null ? '' : s)
@@ -36,6 +35,7 @@ async function trackApplication(event, d) {
       phone: d.phone || '',
       formTitle: d.formTitle || '',
       carrier: d.carrier || '',
+      details: String(d.details || '').slice(0, 60000),
       createdAt: new Date().toISOString(),
     });
   } catch (err) {
@@ -54,13 +54,13 @@ async function notifyMatthew(d) {
       '<p style="color:#5b6b85;font-size:14px;margin:0 0 14px">' + esc(d.formTitle || '') + (d.carrier && d.carrier !== 'No preference' ? ' &middot; ' + esc(d.carrier) : '') + '<br>Ref ' + esc(d.reference) + '</p>' +
       '<p style="margin:0 0 18px"><a href="' + link + '" style="display:inline-block;background:#1A3586;color:#fff;text-decoration:none;font-weight:700;padding:15px 28px;border-radius:10px">Review and send price</a></p>' +
       '<table role="presentation" width="100%" style="border-collapse:collapse;font-size:14px;margin-bottom:14px">' +
-      [['Email', d.email], ['Phone', d.phone], ['State', d.state], ['Prefers', d.contactPref], ['Submitted from', d.sourceUrl]]
+      [['Email', d.email], ['Phone', d.phone], ['State', d.state], ['Submitted from', d.sourceUrl]]
         .filter((r) => r[1])
         .map((r) => '<tr><td style="padding:6px 10px;border-bottom:1px solid #e3e8f0;color:#5b6b85;width:30%">' + r[0] + '</td><td style="padding:6px 10px;border-bottom:1px solid #e3e8f0">' + esc(r[1]) + '</td></tr>')
         .join('') +
       '</table>' +
       '<pre style="white-space:pre-wrap;font-family:inherit;font-size:14px;line-height:1.55;background:#f3f5f9;border-radius:10px;padding:14px;margin:0">' + esc(d.details || '') + '</pre>' +
-      '<p style="color:#5b6b85;font-size:12px;margin-top:14px">The button opens a private page: enter the monthly amount and paste the carrier\'s secure payment link. They see it on their screen and by email.</p></div>';
+      '<p style="color:#5b6b85;font-size:12px;margin-top:14px">Social Security, license and bank numbers are not in this email (last 4 digits only). The button opens your private page, which shows them in full along with the whole application. There, enter the monthly amount and paste the carrier\'s secure payment link. They see it on their screen and by email.</p></div>';
     const res = await fetch('https://api.resend.com/emails', {
       method: 'POST',
       headers: { Authorization: 'Bearer ' + process.env.RESEND_API_KEY, 'Content-Type': 'application/json' },
@@ -84,25 +84,25 @@ function render(d) {
     '<h1 style="margin:0 0 12px;font-size:22px;color:#081730">We received your request</h1>' +
     '<p style="margin:0 0 12px;font-size:15px;line-height:1.6">Hi ' + esc(first) + ',</p>' +
     '<p style="margin:0 0 12px;font-size:15px;line-height:1.6">Thank you for applying for <strong>' + esc(d.formTitle || 'insurance') + '</strong>. ' +
-    'Everything above is what Matthew needs. He is a licensed advisor and will start preparing your application himself from your answers &mdash; you do not need to call.</p>' +
+    'Your application is complete. Matthew, a licensed advisor, submits it to the carrier for you from your answers. There is nothing you need to call about.</p>' +
     (ref ? '<table role="presentation" width="100%" style="background:#f3f5f9;border-radius:8px;margin:16px 0"><tr><td style="padding:14px 16px;font-size:14px"><strong>Your reference:</strong> ' + ref + '</td></tr></table>' : '') +
     '<p style="margin:16px 0 8px;font-size:15px"><strong>What happens next</strong></p>' +
     '<ol style="margin:0 0 16px;padding-left:20px;font-size:14px;line-height:1.7">' +
-    '<li>Matthew reviews your answers and compares carriers on your behalf.</li>' +
-    '<li>He prepares your application from what you submitted.</li>' +
-    '<li>He only contacts you' + (d.contactPref ? ' by ' + esc(String(d.contactPref).toLowerCase()) : '') + ' if something is missing, or when it is time to sign or verify your identity with the carrier.</li>' +
-    '<li>Once the carrier decides, we email you whether you were approved, along with your actual coverage amount and rate.</li></ol>' +
-    '<p style="margin:0;color:#5b6b85;font-size:13px;line-height:1.6">No need to call unless you want to. Reply to this email any time, or reach us at ' + PHONE + '. ' +
-    'Please never send a Social Security, bank or card number by email.</p>' +
+    '<li>Matthew reviews your answers and matches you with the best-fit carrier.</li>' +
+    '<li>He submits your application to the carrier for you.</li>' +
+    '<li>If the carrier needs a signature, it arrives by email as a simple e-sign link.</li>' +
+    '<li>Your approval, rate and secure payment link appear on your screen and in your email.</li></ol>' +
+    '<p style="margin:0;color:#5b6b85;font-size:13px;line-height:1.6">Questions? Just reply to this email. ' +
+    'For your security, never send a Social Security, bank or card number by email.</p>' +
     '</td></tr>' +
     '<tr><td style="background:#f3f5f9;padding:16px 28px;color:#6b7a94;font-size:11px;line-height:1.5">' +
     'LifeHealthInc, 18245 Paulson Dr Ste VP-2 #508, Port Charlotte, FL 33954. This message confirms we received your request. It is not an offer, quote or binder of coverage.</td></tr>' +
     '</table></div>';
   const text =
-    'Hi ' + first + ',\n\nThank you for applying for ' + (d.formTitle || 'insurance') + '. Everything above is what Matthew needs. He is a licensed advisor and will start preparing your application himself from your answers, you do not need to call.\n' +
+    'Hi ' + first + ',\n\nThank you for applying for ' + (d.formTitle || 'insurance') + '. Your application is complete. Matthew, a licensed advisor, submits it to the carrier for you from your answers. There is nothing you need to call about.\n' +
     (ref ? '\nYour reference: ' + d.reference + '\n' : '') +
-    '\nWhat happens next:\n1. Matthew reviews your answers and compares carriers on your behalf.\n2. He prepares your application from what you submitted.\n3. He only contacts you if something is missing, or when it is time to sign or verify your identity with the carrier.\n4. Once the carrier decides, we email you whether you were approved, along with your actual coverage amount and rate.\n' +
-    '\nNo need to call unless you want to. Reply to this email any time, or reach us at ' + PHONE + '. Please never send a Social Security, bank or card number by email.\n\nLifeHealthInc';
+    '\nWhat happens next:\n1. Matthew reviews your answers and matches you with the best-fit carrier.\n2. He submits your application to the carrier for you.\n3. If the carrier needs a signature, it arrives by email as a simple e-sign link.\n4. Your approval, rate and secure payment link appear on your screen and in your email.\n' +
+    '\nQuestions? Just reply to this email. For your security, never send a Social Security, bank or card number by email.\n\nLifeHealthInc';
   return { html, text };
 }
 

@@ -1,6 +1,6 @@
 import { useEffect, useMemo, useState } from 'react';
 import { Link, useParams, useSearchParams } from 'react-router-dom';
-import { ArrowRight, CheckCircle2, ChevronLeft, ChevronRight, Lock, Phone, Zap } from 'lucide-react';
+import { ArrowRight, CheckCircle2, ChevronLeft, ChevronRight, Lock, Zap } from 'lucide-react';
 import { AUDIENCES, CONSENT_TEXT, INTAKE_FORMS, PRIVACY_TEXT, getForm } from '@/data/intakeForms';
 import { makeReference, submitIntake } from '@/api/intakeClient';
 import { ALL_CARRIERS, logoFor } from '@/data/carriers';
@@ -36,8 +36,8 @@ function IntakeHub() {
         <p className="text-xs font-bold uppercase tracking-widest text-blue-200 text-center mb-3">Get started</p>
         <h1 className="text-4xl md:text-5xl font-black text-center mb-4">Apply for coverage online</h1>
         <p className="text-center text-blue-100 max-w-2xl mx-auto mb-12">
-          Answer the questions once. Matthew uses what you submit to prepare your application himself, so in most
-          cases you never have to get on a call. He only reaches out if something is missing or when it is time to sign.
+          Fill out the application once, like a paper application, and submit it. Matthew, a licensed advisor, takes it
+          from there and sends it to the carrier for you. No calls, no back and forth.
         </p>
 
         <div className="grid md:grid-cols-2 gap-4 mb-12">
@@ -89,9 +89,6 @@ function IntakeHub() {
             </section>
           );
         })}
-        <p className="text-center text-sm text-blue-200 flex items-center justify-center gap-2 mt-8">
-          <Phone className="w-4 h-4" /> Prefer to talk? Call <a className="underline" href="tel:9545430853">(954) 543-0853</a>
-        </p>
       </div>
 
       <section className="py-16" style={{ background: 'linear-gradient(180deg,#1A3586 0%,#081730 100%)' }}>
@@ -106,6 +103,9 @@ function IntakeHub() {
 }
 
 function Field({ field, value, onChange, error }) {
+  if (field.type === 'note') {
+    return <p className="text-sm text-slate-700 bg-blue-50 border border-blue-100 rounded-lg px-4 py-3 leading-relaxed">{field.text}</p>;
+  }
   const id = `f-${field.name}`;
   const common = { id, name: field.name, className: fieldClass, 'aria-invalid': !!error };
   let control;
@@ -151,8 +151,8 @@ function Field({ field, value, onChange, error }) {
       <input
         {...common}
         type={field.type}
-        inputMode={field.type === 'tel' ? 'tel' : field.type === 'number' ? 'decimal' : undefined}
-        autoComplete={field.type === 'email' ? 'email' : field.type === 'tel' ? 'tel' : undefined}
+        inputMode={field.inputMode || (field.type === 'tel' ? 'tel' : field.type === 'number' ? 'decimal' : undefined)}
+        autoComplete={field.secure ? 'off' : field.type === 'email' ? 'email' : field.type === 'tel' ? 'tel' : undefined}
         placeholder={field.placeholder}
         value={value || ''}
         onChange={(e) => onChange(e.target.value)}
@@ -166,6 +166,7 @@ function Field({ field, value, onChange, error }) {
       </label>
       {control}
       {field.help && <p className="text-xs text-slate-500 mt-1">{field.help}</p>}
+      {field.secure && <p className="text-xs text-slate-500 mt-1 flex items-center gap-1"><Lock className="w-3 h-3" /> Encrypted. Never emailed, shared only with the insurance carrier.</p>}
       {error && <p className="text-xs text-red-600 mt-1">{error}</p>}
     </div>
   );
@@ -174,7 +175,7 @@ function Field({ field, value, onChange, error }) {
 // ── After submit: live wait for Matthew's approval, then the price ───────────
 const GROUP_FORMS = ['small-group-health', 'corporate-group-health'];
 
-function WaitingScreen({ reference, statusKey, contactPref, formId }) {
+function WaitingScreen({ reference, statusKey, formId }) {
   const [result, setResult] = useState({ status: 'pending' });
   const [seconds, setSeconds] = useState(0);
 
@@ -209,8 +210,8 @@ function WaitingScreen({ reference, statusKey, contactPref, formId }) {
             <div className="w-14 h-14 mx-auto mb-5 rounded-full border-4 border-slate-200 animate-spin" style={{ borderTopColor: BLUE }} aria-hidden="true" />
             <h1 className="text-2xl font-black text-slate-900 mb-2">Reviewing your application</h1>
             <p className="text-slate-600 mb-4">
-              This usually takes 5 to 10 minutes. Keep this page open and your price will appear here. If you would rather leave,
-              we will email{contactPref && /text/i.test(contactPref) ? ' and text' : ''} you the moment it is ready.
+              Your application is in. This usually takes 5 to 10 minutes. Keep this page open and your result will appear here.
+              If you would rather leave, it is also emailed to you the moment it is ready.
             </p>
             <p className="text-sm text-slate-400 mb-1">Waiting {mm}:{ss}</p>
             {seconds > 900 && <p className="text-sm text-slate-500">This is taking longer than usual. You can close this page, we will email you as soon as it is ready.</p>}
@@ -237,7 +238,7 @@ function WaitingScreen({ reference, statusKey, contactPref, formId }) {
               <p className="text-slate-600 mb-3">Matthew is sending your secure payment link now. Check your email.</p>
             )}
             <p className="text-xs text-slate-500">
-              Payment happens on the carrier&apos;s own secure page. We never ask for card or bank details on this website or by email.
+              Payment is set up with the carrier. We will never ask for card or bank details by email.
               Final premium and coverage are set by the carrier and confirmed in your policy documents.
             </p>
           </>
@@ -246,15 +247,15 @@ function WaitingScreen({ reference, statusKey, contactPref, formId }) {
         {result.status === 'needs_info' && (
           <>
             <h1 className="text-2xl font-black text-slate-900 mb-2">We need a little more</h1>
-            <p className="text-slate-600 mb-3">{result.note || 'Matthew will reach out shortly for one more detail.'}</p>
-            <p className="text-sm text-slate-500">You can also call or text <a href="tel:9545430853" className="underline">(954) 543-0853</a>.</p>
+            <p className="text-slate-600 mb-3">{result.note || 'The carrier needs one more detail. We emailed you the question.'}</p>
+            <p className="text-sm text-slate-500">Just reply to that email with the answer. No call needed.</p>
           </>
         )}
 
         {result.status === 'declined' && (
           <>
             <h1 className="text-2xl font-black text-slate-900 mb-2">An update on your application</h1>
-            <p className="text-slate-600">{result.note || 'This one was not approved as submitted. Matthew will email you other options that may fit.'}</p>
+            <p className="text-slate-600">{result.note || 'This one was not approved as submitted. Other options that may fit are on their way to your email.'}</p>
           </>
         )}
 
@@ -272,7 +273,19 @@ function IntakeForm({ form }) {
   const carrier = (params.get('carrier') || '').slice(0, 80);
   const carrierInfo = ALL_CARRIERS.find((c) => (c.short || c.name) === carrier);
   const [step, setStep] = useState(0);
-  const [answers, setAnswers] = useState({});
+  const saveKey = `lhi-app-${form.id}`;
+  const secureNames = useMemo(() => new Set(form.sections.flatMap((s) => s.fields.filter((f) => f.secure).map((f) => f.name))), [form]);
+  // Progress is kept in this browser (never the secure fields) so a long
+  // application survives a refresh or a closed tab.
+  const [answers, setAnswers] = useState(() => {
+    try { return JSON.parse(localStorage.getItem(saveKey) || '{}') || {}; } catch { return {}; }
+  });
+  useEffect(() => {
+    try {
+      const keep = Object.fromEntries(Object.entries(answers).filter(([k]) => !secureNames.has(k)));
+      localStorage.setItem(saveKey, JSON.stringify(keep));
+    } catch { /* storage unavailable */ }
+  }, [answers, saveKey, secureNames]);
   const [consent, setConsent] = useState(false);
   const [privacyAck, setPrivacyAck] = useState(false);
   const [honeypot, setHoneypot] = useState('');
@@ -297,6 +310,11 @@ function IntakeForm({ form }) {
       if (empty) errs[f.name] = 'Required';
       else if (f.type === 'email' && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v)) errs[f.name] = 'Enter a valid email';
       else if (f.type === 'tel' && String(v).replace(/\D/g, '').length < 10) errs[f.name] = 'Enter a 10-digit phone number';
+      else if (f.digits) {
+        const n = String(v).replace(/\D/g, '').length;
+        const [min, max] = f.digits;
+        if (n < min || n > max) errs[f.name] = min === max ? `Enter all ${min} digits` : `Enter ${min} to ${max} digits`;
+      }
     });
     if (isLast && !consent) errs._consent = 'Please agree so we can contact you';
     if (isLast && !privacyAck) errs._privacy = 'Please confirm you have read how we protect your information';
@@ -314,11 +332,34 @@ function IntakeForm({ form }) {
     setStatus({ state: 'sending' });
     const reference = makeReference();
     const statusKey = Array.from(crypto.getRandomValues(new Uint8Array(16))).map((b) => b.toString(16).padStart(2, '0')).join('');
+    // Sensitive answers go to secure-submit (encrypted, never emailed). Only
+    // their last 4 digits travel with the rest of the application.
+    const answered = (f) => visible(f, answers) && answers[f.name] !== undefined && answers[f.name] !== '' && !(Array.isArray(answers[f.name]) && answers[f.name].length === 0);
+    const secureFields = form.sections.flatMap((s) => s.fields.filter((f) => f.secure && answered(f)));
+    if (secureFields.length) {
+      try {
+        const r = await fetch('/.netlify/functions/secure-submit', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ reference, statusKey, fields: secureFields.map((f) => ({ label: f.label, value: String(answers[f.name]).trim() })) }),
+        });
+        if (!r.ok) throw new Error('HTTP ' + r.status);
+      } catch (err) {
+        console.error('secure submit failed', err);
+        setStatus({ state: 'error', message: 'We could not save your application securely. Please check your connection and press Submit again.' });
+        return;
+      }
+    }
+    const shown = (f) => {
+      const v = answers[f.name];
+      if (f.secure) return 'ending ' + String(v).replace(/[^0-9A-Za-z]/g, '').slice(-4) + ' (full number encrypted, on the approval page)';
+      return Array.isArray(v) ? v.join(', ') : v;
+    };
     const lines = [];
     form.sections.forEach((s) => {
       const part = s.fields
-        .filter((f) => visible(f, answers) && answers[f.name] !== undefined && answers[f.name] !== '' && !(Array.isArray(answers[f.name]) && answers[f.name].length === 0))
-        .map((f) => f.label + ': ' + (Array.isArray(answers[f.name]) ? answers[f.name].join(', ') : answers[f.name]));
+        .filter((f) => f.type !== 'note' && answered(f))
+        .map((f) => f.label + ': ' + shown(f));
       if (part.length) lines.push('== ' + s.title + ' ==', ...part, '');
     });
     const name = ((answers.firstName || '') + ' ' + (answers.lastName || '')).trim() || answers.companyName || '';
@@ -331,7 +372,6 @@ function IntakeForm({ form }) {
       email: answers.email || '',
       phone: answers.phone || '',
       state: answers.state || answers.hqState || '',
-      contactPref: answers.contactPref || '',
       submittedAt: new Date().toISOString(),
       sourceUrl: window.location.href,
       consent: 'Agreed: ' + CONSENT_TEXT + ' | Privacy acknowledged: ' + PRIVACY_TEXT,
@@ -340,13 +380,14 @@ function IntakeForm({ form }) {
       carrier: carrier || 'No preference',
       details: (carrier ? 'Preferred carrier: ' + carrier + '\n\n' : '') + lines.join('\n'),
     });
+    if (res.ok) { try { localStorage.removeItem(saveKey); } catch { /* ignore */ } }
     setStatus(res.ok ? { state: 'done', reference: res.reference, key: statusKey } : { state: 'error', message: res.message });
   };
 
   const pct = useMemo(() => Math.round(((step + 1) / total) * 100), [step, total]);
 
   if (status.state === 'done') {
-    return <WaitingScreen reference={status.reference} statusKey={status.key} contactPref={answers.contactPref} formId={form.id} />;
+    return <WaitingScreen reference={status.reference} statusKey={status.key} formId={form.id} />;
   }
 
   return (
@@ -415,12 +456,12 @@ function IntakeForm({ form }) {
           </div>
 
           <p className="text-xs text-slate-500 flex items-center gap-1 justify-center pt-1">
-            <Lock className="w-3 h-3" /> Never enter your Social Security, bank or card number here.
+            <Lock className="w-3 h-3" /> {secureNames.size ? 'Social Security, license and bank numbers are encrypted and shared only with the carrier.' : 'Never enter your Social Security, bank or card number here.'}
           </p>
         </form>
 
         <p className="text-xs text-blue-200 text-center mt-4">
-          LifeHealthInc is a licensed independent insurance brokerage. This form requests information only and does not bind coverage.
+          LifeHealthInc is a licensed independent insurance brokerage. Submitting this application does not bind coverage; the carrier makes the final decision.
         </p>
       </div>
     </div>
