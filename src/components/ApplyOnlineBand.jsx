@@ -21,9 +21,9 @@ export default function ApplyOnlineBand({ page }) {
             </h2>
             <ul className="space-y-2 mb-6">
               {[
-                { icon: FileText, text: 'Answer one simple form, about 5 minutes' },
-                { icon: CheckCircle, text: 'A licensed advisor prepares your application for you' },
-                { icon: Mail, text: 'Updates by email or text, we only call if you want us to' },
+                { icon: FileText, text: 'Fill out the application once, online' },
+                { icon: CheckCircle, text: 'A licensed advisor reviews it and submits it to the carrier' },
+                { icon: Mail, text: 'Your result appears on screen and by email, no call needed' },
               ].map(({ icon: Icon, text }) => (
                 <li key={text} className="flex items-start gap-2 text-sm text-slate-600">
                   <Icon className="w-4 h-4 mt-0.5 flex-shrink-0" style={{ color: BLUE }} /> {text}
